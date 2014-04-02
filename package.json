@@ -6,7 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.5.1",
-    "jade": "*"
+    "express": "3.x",
+    "jade": "*",
+    "imap": "0.8.x",
+    "mail-listener2": "0.1.x",
+    "mailparser": "0.4.x"
   }
 }
