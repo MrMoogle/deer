@@ -1,0 +1,312 @@
+11 University Place
+114-116 Nassau Street
+116 Prospect Avenue
+169 Nassau Street
+171 Broadmead Street
+179 Nassau Street
+185 Nassau Street
+1879 Hall
+1901-Laughlin Hall
+1903 Hall
+1912 Pavilion
+1915 Hall
+1927 - Clapp Hall
+1937 Hall
+1938 Hall
+1939 Hall
+194 Nassau Street
+1952 Stadium
+1967 Hall
+1976 Hall
+1981 Hall
+199 Nassau Street
+2 Dickinson Street
+20 Washington Road
+200 Elm Drive
+201 Forrestal Road
+201 Nassau Street
+22 Chambers Street
+221 Nassau Street
+228 Alexander Street
+23 University Place
+26 College Road West
+262 Alexander Street
+262A Alexander Street
+294 Alexander Street
+306 Alexander Street
+350 Alexander Street
+36 University Place
+39 University Place
+48 University Place
+5 Ivy Lane
+693 Alexander Road
+701 Carnegie Center
+71 University Place
+755 Alexander Road
+81 Alexander Street
+87 Prospect Avenue
+91 Prospect Avenue
+99 Alexander Street
+Alexander Hall
+Architecture Building
+Architecture Laboratory
+Art Museum
+Bainbridge House
+Baker Hall
+Baker Rink
+Bendheim Center
+Bendheim Hall
+Berlind Theatre
+Blair Hall
+Bloomberg Hall
+Bobst Hall
+Bogle Hall
+Bowen Hall
+Brown Hall
+Burr Hall
+Butler Tract
+Buyers Hall
+Caldwell Field House
+Campbell Hall
+Campus Club
+Cannon Club
+Cannon Green
+Cap and Gown Club
+Chancellor Green
+Chapel
+Charter Club
+Chilled Water Plant
+Clarke Field Press Box
+Clio Hall
+Cloister Inn
+Cogeneration Plant
+Colonial Club
+Community Hall
+Computer Science Building
+Cordish Family Pavilion
+Corwin Hall
+Cottage Club
+Cuyler Hall
+DeNunzio Pool
+Dickinson Hall
+Dillon Court East
+Dillon Court West
+Dillon Gym
+Dod Hall
+Dodge Hall
+Dodge-Osborn Hall
+East Pyne Building
+Edwards Hall
+Elementary Particles Lab East
+Elementary Particles Lab West
+Engineering Quad A Wing
+Engineering Quad B Wing
+Engineering Quad C Wing
+Engineering Quad D Wing
+Engineering Quad E Wing
+Engineering Quad F Wing
+Engineering Quad G Wing
+Engineering Quad J Wing
+Eno Hall
+Feinberg Hall
+Fields Center
+Fine Hall
+Firestone Library
+Fisher Hall
+Fisher Hall Dorm
+FitzRandolph Observatory
+Forbes Addition
+Forbes Garden
+Forbes Main
+Forrestal Campus Data Center
+Foulke Hall
+Frick Chemistry Laboratory
+Friend Center
+Frist Campus Center
+Garden Theatre
+Gas Dynamics Laboratory
+Gauss Hall
+Green Hall
+Gulick Pavilion
+Guyot Hall
+Haaga House
+Hamilton Hall
+Hargadon Hall
+Helm Building
+Henry Hall
+Henry House
+Holder Hall
+Hoyt Lab
+Icahn Laboratory
+Ivy Club
+Jadwin Gym
+Jadwin Hall
+Jewish Life, Center for
+Joline Hall
+Jones Hall
+Labyrinth Books
+Launch House
+Lauritzen Hall
+Lewis Library
+Library Annex A
+Little Hall
+Lockhart Hall
+Lourie - Love Pavilion
+Lowrie House
+Lyman Spitzer Building
+MacMillan Annex
+MacMillan Building
+Maclean House
+Madison Hall
+Marx Hall
+McCarter Theatre
+McCormick Hall
+McCosh Hall
+McCosh Health Center
+McDonnell Hall
+Moffett Laboratory
+Mudd Library
+Murley-Pivirotto Family Tower
+Murray Theater
+Nassau Hall
+New Graduate College
+New South Building
+North Guard Gate
+Nursery Greenhouse
+Nursery Office
+Old Graduate College
+Palmer Guest House
+Patton Hall
+Peretsman-Scully Hall
+Peyton Hall
+Princeton Neuroscience Institute
+Princeton Plasma Physics Lab
+Princeton Plasma Physics Laboratory
+Princeton Stadium
+Princeton University Press
+Printing Services
+Prospect House
+Pyne Hall
+Quadrangle Club
+ReCAP
+Roberts Stadium
+Robertson Hall
+Rock Magnetism Laboratory
+Sayre Hall
+Scheide Caldwell House
+Schultz Laboratory
+Scully Hall
+Shea Rowing Center
+Sherrerd Hall
+South Guard Booth
+Spelman Halls
+Springdale Club House
+Stanhope Hall
+Streicker Bridge
+Tennis Pavilion
+Terrace Club
+Thomas Laboratory
+Tiger Inn
+Tower Club
+Von Neumann Hall
+Walker Hall
+Wallace Hall
+Weaver Track Stadium
+Wendell Hall B
+Wendell Hall C
+West College
+West Lodge
+Whig Hall
+Wilcox Hall
+Wilf Hall
+Witherspoon Hall
+Woolworth Center
+Wright Hall
+Wu Hall
+Wyman House
+Yoseloff Hall
+Butler College Dining Hall
+C-Store
+Cafe 701
+Cafe Vivian
+Chancellor Green
+Chemistry CaFe
+EQuad Cafe
+Food For Thought
+Forbes College Dining Hall
+Frist Deli
+Frist Gallery
+Frist Grill
+Frist Pizza
+Garden Room
+Genomics Cafe
+Genomics Coffee Service
+Graduate College Dining Hall
+Jewish Life, Center for
+Mathey College Dining Hall
+Ole
+Rockefeller College Dining Hall
+Studio 34
+Tap Room
+Whitman College Dining Hall
+Wilson College Dining Hall
+Witherspoon's
+Woodrow Wilson School
+2000 Meter Racecourse Finish
+Bedford Field
+Broadmead Field
+Campbell Field
+Clarke Field
+Class of 1895 Field
+Finney Field
+Frelinghuysen Field
+Lake Field
+Lenz Tennis Center
+Myslik Field
+Pardee Field
+Plummer Field
+Poe Field
+Powers Field
+Rickerson Field
+Sexton Field
+Sherrerd Field
+Strubing Field
+Upper Strubing Field
+Windsor Fields
+120 Prospect Avenue
+4 Mercer Street
+College Road Apartments
+Dean Mathey Court
+Dickinson Street Apartments
+Edwards Place Apartments
+Ferris Thompson Apartments
+Lawrence Apartments
+Nassau Court
+Olden House
+Stanworth Apartments
+Wyman Cottage
+Architecture Library
+Cotsen Children's Library
+Data and Statistical Services, Library
+East Asian Library
+Engineering Library
+Fine Annex (Annex B)
+Fine Hall Wing, Lewis Library
+Firestone Library
+Forrestal Annex Library
+Furth Plasma Physics Library
+Graphic Arts Collection
+Humanities Resource Center
+Industrial Relations Section
+Lewis Library
+Map Collection
+Marquand Library of Art and Archaeology
+Mendel Music Library
+Mudd Manuscript Library
+Near East Collections
+Papers of Thomas Jefferson
+Public Policy Papers
+Rare Books and Special Collections Scheide Library, Department of
+Stokes Library for Public and International Affairs, Population Research Collection
+Taylor Collection
+University Archives
