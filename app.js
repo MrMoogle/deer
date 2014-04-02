@@ -1,26 +1,54 @@
-/**
- * Module dependencies.
- */
-
+// Dependencies
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var Imap = require('imap'),
-	inspect = require('util').inspect;
-
-var imap = new Imap({
-  user: 'pfreefoodmap@gmail.com',
-  password: 'pfreefoodmap333',
-  host: 'imap.gmail.com',
-  port: 993,
-  tls: true
-});
-
+    inspect = require('util').inspect;
+var MailListener = require("mail-listener2");
 var app = express();
 
-// all environments
+/*-------------- Mail Listener ----------------*/
+var mailListener = new MailListener({
+  username: "pfreefoodmap",
+  password: "pfreefoodmap333",
+  host: "imap.gmail.com",
+  port: 993, // imap port
+  tls: true,
+  tlsOptions: { rejectUnauthorized: false },
+  mailbox: "INBOX", // mailbox to monitor
+  searchFilter: "UNSEEN", // the search filter being used after an IDLE notification has been retrieved
+  markSeen: true, // all fetched email willbe marked as seen and not fetched next time
+  fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
+  mailParserOptions: {streamAttachments: true} // options to be passed to mailParser lib.
+});
+
+// event listener for when new email is received
+mailListener.on("mail", function(mail){
+  // do something with mail object including attachments
+  console.log(mail.text);
+  // mail processing code goes here
+});
+
+// event listener for server connection
+mailListener.on("server:connected", function(){
+  console.log("imapConnected");
+});
+
+// event listener for server disconnection
+mailListener.on("server:disconnected", function(){
+  console.log("imapDisconnected");
+});
+
+// event listener for errors
+mailListener.on("error", function(err){
+  console.log(err);
+});
+
+mailListener.start(); // start listening
+
+/*-------------- Environments ----------------*/
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -31,59 +59,6 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-
-function openInbox(cb) {
-  imap.openBox('INBOX', true, cb);
-}
-
-/*
-
-imap.once('ready', function() {
-  openInbox(function(err, box) {
-    if (err) throw err;
-    var f = imap.seq.fetch('1:3', {
-      bodies: 'HEADER.FIELDS (FROM TO SUBJECT DATE)',
-      struct: true
-    });
-    f.on('message', function(msg, seqno) {
-      console.log('Message #%d', seqno);
-      var prefix = '(#' + seqno + ') ';
-      msg.on('body', function(stream, info) {
-        var buffer = '';
-        stream.on('data', function(chunk) {
-          buffer += chunk.toString('utf8');
-        });
-        stream.once('end', function() {
-          console.log(prefix + 'Parsed header: %s', inspect(Imap.parseHeader(buffer)));
-        });
-      });
-      msg.once('attributes', function(attrs) {
-        console.log(prefix + 'Attributes: %s', inspect(attrs, false, 8));
-      });
-      msg.once('end', function() {
-        console.log(prefix + 'Finished');
-      });
-    });
-    f.once('error', function(err) {
-      console.log('Fetch error: ' + err);
-    });
-    f.once('end', function() {
-      console.log('Done fetching all messages!');
-      imap.end();
-    });
-  });
-});
-
-*/
-imap.once('error', function(err) {
-  console.log(err);
-});
-
-imap.once('end', function() {
-  console.log('Connection ended');
-});
-
-imap.connect();
 
 // development only
 if ('development' == app.get('env')) {
