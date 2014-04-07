@@ -10,6 +10,5 @@
     "jade": "*",
     "imap": "0.8.x",
     "mail-listener2": "0.1.x",
-    "mailparser": "0.4.x"
   }
 }
