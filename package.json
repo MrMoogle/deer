@@ -10,6 +10,7 @@
     "jade": "*",
     "imap": "0.8.x",
     "mail-listener2": "0.1.x",
-    "mailparser": "0.4.x"
+    "mysql": "2.1.x",
+    "nodemon": "1.0.x"
   }
 }

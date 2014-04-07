@@ -1,14 +1,27 @@
 // Dependencies
-var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
-var Imap = require('imap'),
-    inspect = require('util').inspect;
-var MailListener = require("mail-listener2");
-var app = express();
+var express     = require('express');
+var routes      = require('./routes');
+var user        = require('./routes/user');
+var http        = require('http');
+var path        = require('path');
+var Imap        = require('imap'),
+    inspect     = require('util').inspect;
+var MailListener= require("mail-listener2");
+var app         = express();
 
+var mysql       = require('mysql');
+var connection  = mysql.createConnection({
+  host     : 'deerdb.cqjm6e2t1gja.us-west-2.rds.amazonaws.com',
+  user     : 'deerdb',
+  password : 'deerdb333'
+});
+
+connection.connect(function(err) {
+  if (err) 
+    console.log("No database connection");
+  else
+    console.log("Database connection established!")
+});
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
   username: "pfreefoodmap",
@@ -67,7 +80,6 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/map', routes.map);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
