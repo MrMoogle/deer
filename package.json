@@ -8,7 +8,7 @@
   "dependencies": {
     "express": "3.x",
     "jade": "*",
-    "imap": "0.8.x",
     "mail-listener2": "0.1.x",
+    "mysql": "2.1.x" 
   }
 }
