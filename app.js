@@ -1,14 +1,26 @@
 // Dependencies
-var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
-var Imap = require('imap'),
-    inspect = require('util').inspect;
-var MailListener = require("mail-listener2");
-var app = express();
+var express     = require('express');
+var routes      = require('./routes');
+var user        = require('./routes/user');
+var http        = require('http');
+var path        = require('path');
+var Imap        = require('imap'),
+    inspect     = require('util').inspect;
+var MailListener= require("mail-listener2");
+var app         = express();
+var mysql       = require('mysql');
+var connection  = mysql.createConnection({
+  host     : 'deerdb.cqjm6e2t1gja.us-west-2.rds.amazonaws.com',
+  database : 'deerdb',
+  user     : 'deerdb',
+  password : 'deerdb333',
 
+});
+
+connection.connect(function(err) {
+  if (err) 
+    console.log("No database connection");
+});
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
   username: "pfreefoodmap",
@@ -26,9 +38,16 @@ var mailListener = new MailListener({
 
 // event listener for when new email is received
 mailListener.on("mail", function(mail){
-  // do something with mail object including attachments
-  console.log(mail.text);
-  // mail processing code goes here
+  // Constructs current date
+  var date = new Date();
+  var curr_time = (date.getYear() + 1900) + '-' + date.getMonth() + '-' + date.getDate() + ' '
+                   + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+  
+  // Inserts into database 
+  var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
+               mail.text +'\', ' + '\'Test Location\', \'' + curr_time + '\')';
+  console.log(query);
+  connection.query(query);
 });
 
 // event listener for server connection
