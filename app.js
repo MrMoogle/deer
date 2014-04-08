@@ -25,7 +25,6 @@ connection.connect(function(err) {
   if (err) 
     console.log("No database connection");
 });
-<<<<<<< HEAD
 
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
@@ -82,8 +81,6 @@ mailListener.on("server:disconnected", function(){
   console.log("imapDisconnected");
 });
 
-=======
-
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
   username: "pfreefoodmap",
@@ -137,7 +134,6 @@ mailListener.on("server:disconnected", function(){
   console.log("imapDisconnected");
 });
 
->>>>>>> map3
 // event listener for errors
 mailListener.on("error", function(err){
   console.log(err);
