@@ -42,6 +42,8 @@ mailListener.on("mail", function(mail){
   var curr_time = (date.getYear() + 1900) + '-' + date.getMonth() + '-' + date.getDate() + ' '
                    + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
   
+  // NLP Code here 
+
   // Inserts into database 
   var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
                mail.text +'\', ' + '\'Test Location\', \'' + curr_time + '\')';
