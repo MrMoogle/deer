@@ -1,7 +1,48 @@
-extends layout
+doctype html
+html. //look at the sexy map!
+	<head>
+	<meta charset=utf-8 />
+	<title>DEER MAP</title>
 
-block content
-  h1= title
-  p Welcome to #{title}
-  p Chupame putos
-  img(src = "http://www.princeton.edu/pr/visitors/images/park-map.jpg")
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+	<style>
+	body { margin:0; padding:0; }
+	#map { position:absolute; top:0; bottom:0; width:100%; }
+	</style>
+	</head>
+	<body>
+
+
+	<div id='map'></div>
+	<script>
+	var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm');
+
+
+	L.mapbox.featureLayer({
+	// this feature is in the GeoJSON format: see geojson.org
+	// for the full specification
+	type: 'Feature',
+	geometry: {
+		type: 'Point',
+		// coordinates here are in longitude, latitude order because
+		// x, y is the standard for GeoJSON and many formats
+		coordinates: [-74.655139, 40.346944]
+	},
+	properties: {
+		title: 'MAHRKARS!',
+		description: 'Testy Test',
+		// one can customize markers by adding simplestyle properties
+		// http://mapbox.com/developers/simplestyle/
+		'marker-size': 'small',
+		'marker-color': '#f0a'
+	}
+	}).addTo(map);
+
+
+	</script>
+
+
+	</body>

@@ -1,0 +1,15 @@
+extends layout
+
+script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
+link(href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css')
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Chupame putos
+  img(src = "http://www.princeton.edu/pr/visitors/images/park-map.jpg")
+
+
+
+  #map
+  script(- var map = L.mapbox.map('map', 'eychen2014.hme0hhgm'))
