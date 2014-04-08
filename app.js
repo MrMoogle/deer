@@ -5,6 +5,8 @@ var user        = require('./routes/user');
 var http        = require('http');
 var path        = require('path');
 var MailListener= require("mail-listener2");
+var fs          = require('fs')
+var natural     = require('natural')
 var app         = express();
 var mysql       = require('mysql');
 var connection  = mysql.createConnection({
@@ -13,6 +15,10 @@ var connection  = mysql.createConnection({
   user     : 'deerdb',
   password : 'deerdb333',
 });
+
+// Food word dictionary
+var foodlist = fs.readFileSync('./nltk_data/food.txt').toString().split("\n");
+console.log("Length of food list = " + foodlist.length);
 
 /*-------------- MySQL database ----------------*/
 connection.connect(function(err) {
@@ -49,6 +55,20 @@ mailListener.on("mail", function(mail){
                mail.text +'\', ' + '\'Test Location\', \'' + curr_time + '\')';
   console.log(query);
   connection.query(query);
+
+  // Identify food in email text
+  var tokenizer = new natural.WordTokenizer();
+  var nounInflector = new natural.NounInflector();
+  var message = tokenizer.tokenize(mail.text);
+  console.log("Tokenized message: " + message);
+  for (var w in message) {
+    console.log("in consideration: " + message[w]);
+    for (var f in foodlist) {
+      if (nounInflector.singularize(message[w]) === foodlist[f]) {
+        console.log("Identified food: " + foodlist[f]);
+      }
+    }
+  }
 });
 
 // event listener for server connection
