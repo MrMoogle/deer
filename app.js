@@ -61,15 +61,22 @@ mailListener.on("mail", function(mail){
     console.log("In consideration: " + message[w]);
     var patt = new RegExp(" " + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
     var patt2 = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + " ", "g");
+    var patt3 = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
 
     // food recognition
     for (var f = 0; f < foodlist.length; f++) {
+      if(foodlist[f] === "eggplant")
+        console.log("Found Eggplant");
       if (patt.test(foodlist[f])) {
         console.log("Identified food: " + message[w]);
         break;
       }
       else if (patt2.test(foodlist[f])) {
         console.log("Identified food2: " + message[w]);
+        break;
+      }
+      else if (patt3.test(foodlist[f])) {
+        console.log("Identified food3: " + message[w]);
         break;
       }
     }
@@ -93,6 +100,10 @@ mailListener.on("mail", function(mail){
         console.log("Identified place2: " + message[w]);
         //location = message[w];
         location = placelist[p];
+        break;
+      }
+      else if (patt3.test(foodlist[p])) {
+        console.log("Identified place3: " + message[w]);
         break;
       }
     }
