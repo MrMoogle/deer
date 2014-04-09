@@ -109,9 +109,10 @@ mailListener.on("mail", function(mail){
     }
   }
 
+  location = location.split("\t");
   // Inserts into database 
   var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
-               mail.text +'\', \'' + location + '\', \'' + curr_time + '\')';
+               mail.text +'\', \'' + location[1] + '\', \'' + curr_time + '\')';
   console.log(query);
   connection.query(query);
 });
