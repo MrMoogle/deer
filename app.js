@@ -19,7 +19,7 @@ var connection  = mysql.createConnection({
 // Food word dictionary
 var foodlist = fs.readFileSync('./nltk_data/food.txt').toString().toLowerCase().split("\n");
 // Location dictionary
-var placelist = fs.readFileSync('./scraped_data/locations.txt').toString().toLowerCase().split("\n");
+var placelist = fs.readFileSync('./scraped_data/coordinates.txt').toString().toLowerCase().split("\n");
 
 /*-------------- MySQL database ----------------*/
 connection.connect(function(err) {
