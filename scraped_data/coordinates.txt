@@ -215,79 +215,68 @@ Chemistry CaFe 	40.344007, -74.650682
 EQuad Cafe	40.350958, -74.650679
 Food For Thought	40.346896, -74.655244
 Forbes College Dining Hall	40.342166, -74.660910
-Frist Deli
-Frist Gallery
-Frist Grill
-Frist Pizza
-Garden Room
-Genomics Cafe
-Genomics Coffee Service
-Graduate College Dining Hall
-Jewish Life, Center for
-Mathey College Dining Hall
-Ole
-Rockefeller College Dining Hall
-Studio 34
-Tap Room
-Whitman College Dining Hall
-Wilson College Dining Hall
-Witherspoon's
-Woodrow Wilson School
-2000 Meter Racecourse Finish
-Bedford Field
-Broadmead Field
-Campbell Field
-Clarke Field
-Class of 1895 Field
-Finney Field
-Frelinghuysen Field
-Lake Field
-Lenz Tennis Center
-Myslik Field
-Pardee Field
-Plummer Field
-Poe Field
-Powers Field
-Rickerson Field
-Sexton Field
-Sherrerd Field
-Strubing Field
-Upper Strubing Field
-Windsor Fields
-120 Prospect Avenue
-4 Mercer Street
-College Road Apartments
-Dean Mathey Court
-Dickinson Street Apartments
-Edwards Place Apartments
-Ferris Thompson Apartments
-Lawrence Apartments
-Nassau Court
-Olden House
-Stanworth Apartments
-Wyman Cottage
-Architecture Library
-Cotsen Children's Library
-Data and Statistical Services, Library
-East Asian Library
-Engineering Library
-Fine Annex (Annex B)
-Fine Hall Wing, Lewis Library
-Forrestal Annex Library
-Furth Plasma Physics Library
-Graphic Arts Collection
-Humanities Resource Center
-Industrial Relations Section
-Lewis Library
-Map Collection
-Marquand Library of Art and Archaeology
-Mendel Music Library
-Mudd Manuscript Library
-Near East Collections
-Papers of Thomas Jefferson
-Public Policy Papers
-Rare Books and Special Collections Scheide Library, Department of
-Stokes Library for Public and International Affairs, Population Research Collection
-Taylor Collection
-University Archives
+Frist Deli	40.346914, -74.655263
+Frist Gallery	40.346914, -74.655263
+Frist Grill	40.346914, -74.655263
+Frist Pizza	40.346914, -74.655263
+Garden Room	40.346973, -74.656549
+Genomics Cafe 40.344547, -74.653260
+Genomics Coffee Service 40.344547, -74.653260	
+Graduate College Dining Hall	40.340504, -74.665570
+Jewish Life, Center For	40.346848, -74.653702
+Mathey College Dining Hall	40.348629, -74.662262
+Rockefeller College Dining Hall	40.348821, -74.661757
+Studio 34	40.343927, -74.655830
+Whitman College Dining Hall	40.344192, -74.657622
+Wilson College Dining Hall 40.344757, -74.656264
+Woodrow Wilson School	40.348395, -74.654738
+Bedford Field	40.341132, -74.652286
+Broadmead Field	40.349555, -74.643913
+Campbell Field	40.345806, -74.647172
+Clarke Field	40.346484, -74.648116
+Class of 1895 Field	40.342311, -74.655291
+Finney Field	40.345548, -74.647786
+Frelinghuysen Field	40.344616, -74.649406
+Lenz Tennis Center	40.341714, -74.655058
+Myslik Field	40.342581, -74.653967
+Pardee Field	40.343830, -74.653481
+Plummer Field	40.342792, -74.653202
+Poe Field	40.343339, -74.654991
+Powers Field	40.345993, -74.650037
+Sexton Field	40.346450, -74.645952
+Sherrerd Field	40.341724, -74.651273
+Strubing Field	40.346921, -74.646471
+Upper Strubing Field	40.347485, -74.647265
+120 Prospect Avenue	40.350196, -74.648170
+4 Mercer Street	40.348192, -74.663221
+College Road Apartments	40.344886, -74.661564
+Dean Mathey Court	40.345477, -74.639769
+Dickinson Street Apartments	40.345657, -74.661938
+Edwards Place Apartments	40.346656, -74.662348
+Ferris Thompson Apartments	40.347718, -74.648764
+Lawrence Apartments	40.332845, -74.656908	
+Olden House	40.350929, -74.652278
+Stanworth Apartments	40.354085, -74.667436
+Wyman Cottage	40.340178, -74.666266
+Architecture Library	40.347899, -74.656198
+Cotsen Children's Library	40.349418, -74.657046
+Data and Statistical Services, Library	40.349418, -74.657046
+East Asian Library	40.346781, -74.655466
+Engineering Library	40.350894, -74.651636
+Fine Annex (Annex B)	40.345692, -74.652770
+Fine Hall Wing, Lewis Library	40.345692, -74.652770
+Forrestal Annex Library	40.355550, -74.612291
+Furth Plasma Physics Library	40.350347, -74.604173
+Graphic Arts Collection	40.349558, -74.657378
+Humanities Resource Center	40.348757, -74.658472
+Industrial Relations Section	40.349795, -74.657480
+Lewis Library	40.346253, -74.652694
+Map Collection	40.346220, -74.652736
+Marquand Library of Art and Archaeology	40.347463, -74.658060
+Mendel Music Library	40.347325, -74.655943
+Mudd Manuscript Library	40.349599, -74.651987
+Near East Collections	40.349578, -74.657577
+Rare Books and Special Collections Scheide Library, Department of	40.349656, -74.657646
+Stokes Library for Public and International Affairs, Population Research Collection	40.349267, -74.653618
+University Archives	40.349599, -74.652078
 
