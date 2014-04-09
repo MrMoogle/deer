@@ -178,45 +178,43 @@ Rock Magnetism Laboratory	40.345232, -74.655167
 Sayre Hall	40.345183, -74.616286
 Scheide Caldwell House	40.349499, -74.658535
 Schultz Laboratory	40.345383, -74.654020
-Scully Hall
-Shea Rowing Center
-Sherrerd Hall
-South Guard Booth
-Spelman Halls
-Springdale Club House
-Stanhope Hall
-Streicker Bridge
-Tennis Pavilion
-Terrace Club
-Thomas Laboratory
-Tiger Inn
-Tower Club
-Von Neumann Hall
-Walker Hall
-Wallace Hall
-Weaver Track Stadium
-Wendell Hall B
-Wendell Hall C
-West College
-West Lodge
-Whig Hall
-Wilcox Hall
-Wilf Hall
-Witherspoon Hall
-Woolworth Center
-Wright Hall
-Wu Hall
-Wyman House
-Yoseloff Hall
-Butler College Dining Hall
-C-Store
-Cafe 701
-Cafe Vivian
-Chancellor Green
-Chemistry CaFe
-EQuad Cafe
-Food For Thought
-Forbes College Dining Hall
+Scully Hall	40.344317, -74.654477
+Shea Rowing Center	40.339541, -74.650658
+Sherrerd Hall	40.349554, -74.652703
+Spelman Halls	40.344623, -74.659256
+Springdale Club House	40.336797, -74.661979
+Stanhope Hall	40.348743, -74.659991
+Streicker Bridge	40.344451, -74.652027
+Tennis Pavilion	40.341679, -74.653202
+Terrace Club	40.347155, -74.653997
+Thomas Laboratory	40.344972, -74.653825
+Tiger Inn	40.348807, -74.652260
+Tower Club	40.347708, -74.653982
+Von Neumann Hall	40.350472, -74.649097
+Walker Hall	40.345549, -74.657008
+Wallace Hall	40.349262, -74.653642
+Weaver Track Stadium	40.344626, -74.649434
+Wendell Hall	40.344087, -74.658260
+West College	40.348003, -74.659667
+West Lodge	40.339663, -74.666455
+Whig Hall	40.347853, -74.658634
+Wilcox Hall	40.344839, -74.656113
+Wilf Hall	40.344414, -74.655177
+Witherspoon Hall	40.347490, -74.660156
+Woolworth Center	40.347247, -74.655865
+Wright Hall	40.345272, -74.657307
+Wu Hall	40.344734, -74.656492
+Wyman House	40.340099, -74.665669
+Yoseloff Hall	40.344343, -74.656144
+Butler College Dining Hall	40.344693, -74.656543
+C-Store	40.346872, -74.655319
+Cafe 701	40.323785, -74.649138
+Cafe Vivian	40.346896, -74.655255
+Chancellor Green	40.349083, -74.658611
+Chemistry CaFe 	40.344007, -74.650682
+EQuad Cafe	40.350958, -74.650679
+Food For Thought	40.346896, -74.655244
+Forbes College Dining Hall	40.342166, -74.660910
 Frist Deli
 Frist Gallery
 Frist Grill
