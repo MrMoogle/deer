@@ -31,7 +31,6 @@
 23 University Place
 26 College Road West
 262 Alexander Street
-262A Alexander Street
 294 Alexander Street
 306 Alexander Street
 350 Alexander Street
@@ -48,6 +47,7 @@
 91 Prospect Avenue
 99 Alexander Street
 Alexander Hall
+Richardson Auditorium
 Architecture Building
 Architecture Laboratory
 Art Museum
@@ -89,8 +89,6 @@ Cottage Club
 Cuyler Hall
 DeNunzio Pool
 Dickinson Hall
-Dillon Court East
-Dillon Court West
 Dillon Gym
 Dod Hall
 Dodge Hall
