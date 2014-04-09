@@ -43,7 +43,6 @@ powdered sugar
 dropped egg
 ail
 Irish stew
-vitamin Bc
 oatcake
 bioflavinoid
 grapefruit peel
@@ -62,14 +61,11 @@ sauce chausseur
 lithia water
 maple syrup
 lutefisk
-vitamin B1
 lobster stew
-vitamin B6
 mint julep
 Swedish rye
 hamburger bun
 bean curd
-B-complex vitamin
 broth
 refection
 anchovy paste
@@ -169,7 +165,6 @@ chicken cacciatora
 nut bread
 rosemary
 meal
-fat-soluble vitamin
 allspice
 rum sling
 adobo
@@ -218,8 +213,6 @@ NADA daiquiri
 licorice
 chocolate egg
 bitter
-vitamin A1
-vitamin A2
 caster sugar
 skimmed milk
 danish
@@ -1128,8 +1121,6 @@ hard roll
 grasshopper
 burger
 rye
-vitamin K3
-vitamin K1
 sub
 Irish whiskey
 triple-decker
@@ -1237,7 +1228,6 @@ sucker
 wasabi
 snowball
 rechewed food
-B vitamin
 brandy sling
 pan gravy
 chicken broth
@@ -1314,7 +1304,6 @@ estragon
 John Barleycorn
 frozen pudding
 chocolate fudge
-high-vitamin diet
 old fashioned
 charlotte
 English breakfast tea
@@ -1439,7 +1428,6 @@ herb tea
 lobscuse
 bone marrow
 chowchow
-vitamin B complex
 bolognese pasta sauce
 Scotch woodcock
 paprika sauce
@@ -1720,7 +1708,6 @@ salad
 candied citrus peel
 ship biscuit
 apple sauce
-vitamin B2
 crescent roll
 biscuit
 wedge
@@ -1832,7 +1819,6 @@ sack
 hamburger roll
 Indian meal
 congo
-vitamin pill
 orange soda
 home-fried potatoes
 ash cake
@@ -1995,7 +1981,6 @@ stuffing
 cinnamon snail
 bread-stick
 sustenance
-vitamin-deficiency diet
 conserve
 candy bar
 grinder
@@ -2124,21 +2109,11 @@ condiment
 confect
 power breakfast
 sauce Espagnole
-vitamin K
-vitamin H
 soda water
-vitamin M
-vitamin B
-vitamin C
-vitamin A
-vitamin G
-vitamin D
-vitamin E
 pilaw
 planter's punch
 knish
 MSG
-vitamin P
 wheat flour
 granulated sugar
 tuna salad
