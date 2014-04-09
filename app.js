@@ -48,15 +48,9 @@ mailListener.on("mail", function(mail){
   var date = new Date();
   var curr_time = (date.getYear() + 1900) + '-' + date.getMonth() + '-' + date.getDate() + ' '
                    + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
-  
+  var location;
+
   // NLP Code here 
-
-  // Inserts into database 
-  var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
-               mail.text +'\', ' + '\'Test Location\', \'' + curr_time + '\')';
-  console.log(query);
-  connection.query(query);
-
   // Identify food and location in email text
   var tokenizer = new natural.WordTokenizer();
   var nounInflector = new natural.NounInflector();
@@ -81,24 +75,34 @@ mailListener.on("mail", function(mail){
     }
   }
 
+  // location recognition
   for (var w = 0; w < message.length; w++) {
     console.log("In consideration: " + message[w]);
     var patt = new RegExp(" " + message[w].toLowerCase() + "$", "g");
     var patt2 = new RegExp("^" + message[w].toLowerCase() + " ", "g");
 
-    // location recognition
     for (var p = 0; p < placelist.length; p++) {
       //console.log(placeList[p]);
       if (patt.test(placelist[p])) {
         console.log("Identified place: " + message[w]);
+        //location = message[w];
+        location = placelist[p];
         break;
       }
        else if (patt2.test(placelist[p])) {
         console.log("Identified place2: " + message[w]);
+        //location = message[w];
+        location = placelist[p];
         break;
       }
     }
   }
+
+  // Inserts into database 
+  var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
+               mail.text +'\', \'' + location + '\', \'' + curr_time + '\')';
+  console.log(query);
+  connection.query(query);
 });
 
 // event listener for server connection
