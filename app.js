@@ -62,20 +62,39 @@ mailListener.on("mail", function(mail){
   var nounInflector = new natural.NounInflector();
   var message = tokenizer.tokenize(mail.text);
   console.log("Tokenized message: " + message);
+  // food recognition
   for (var w = 0; w < message.length; w++) {
-    console.log("in consideration: " + message[w]);
-    var patt = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
+    console.log("In consideration: " + message[w]);
+    var patt = new RegExp(" " + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
+    var patt2 = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + " ", "g");
+
     // food recognition
     for (var f = 0; f < foodlist.length; f++) {
       if (patt.test(foodlist[f])) {
         console.log("Identified food: " + message[w]);
         break;
       }
+      else if (patt2.test(foodlist[f])) {
+        console.log("Identified food2: " + message[w]);
+        break;
+      }
     }
+  }
+
+  for (var w = 0; w < message.length; w++) {
+    console.log("In consideration: " + message[w]);
+    var patt = new RegExp(" " + message[w].toLowerCase() + "$", "g");
+    var patt2 = new RegExp("^" + message[w].toLowerCase() + " ", "g");
+
     // location recognition
     for (var p = 0; p < placelist.length; p++) {
-      if (patt.test(placelist[f])) {
+      //console.log(placeList[p]);
+      if (patt.test(placelist[p])) {
         console.log("Identified place: " + message[w]);
+        break;
+      }
+       else if (patt2.test(placelist[p])) {
+        console.log("Identified place2: " + message[w]);
         break;
       }
     }
