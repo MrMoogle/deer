@@ -5,8 +5,8 @@ var user        = require('./routes/user');
 var http        = require('http');
 var path        = require('path');
 var MailListener= require("mail-listener2");
-var fs          = require('fs')
-var natural     = require('natural')
+var fs          = require('fs');
+var natural     = require('natural');
 var app         = express();
 var mysql       = require('mysql');
 var connection  = mysql.createConnection({
@@ -17,8 +17,9 @@ var connection  = mysql.createConnection({
 });
 
 // Food word dictionary
-var foodlist = fs.readFileSync('./nltk_data/food.txt').toString().split("\n");
-console.log("Length of food list = " + foodlist.length);
+var foodlist = fs.readFileSync('./nltk_data/food.txt').toString().toLowerCase().split("\n");
+// Location dictionary
+var placelist = fs.readFileSync('./scraped_data/locations.txt').toString().toLowerCase().split("\n");
 
 /*-------------- MySQL database ----------------*/
 connection.connect(function(err) {
@@ -56,69 +57,26 @@ mailListener.on("mail", function(mail){
   console.log(query);
   connection.query(query);
 
-  // Identify food in email text
+  // Identify food and location in email text
   var tokenizer = new natural.WordTokenizer();
   var nounInflector = new natural.NounInflector();
   var message = tokenizer.tokenize(mail.text);
   console.log("Tokenized message: " + message);
-  for (var w in message) {
+  for (var w = 0; w < message.length; w++) {
     console.log("in consideration: " + message[w]);
-    for (var f in foodlist) {
-      if (nounInflector.singularize(message[w]) === foodlist[f]) {
-        console.log("Identified food: " + foodlist[f]);
+    var patt = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
+    // food recognition
+    for (var f = 0; f < foodlist.length; f++) {
+      if (patt.test(foodlist[f])) {
+        console.log("Identified food: " + message[w]);
+        break;
       }
     }
-  }
-});
-
-// event listener for server connection
-mailListener.on("server:connected", function(){
-  console.log("imapConnected");
-});
-
-// event listener for server disconnection
-mailListener.on("server:disconnected", function(){
-  console.log("imapDisconnected");
-});
-
-/*-------------- Mail Listener ----------------*/
-var mailListener = new MailListener({
-  username: "pfreefoodmap",
-  password: "pfreefoodmap333",
-  host: "imap.gmail.com",
-  port: 993, // imap port
-  tls: true,
-  tlsOptions: { rejectUnauthorized: false },
-  mailbox: "INBOX", // mailbox to monitor
-  searchFilter: "UNSEEN", // the search filter being used after an IDLE notification has been retrieved
-  markSeen: true, // all fetched email willbe marked as seen and not fetched next time
-  fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
-  mailParserOptions: {streamAttachments: true} // options to be passed to mailParser lib.
-});
-
-// event listener for when new email is received
-mailListener.on("mail", function(mail){
-  // Constructs current date
-  var date = new Date();
-  var curr_time = (date.getYear() + 1900) + '-' + date.getMonth() + '-' + date.getDate() + ' '
-                   + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
-  
-  // Inserts into database 
-  var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
-               mail.text +'\', ' + '\'Test Location\', \'' + curr_time + '\')';
-  console.log(query);
-  connection.query(query);
-
-  // Identify food in email text
-  var tokenizer = new natural.WordTokenizer();
-  var nounInflector = new natural.NounInflector();
-  var message = tokenizer.tokenize(mail.text);
-  console.log("Tokenized message: " + message);
-  for (var w in message) {
-    console.log("in consideration: " + message[w]);
-    for (var f in foodlist) {
-      if (nounInflector.singularize(message[w]) === foodlist[f]) {
-        console.log("Identified food: " + foodlist[f]);
+    // location recognition
+    for (var p = 0; p < placelist.length; p++) {
+      if (patt.test(placelist[f])) {
+        console.log("Identified place: " + message[w]);
+        break;
       }
     }
   }
