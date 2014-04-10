@@ -1,0 +1,4 @@
+var fs          = require('fs');
+var foodlist = fs.readFileSync('./nltk_data/food.txt').toString().split("\n");
+console.log(foodlist[0].charCodeAt(10));
+console.log("sweetening".charCodeAt(10));
