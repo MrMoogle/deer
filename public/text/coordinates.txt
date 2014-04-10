@@ -215,10 +215,6 @@ Chemistry CaFe 	40.344007, -74.650682
 EQuad Cafe	40.350958, -74.650679
 Food For Thought	40.346896, -74.655244
 Forbes College Dining Hall	40.342166, -74.660910
-Frist Deli	40.346914, -74.655263
-Frist Gallery	40.346914, -74.655263
-Frist Grill	40.346914, -74.655263
-Frist Pizza	40.346914, -74.655263
 Garden Room	40.346973, -74.656549
 Genomics Cafe 40.344547, -74.653260
 Genomics Coffee Service 40.344547, -74.653260	
