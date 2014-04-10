@@ -11,7 +11,6 @@ corn dab
 hyssop
 pantothenic acid
 side order
-Host
 mate
 hardtack
 albumen
@@ -33,7 +32,7 @@ Chinese brown sauce
 colostrum
 caper sauce
 dairy product
-won ton
+wonton
 lemon curd
 crudites
 slumgullion
@@ -50,7 +49,6 @@ grapefruit peel
 triple cream
 pina colada
 niacin
-square meal
 snack food
 danish pastry
 herb
@@ -390,7 +388,7 @@ split
 carbo loading
 Vouvray
 criollo
-cafe noir
+noir
 tiffin
 moussaka
 fishpaste
@@ -468,7 +466,7 @@ Neapolitan ice cream
 curry
 flatbread
 Pepsi Cola
-cafe au lait
+au lait
 neutral spirits
 Saint-John's-bread
 mocha
@@ -508,7 +506,7 @@ whiskey
 phosphate
 gyro
 blue cheese dressing
-green turtle soup
+turtle soup
 conserves
 Burgundy wine
 rolled oats
@@ -672,7 +670,7 @@ wine vinegar
 sundae
 pearl barley
 triple creme
-near beer
+beer
 dope
 May wine
 cocktail
@@ -707,7 +705,7 @@ orangeade
 pyridoxine
 bechamel sauce
 tonic
-green pea soup
+pea soup
 caramel apple
 lunch
 pastille
@@ -781,7 +779,6 @@ peppermint patty
 breadstick
 milk powder
 spareribs
-club soda
 croissant
 mulligan
 chicken stock
@@ -981,7 +978,7 @@ cayenne
 frozen dessert
 curry sauce
 ashcake
-green mayonnaise
+mayonnaise
 chicken and rice
 allergy diet
 caramelized sugar
@@ -1137,15 +1134,11 @@ steak tartare
 ready-mix
 ice milk
 oleomargarine
-bird feed
-bland diet
 scrapple
 matzoh
 lasagne
 lasagna
 guacamole
-birdseed
-bear paw
 Meuniere butter
 plonk
 hushpuppy
@@ -1222,13 +1215,12 @@ demitasse
 pesto
 sauce
 tapioca pudding
-high tea
+tea
 soda cracker
 skim milk
 sucker
 wasabi
 snowball
-rechewed food
 brandy sling
 pan gravy
 chicken broth
@@ -1237,7 +1229,7 @@ candy apple
 beef stock
 frozen foods
 Swedish rye bread
-ginger pop
+ginger
 Italian rice
 chocolate kiss
 succade
@@ -1268,7 +1260,6 @@ pousse-cafe
 horseradish
 rijstaffel
 milk punch
-feed
 zinfandel
 Colbert butter
 veal cordon bleu
@@ -1280,9 +1271,7 @@ blanc
 anisette de Bordeaux
 beef Stroganoff
 sour cream
-light diet
 sapsago
-cows' milk
 plum duff
 folic acid
 wintergreen oil
@@ -1305,7 +1294,6 @@ estragon
 John Barleycorn
 frozen pudding
 chocolate fudge
-old fashioned
 charlotte
 English breakfast tea
 coleslaw
@@ -1318,9 +1306,9 @@ beef goulash
 spaghetti
 Irish coffee
 thiamin
-nougat bar
+nougat
 horse bean
-Christmas pudding
+pudding
 sacramental wine
 hand cheese
 spun sugar
@@ -1331,25 +1319,21 @@ chicken paprika
 brioche
 mace
 chewing gum
-quick bread
+bread
 onion bagel
-certified milk
 bourguignon sauce
 moonshine
 fines herbes
 hunter's sauce
-training table
 vitellus
 pheasant under glass
 chowder
-pet food
 Camembert
 bran muffin
 kumis
 booze
 phytonadione
 soul food
-intoxicant
 chicken paprikash
 banana split
 malt whisky
@@ -1366,7 +1350,6 @@ chapatti
 Chinese mustard
 Weizenbock
 pork-and-veal goulash
-antipernicious anemia factor
 batter
 boeuf fondu bourguignon
 julienne
@@ -1383,7 +1366,6 @@ bearnaise
 bouillabaisse
 vino
 Oktoberfest
-ulcer diet
 afters
 spirits
 pavlova
@@ -1409,10 +1391,8 @@ sauerbraten
 limeade
 candy cane
 loaf
-sweet
 aioli sauce
 shirred egg
-dietary
 double cream
 Shawnee cake
 madrilene
@@ -1432,15 +1412,13 @@ chowchow
 bolognese pasta sauce
 Scotch woodcock
 paprika sauce
-clear liquid diet
 mushy peas
 matzah
 french fries
 meringue kiss
 potato chip
 chicken sandwich
-open sandwich
-soft pretzel
+pretzel
 pantothen
 sirup
 pinwheel roll
@@ -1480,7 +1458,6 @@ Brunswick stew
 hotpot
 cheese souffle
 crab cocktail
-cup
 treacle
 lime juice
 duck pate
@@ -1489,15 +1466,13 @@ hard-cooked egg
 flatbrod
 manna
 groats
-low-salt diet
 cinnamon toast
 matelote
 semolina
 akvavit
 appetiser
-sour milk
 orange toast
-cafe royale
+royale
 porcupine ball
 bear claw
 ramequin
@@ -1521,7 +1496,7 @@ condensed milk
 malt liquor
 duck sauce
 beet sugar
-fish loaf
+fish
 cupper
 inositol
 spruce beer
@@ -1547,7 +1522,6 @@ penuche
 roly-poly pudding
 submarine sandwich
 nut butter
-hot pot
 tofu
 corn cake
 Swiss cheese
@@ -1592,7 +1566,6 @@ culture medium
 Sloppy Joe
 mayonnaise
 Spanish burgoo
-potion
 maraschino cherry
 mustard
 chicken taco
@@ -1605,9 +1578,8 @@ remoulade sauce
 wonton
 wafer
 Waldorf salad
-matzo meal
+matzo
 light whipping cream
-soft diet
 Roquefort
 potato peel
 beverage
@@ -1636,7 +1608,7 @@ pigswill
 ouzo
 edible
 taffy apple
-table mustard
+mustard
 jelly bean
 blood meal
 pigs in blankets
@@ -1669,7 +1641,6 @@ macaroni and cheese
 dill pickle
 food colour
 punch
-vegetarianism
 soymilk
 flavourer
 vinegar
@@ -1677,7 +1648,7 @@ Vichy water
 tea bag
 buckwheat
 popcorn
-green olive
+olive
 peppermint oil
 dodger
 frog legs
@@ -1731,7 +1702,7 @@ Postum
 Scotch malt whiskey
 cardamom
 cardamon
-green salad
+salad
 sour bread
 taco
 marrow
@@ -1797,7 +1768,7 @@ low-fat milk
 oyster cracker
 chocolate ice cream
 koumiss
-hot toddy
+toddy
 ramekin
 bialy
 compote
@@ -1890,7 +1861,7 @@ soda biscuit
 chili vinegar
 orange-juice concentrate
 jam
-gin and it
+gin
 menadione
 bourbon
 Medoc
@@ -1943,7 +1914,6 @@ fruit salad
 succotash
 tater
 grain
-Danish blue
 beef Bourguignonne
 viands
 marjoram
@@ -2052,9 +2022,7 @@ muscadel
 cider
 Manzanilla
 gefilte fish
-club sandwich
 hot stuffed tomato
-B complex
 meatloaf
 varietal wine
 creme brulee
@@ -2102,7 +2070,7 @@ marge
 mulligatawny
 cracked-wheat bread
 flip
-green corn
+corn
 star aniseed
 cake
 Worcester sauce
@@ -2114,7 +2082,6 @@ soda water
 pilaw
 planter's punch
 knish
-MSG
 wheat flour
 granulated sugar
 tuna salad
@@ -2132,7 +2099,7 @@ nourishment
 peach sauce
 gorgonzola
 seafood Newburg
-green tea
+tea
 manna from heaven
 root beer
 pilau
@@ -2146,5 +2113,26 @@ cassareep
 coffee cappuccino
 Verdicchio
 pilaf
-eggplant
-
+oreo
+cheerio
+Qudoba
+nutella
+cookie
+tandori
+chelsea
+deangelo
+d'angelo
+cheez
+pecan
+masala
+subway
+mango
+lassi
+thai
+afghan
+twist
+cheeburger
+float
+cupcake
+donut
+mocktail
