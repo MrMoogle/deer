@@ -171,7 +171,7 @@ Princeton Stadium	40.345764, -74.649973
 Princeton University Press	40.349926, -74.653701
 Prospect House	40.347086, -74.656654
 Pyne Hall	40.345250, -74.659642
-Quadrangle Club	40.348045, -74.652702
+Quadrangle Quad Club	40.348045, -74.652702
 Roberts Stadium	40.342428, -74.653622
 Robertson Hall	40.348405, -74.654734
 Rock Magnetism Laboratory	40.345232, -74.655167
@@ -188,7 +188,7 @@ Streicker Bridge	40.344451, -74.652027
 Tennis Pavilion	40.341679, -74.653202
 Terrace Club	40.347155, -74.653997
 Thomas Laboratory	40.344972, -74.653825
-Tiger Inn	40.348807, -74.652260
+Tiger Inn TI	40.348807, -74.652260
 Tower Club	40.347708, -74.653982
 Von Neumann Hall	40.350472, -74.649097
 Walker Hall	40.345549, -74.657008
