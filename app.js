@@ -9,23 +9,12 @@ var fs          = require('fs');
 var natural     = require('natural');
 var app         = express();
 var mysql       = require('mysql');
-var connection  = mysql.createConnection({
-  host     : 'deerdb.cqjm6e2t1gja.us-west-2.rds.amazonaws.com',
-  database : 'deerdb',
-  user     : 'deerdb',
-  password : 'deerdb333',
-});
+var pool        = require('./dataConnection.js').pool;
 
 // Food word dictionary
 var foodlist = fs.readFileSync('./public/text/food.txt').toString().toLowerCase().split("\n");
 // Location dictionary
 var placelist = fs.readFileSync('./public/text/coordinates.txt').toString().toLowerCase().split("\n");
-
-/*-------------- MySQL database ----------------*/
-connection.connect(function(err) {
-  if (err) 
-    console.log("No database connection");
-});
 
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
@@ -36,7 +25,7 @@ var mailListener = new MailListener({
   tls: true,
   tlsOptions: { rejectUnauthorized: false },
   mailbox: "INBOX", // mailbox to monitor
-  searchFilter: "UNSEEN", // the search filter being used after an IDLE notification has been retrieved
+  searchFilter: "UNSEEN", // the serach filter being used after an IDLE notification has been retrieved
   markSeen: true, // all fetched email willbe marked as seen and not fetched next time
   fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
   mailParserOptions: {streamAttachments: true} // options to be passed to mailParser lib.
@@ -99,10 +88,14 @@ mailListener.on("mail", function(mail){
   }
 
   // Inserts into database 
-  var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
+  pool.getConnection(function(err, connection) {
+    if (err) console.log('database connection error');
+    var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
                mail.text +'\', \'' + location + '\', \'' + curr_time + '\')';
-  console.log(query);
-  connection.query(query);
+    console.log(query);
+    connection.query(query);
+    connection.release(); 
+  });
 });
 
 // event listener for server connection
