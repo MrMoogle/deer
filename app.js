@@ -38,6 +38,7 @@ mailListener.on("mail", function(mail){
   var curr_time = (date.getYear() + 1900) + '-' + date.getMonth() + '-' + date.getDate() + ' '
                    + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
   var location;
+  var food;
 
   // NLP Code here 
   // Identify food and location in email text
@@ -54,18 +55,19 @@ mailListener.on("mail", function(mail){
 
     // food recognition
     for (var f = 0; f < foodlist.length; f++) {
-      if(foodlist[f] === "eggplant")
-        console.log("Found Eggplant");
       if (patt.test(foodlist[f])) {
         console.log("Identified food: " + message[w]);
+        food = message[w];
         break;
       }
       else if (patt2.test(foodlist[f])) {
         console.log("Identified food2: " + message[w]);
+        food = message[w];
         break;
       }
       else if (patt3.test(foodlist[f])) {
         console.log("Identified food3: " + message[w]);
+        food = message[w];
         break;
       }
     }
@@ -76,37 +78,39 @@ mailListener.on("mail", function(mail){
     console.log("In consideration: " + message[w]);
     var patt = new RegExp(" " + message[w].toLowerCase() + "$", "g");
     var patt2 = new RegExp("^" + message[w].toLowerCase() + " ", "g");
+    var patt3 = new RegExp("^" + message[w].toLowerCase() + "$", "g");
 
     for (var p = 0; p < placelist.length; p++) {
-      //console.log(placeList[p]);
       if (patt.test(placelist[p])) {
         console.log("Identified place: " + message[w]);
-        //location = message[w];
         location = placelist[p];
         break;
       }
        else if (patt2.test(placelist[p])) {
         console.log("Identified place2: " + message[w]);
-        //location = message[w];
         location = placelist[p];
         break;
       }
-      else if (patt3.test(foodlist[p])) {
+      else if (patt3.test(placelist[p])) {
         console.log("Identified place3: " + message[w]);
         break;
       }
     }
   }
 
+  location = location.split("\t");
+  var lat = Number(location[1].split(", ")[0]);
+  var longit = Number(location[1].split(", ")[1]);
+
   // Inserts into database 
   pool.getConnection(function(err, connection) {
     if (err) console.log('database connection error');
-    var query = 'INSERT INTO data(subject, message, location, time) VALUES(\'' + mail.subject + '\', \'' +
-               mail.text +'\', \'' + location + '\', \'' + curr_time + '\')';
+    var query = 'INSERT INTO data(subject, message, location, time, lat, longit, food) VALUES(\'' + 
+                mail.subject + '\', \'' + mail.text + '\', \'' + location[0] + '\', \'' + 
+                curr_time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
     console.log(query);
     connection.query(query);
-    connection.release(); 
-  });
+    connection.release();
 });
 
 // event listener for server connection
