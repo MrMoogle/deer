@@ -105,12 +105,13 @@ mailListener.on("mail", function(mail){
   // Inserts into database 
   pool.getConnection(function(err, connection) {
     if (err) console.log('database connection error');
-    var query = 'INSERT INTO data(subject, message, location, time, lat, longit, food) VALUES(\'' + 
-                mail.subject + '\', \'' + mail.text + '\', \'' + location[0] + '\', \'' + 
+    var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
+                mail.subject + '\', \'' + (mail.text).slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
                 curr_time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
     console.log(query);
     connection.query(query);
     connection.release();
+  });
 });
 
 // event listener for server connection
