@@ -192,7 +192,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/cas_login', routes.cas_login);
 app.get('/users', user.list);
 app.get('/map', routes.map);
 

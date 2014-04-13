@@ -10,6 +10,7 @@
     "jade": "*",
     "mail-listener2": "0.1.x",
     "mysql": "2.1.x",
-    "natural": "0.1.x"
+    "natural": "0.1.x",
+    "cas" : "0.1.0"
   }
 }
