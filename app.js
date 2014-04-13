@@ -12,9 +12,10 @@ var mysql       = require('mysql');
 var pool        = require('./dataConnection.js').pool;
 
 // Food word dictionary
-var foodlist = fs.readFileSync('./public/text/food.txt').toString().toLowerCase().split("\n");
+var foodlist = fs.readFileSync('./public/text/food2.txt').toString().toLowerCase().split("\n");
 // Location dictionary
-var placelist = fs.readFileSync('./public/text/coordinates.txt').toString().toLowerCase().split("\n");
+//var placelist = fs.readFileSync('./public/text/coordinates.txt').toString().toLowerCase().split("\n");
+var placelist = fs.readFileSync('./public/text/locations2.txt').toString().toLowerCase().split("\n");
 
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
@@ -39,74 +40,116 @@ mailListener.on("mail", function(mail){
                    + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
   var location;
   var food;
+  var text;
+  var time;
+
+  // identify listserv
+  var freefoodpatt = new RegExp("^" + "[FreeFood]" + "$", "g");
+  if (freefoodpatt.test(mail.subject)) {
+    console.log("FreeFood listserv email recieved");
+    text = mail.text.substr(0, mail.text.indexOf("-----"));
+  }
+  else {
+    text = mail.text;
+  }
 
   // NLP Code here 
   // Identify food and location in email text
-  var tokenizer = new natural.WordTokenizer();
-  var nounInflector = new natural.NounInflector();
-  var message = tokenizer.tokenize(mail.text);
-  console.log("Tokenized message: " + message);
-  // food recognition
-  for (var w = 0; w < message.length; w++) {
-    console.log("In consideration: " + message[w]);
-    var patt = new RegExp(" " + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
-    var patt2 = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + " ", "g");
-    var patt3 = new RegExp("^" + nounInflector.singularize(message[w]).toLowerCase() + "$", "g");
 
-    // food recognition
+  // food recognition
+  for (var f = 0; f < foodlist.length; f++) {
+    var patt = new RegExp(foodlist[f], "i");
+    if (patt.test(text)) {
+      console.log("Identified food: " + foodlist[f]);
+      food = foodlist[f];
+      break;
+    }
+  }
+  if (mail.subject !== null) {
     for (var f = 0; f < foodlist.length; f++) {
-      if (patt.test(foodlist[f])) {
-        console.log("Identified food: " + message[w]);
-        food = message[w];
-        break;
-      }
-      else if (patt2.test(foodlist[f])) {
-        console.log("Identified food2: " + message[w]);
-        food = message[w];
-        break;
-      }
-      else if (patt3.test(foodlist[f])) {
-        console.log("Identified food3: " + message[w]);
-        food = message[w];
+      var patt = new RegExp(foodlist[f], "i");
+      if (patt.test(mail.subject)) {
+        console.log("Identified food: " + foodlist[f]);
+        food = foodlist[f];
         break;
       }
     }
+  }
+  if (food === undefined) {
+    food = "";
   }
 
   // location recognition
-  for (var w = 0; w < message.length; w++) {
-    console.log("In consideration: " + message[w]);
-    var patt = new RegExp(" " + message[w].toLowerCase() + "$", "g");
-    var patt2 = new RegExp("^" + message[w].toLowerCase() + " ", "g");
-    var patt3 = new RegExp("^" + message[w].toLowerCase() + "$", "g");
-
+  // location in subject takes precedence over location in text
+  for (var p = 0; p < placelist.length; p++) {
+    var place = placelist[p].split("\t")[0];
+    console.log("Is it at: " + place);
+    if (place != "ti") {
+      var patt = new RegExp(place, "i");
+    }
+    else if (place == "ti") {
+      console.log("Exact TI search")
+      var patt = new RegExp("^" + place + "$", "i");
+    }
+    if (patt.test(text)) {
+      console.log("Identified place: " + placelist[p]);
+      location = placelist[p]
+      break;
+    }
+  }
+  if (mail.subject !== null) {
     for (var p = 0; p < placelist.length; p++) {
-      if (patt.test(placelist[p])) {
-        console.log("Identified place: " + message[w]);
-        location = placelist[p];
-        break;
+      var place = placelist[p].split("\t")[0];
+      if (place != "ti") {
+        var patt = new RegExp(place, "i");
       }
-       else if (patt2.test(placelist[p])) {
-        console.log("Identified place2: " + message[w]);
-        location = placelist[p];
-        break;
+      else if (place == "ti") {
+        var patt = new RegExp("^" + place + "$", "i");
       }
-      else if (patt3.test(placelist[p])) {
-        console.log("Identified place3: " + message[w]);
+      if (patt.test(mail.subject)) {
+        console.log("Identified place: " + placelist[p]);
+        location = placelist[p];
         break;
       }
     }
   }
+  if (location !== undefined) {
+    location = location.split("\t");
+    var lat = Number(location[1].split(", ")[0]);
+    var longit = Number(location[1].split(", ")[1]);
+  }
+  else {
+    location = "";
+    var lat = "";
+    var longit = "";
+  }
 
-  location = location.split("\t");
-  var lat = Number(location[1].split(", ")[0]);
-  var longit = Number(location[1].split(", ")[1]);
+  // time extraction
+  var pattd = /at \d?\d/i;
+  var pattf = /at \d?\d:\d\d/i;
+
+  if (pattf.test(mail.subject)) {
+    time = pattf.exec(mail.subject)[0].split(" ")[1];
+  }
+  else if (pattd.test(mail.subject)) {
+    time = pattd.exec(mail.subject)[0].split(" ")[1];
+  }
+  else if (pattf.test(text)) {
+    time = pattf.exec(text)[0].split(" ")[1];
+  }
+  else if (pattd.test(text)) {
+    time = pattd.exec(text)[0].split(" ")[1];
+  }
+  console.log("Time: " + time);
+  if (time === undefined) {
+    time = "";
+  }
 
   // Inserts into database 
   pool.getConnection(function(err, connection) {
     if (err) console.log('database connection error');
     var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
-                mail.subject + '\', \'' + (mail.text).slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
+                mail.subject + '\', \'' + (text).slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
                 curr_time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
     console.log(query);
     connection.query(query);
