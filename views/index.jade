@@ -14,7 +14,28 @@ head
 body
 	#map
 		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.672224], [40.354200, -74.643299]]}).setView([40.346056,-74.654007], 16);
+			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.672224], [40.354200, -74.643299]]}).setView([40.346056,-74.654007], 16);
+
+	nav.navbar.navbar-default(role='navigation')
+		.container-fluids
+			// Brand and toggle get grouped for better mobile display
+			.navbar-header
+				button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href='#') Princeton Food Map
+			// Collect the nav links, forms, and other content for toggling
+			#bs-example-navbar-collapse-1.collapse.navbar-collapse
+				ul.nav.navbar-nav
+					li.active
+						a(href='#') About
+					li
+						a(href='#') Contact
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href='#') LOGOUT
 
 	div.container-fluid
 		div.row
