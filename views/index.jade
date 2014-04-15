@@ -16,37 +16,41 @@ body
 		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.672224], [40.354200, -74.643299]]}).setView([40.346056,-74.654007], 16);
 
-- for row in dataRows
-	script.
-		var lat = "#{row.lat}";
-		var longit = "#{row.longit}";
-		var subject = "#{row.subject}";
-		var food = "#{row.food}";
-		var message = "#{row.mess}";
+	div.container-fluid
+		div.row
+			div.col-md-3
+				div.panel
+					div.panel-heading
+						h3.panel-title Free Food
+					div.panel-body
+						ul.list-group
+							- for row in dataRows
+								li.list-group-item #{row.subject}
 
-		L.mapbox.featureLayer({
-			// this feature is in the GeoJSON format: see geojson.org
-			// for the full specification
-			type: 'Feature',
-			geometry: {
-				type: 'Point',
-				// coordinates here are in longitude, latitude order because
-				// x, y is the standard for GeoJSON and many formats
-				coordinates: [parseFloat(longit), parseFloat(lat)]
-			},
-			properties: {
-				title: subject,
-				description: message,
-				// one can customize markers by adding simplestyle properties
-				// http://mapbox.com/developers/simplestyle/
-				'marker-size': 'small',
-				'marker-color': '#f0a'
-			}
-		}).addTo(map);
+	- for row in dataRows
+		script.
+			var lat = "#{row.lat}";
+			var longit = "#{row.longit}";
+			var subject = "#{row.subject}";
+			var food = "#{row.food}";
+			var message = "#{row.mess}";
 
-	body 
-		div#overlay
-			div.list-group
-				a.list-group-item.active(href='#')
-					h4.list-group-item-heading #{row.subject}
-					p.list-group-item-text #{row.mess}
+			L.mapbox.featureLayer({
+				// this feature is in the GeoJSON format: see geojson.org
+				// for the full specification
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					// coordinates here are in longitude, latitude order because
+					// x, y is the standard for GeoJSON and many formats
+					coordinates: [parseFloat(longit), parseFloat(lat)]
+				},
+				properties: {
+					title: subject,
+					description: message,
+					// one can customize markers by adding simplestyle properties
+					// http://mapbox.com/developers/simplestyle/
+					'marker-size': 'small',
+					'marker-color': '#f0a'
+				}
+			}).addTo(map);
