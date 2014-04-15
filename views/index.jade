@@ -1,27 +1,16 @@
 doctype html
-html. 
-	<head>
-		<meta charset=utf-8 />
-		<title>DEER MAP</title>
+head
+	meta(charset='utf-8', name='viewport', content='width=device-width', initial-scale='1.0', maximum-scale='1.0', user-scalable='no')
+	title= 'DEER MAP'
+	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
+	link(href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css', rel='stylesheet')
+	link(href='/stylesheets/style.css', rel='stylesheet')
 
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-		<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
-		<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
-
-		<style>
-			body { margin:0; padding:0; }
-			#map { position:absolute; top:0; bottom:0; width:100%; }
-			#overlay {position:relative; width:200px; height:400px;top:100px;left:100px;z-index:1;border:1px solid black;background-color:orange;}
-		</style>
-	</head>
-	<body>
-		<div id='map'>
-			<div id = 'overlay'>This is a test</div>
-		</div>
-		<script>
+body
+	#map
+		#overlay This is a test
+		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.672224], [40.354200, -74.643299]]}).setView([40.346056,-74.654007], 16);
-		</script>	
-	</body>
 
 - for row in dataRows
 	script.
