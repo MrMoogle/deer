@@ -111,7 +111,8 @@ Colonial	40.348726, -74.652812
 Community Hall	40.344178, -74.657640
 Computer Science Building	40.350252, -74.652251
 Computer Science	40.350252, -74.652251
-CS	40.350252, -74.652251
+COS Building	40.350252, -74.652251
+CS Building	40.350252, -74.652251
 Cordish Family Pavilion	40.341451, -74.654483
 Cordish Pavilion	40.341451, -74.654483
 Corwin Hall	40.348884, -74.654369
@@ -170,6 +171,8 @@ Frist Campus Center	40.346872, -74.655255
 Frist	40.346872, -74.655255
 LGBT Center	40.346872, -74.655255
 Cafe Witherspoon	40.346872, -74.655255
+Witherspoon Cafe	40.346872, -74.655255
+Witherspoon's	40.346872, -74.655255
 Garden Theatre	40.350770, -74.657588
 Gas Dynamics Laboratory	40.345497, -74.616233
 Gauss Hall	40.345070, -74.656707
@@ -315,6 +318,7 @@ Wilf Hall	40.344414, -74.655177
 Wilf	40.344414, -74.655177
 Witherspoon Hall	40.347490, -74.660156
 Witherspoon	40.347490, -74.660156
+Spoon	40.347490, -74.660156
 Woolworth Center	40.347247, -74.655865
 Woolworth	40.347247, -74.655865
 Wright Hall	40.345272, -74.657307
@@ -338,6 +342,7 @@ EQuad Cafe	40.350958, -74.650679
 Food For Thought	40.346896, -74.655244
 Forbes College Dining Hall	40.342166, -74.660910
 Forbes Dining Hall	40.342166, -74.660910
+Forbes Common Room	40.341891, -74.661036
 Forbes	40.342166, -74.660910
 Garden Room	40.346973, -74.656549
 Genomics Cafe 40.344547, -74.653260
@@ -346,16 +351,20 @@ Graduate College Dining Hall	40.340504, -74.665570
 Grad College Dining Hall	40.340504, -74.665570
 Jewish Life, Center For	40.346848, -74.653702
 Mathey College Dining Hall	40.348629, -74.662262
+Mathey Common Room	40.348286, -74.661876
 Mathey	40.348629, -74.662262
 Rockefeller College Dining Hall	40.348610, -74.662547
 Rocky Dining Hall	40.348610, -74.662547
+Rocky Common Room	40.348629, -74.662075
 Rocky	40.348610, -74.662547
 Studio 34	40.343927, -74.655830
 Whitman College Dining Hall	40.344192, -74.657622
 Whitman Dining Hall	40.344192, -74.657622
+Whitman Common Room	40.343928, -74.657566
 Whitman	40.344192, -74.657622
 Wilson College Dining Hall 40.344757, -74.656264
 Wilson Dining Hall	40.344757, -74.656264
+Wilson Common Room	40.344879, -74.656174
 Wilson	40.344757, -74.656264
 Woodrow Wilson School	40.348395, -74.654738
 Woodrow Wilson	40.348395, -74.654738

@@ -238,7 +238,6 @@ afghan
 afternoon tea
 afters
 agar
-ail
 aioli
 aioli sauce
 akvavit
@@ -449,6 +448,7 @@ brown rice
 brown sauce
 brown sugar
 brownie mix
+brownie
 brunch
 bubble and squeak
 bubble gum
@@ -558,6 +558,8 @@ cheese souffle
 cheese spread
 cheeseburger
 cheez
+cheezit
+cheez-it
 chef's salad
 chelsea
 chervil
@@ -609,8 +611,6 @@ chocolate sauce
 chocolate syrup
 chocolate truffle
 choice morsel
-cholecalciferol
-choline
 chop suey
 chow
 chow mein
@@ -628,7 +628,6 @@ cinnamon bun
 cinnamon roll
 cinnamon snail
 cinnamon toast
-citrin
 clabber
 clam chowder
 clam dip
@@ -790,8 +789,6 @@ decaffeinated coffee
 dehydrated food
 dehydrated foods
 dehydroretinol
-dejeuner
-delicacy
 demerara
 demerara rum
 demerara sugar
@@ -801,7 +798,6 @@ demitasse
 dessert
 dessert wine
 deviled egg
-diet
 dietary supplement
 dill
 dill pickle
@@ -813,7 +809,6 @@ dish
 divinity
 divinity fudge
 dodger
-dog food
 dolmas
 donut
 dope
@@ -986,7 +981,6 @@ gefilte fish
 gelatin
 gelatin dessert
 gem
-generic
 generic wine
 geneva
 ghee
@@ -1286,14 +1280,10 @@ martini
 marzipan
 masala
 mascarpone
-mash
 mashed potato
-mast
-mate
 matelote
 matzah
 matzah meal
-matzo
 matzo
 matzoh
 matzoh meal
@@ -1307,10 +1297,8 @@ meatball
 meatloaf
 medium
 menadione
-menu
 meringue kiss
 mescal
-mess
 metheglin
 micronutrient
 milk
@@ -1338,7 +1326,6 @@ mocktail
 molasses
 molasses kiss
 molasses taffy
-mold
 molded salad
 mole
 monosodium glutamate
