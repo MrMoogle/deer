@@ -7,17 +7,39 @@ var https = require('https');
 https.globalAgent.options.secureProtocol = 'SSLv3_method';
 var cas = new CAS({
   base_url: 'https://fed.princeton.edu/cas/', 
-  service: 'http://localhost:3000', // change later
+  service: 'http://localhost:3000/map', // change later
   version: 2.0
 });
 
 exports.index = function(req, res) {
-  var ticket = req.param('ticket');
+  console.log(req.path);
+  var list = {},
+        rc = req.headers.cookie;
 
-  if (ticket) {
-    cas.validate(ticket, function(err, status, username) {
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = unescape(parts.join('='));
+    });
+  console.log('List');
+  console.log(list);
+  var key = list.ticket;
+
+  console.log(req.url);
+  res.location('index');
+  if (key) {
+    console.log("jerje");
+    cas.validate(key, function(err, status, username) {
       if (err) res.send({error: err});
       else {
+        console.log('Status: ' + status);
+        if (status == false)
+        {
+          console.log(key);
+          console.log(status);
+          console.log("IsFAlse");
+          res.redirect('https://fed.princeton.edu/cas/login?service=' + cas.service); 
+        }
+        console.log(status);
         pool.getConnection(function(err, connection) {
           // Checks for error
           if (err) 
@@ -33,7 +55,7 @@ exports.index = function(req, res) {
               username: username
             });
           });
-          
+
           // Terminates connection
           connection.release(); 
         });
@@ -41,10 +63,29 @@ exports.index = function(req, res) {
     });
   } 
   else 
+  {
+    console.log("redirected");
     res.redirect('https://fed.princeton.edu/cas/login?service=' + cas.service); 
+  }
 };
 
 exports.map = function(req, res){
-	res.send("MAP");
-	res.render('layout', { title: 'Look at my map bitchez!' });
+  var ticket = req.param('ticket');
+  if (ticket)
+  {
+    res.cookie('ticket', ticket, {path: '/'});
+    console.log("added cookie");
+    console.log(req.path);
+
+     var list = {},
+        rc = req.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = unescape(parts.join('='));
+    });
+
+    console.log(list);
+    res.redirect('http://localhost:3000/');
+  }
 };
