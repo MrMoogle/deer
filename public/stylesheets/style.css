@@ -45,3 +45,16 @@ body {
 	background-color: #FFA300; 
 	border-color: #000000;
 }
+
+.small-container {
+	padding-top: 2.5%; 
+	padding-left: 2.5%;
+}
+
+.subject-container {
+	background-color: #99CCFF;
+	padding-top: 2.5%; 
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	padding-bottom: 2.5%;
+}
