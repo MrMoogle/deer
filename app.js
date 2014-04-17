@@ -13,8 +13,8 @@ var pool        = require('./dataConnection.js').pool;
 
 // Food word dictionary
 var foodlist = fs.readFileSync('./public/text/food2.txt').toString().toLowerCase().split("\n");
+
 // Location dictionary
-//var placelist = fs.readFileSync('./public/text/coordinates.txt').toString().toLowerCase().split("\n");
 var placelist = fs.readFileSync('./public/text/locations2.txt').toString().toLowerCase().split("\n");
 
 /*-------------- Mail Listener ----------------*/
@@ -54,9 +54,6 @@ mailListener.on("mail", function(mail){
     //if ()
     text = mail.text;
   }
-
-  // NLP Code here 
-  // Identify food and location in email text
 
   // food recognition
   for (var f = 0; f < foodlist.length; f++) {
@@ -109,11 +106,15 @@ mailListener.on("mail", function(mail){
   // location in subject takes precedence over location in text
   for (var p = 0; p < placelist.length; p++) {
     var place = placelist[p].split("\t")[0];
-    var patt;
-    console.log("Is it at: " + place);
-    patt = new RegExp("(^| )" + place + "(?![a-zA-Z])", "i");
-    if (patt != undefined && patt.test(text)) {
-      console.log("Identified place text: " + placelist[p]);
+    if (place != "ti") {
+      var patt = new RegExp(place, "i");
+    }
+    else if (place == "ti") {
+      console.log("Exact TI search")
+      var patt = new RegExp("^" + place + "$", "i");
+    }
+    if (patt.test(text)) {
+      console.log("Identified place: " + placelist[p]);
       location = placelist[p]
       break;
     }
