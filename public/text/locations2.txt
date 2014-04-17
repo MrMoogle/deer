@@ -350,6 +350,7 @@ Genomics Coffee Service 40.344547, -74.653260
 Graduate College Dining Hall	40.340504, -74.665570
 Grad College Dining Hall	40.340504, -74.665570
 Jewish Life, Center For	40.346848, -74.653702
+Rocky Mathey Theater	40.348556, -74.662037
 Mathey College Dining Hall	40.348629, -74.662262
 Mathey Common Room	40.348286, -74.661876
 Mathey	40.348629, -74.662262

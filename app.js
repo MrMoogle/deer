@@ -44,8 +44,7 @@ mailListener.on("mail", function(mail){
   var time;
 
   // identify listserv
-  var freefoodpatt = new RegExp("[.,-\/#!$%\^&\*;:{}=\-_`~()\s]*" + "[FreeFood]" +
-                                "[.,-\/#!$%\^&\*;:{}=\-_`~()\s]*", "g");
+  var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
   if (freefoodpatt.test(mail.subject)) {
     console.log("FreeFood listserv email recieved");
     text = mail.text.substr(0, mail.text.indexOf("-----"));
@@ -57,45 +56,21 @@ mailListener.on("mail", function(mail){
 
   // food recognition
   for (var f = 0; f < foodlist.length; f++) {
-    var pattm = new RegExp(" " + foodlist[f] + " ", "i");
-    var pattf = new RegExp(foodlist[f] + " ", "i");
-    var pattb = new RegExp(" " + foodlist[f], "i");
-    if (pattm.test(text)) {
-      console.log("Identified food m: " + foodlist[f]);
-      food = foodlist[f];
-      break;
-    }
-    if (pattf.test(text)) {
-      console.log("Identified food f: " + foodlist[f]);
-      food = foodlist[f];
-      break;
-    }
-    if (pattb.test(text)) {
-      console.log("Identified food b: " + foodlist[f]);
+    var patt = new RegExp("(^| )" + foodlist[f] + "(?![^es\t\n ])", "i");
+    if (patt.test(text)) {
+      console.log("Identified food: " + foodlist[f]);
       food = foodlist[f];
       break;
     }
   }
   if (mail.subject !== null) {
     for (var f = 0; f < foodlist.length; f++) {
-      var pattm = new RegExp(" " + foodlist[f] + " ", "i");
-      var pattf = new RegExp(foodlist[f] + " ", "i");
-      var pattb = new RegExp(" " + foodlist[f], "i");
-      if (pattm.test(text)) {
-        console.log("Identified food m: " + foodlist[f]);
+      var patt = new RegExp("(^| )" + foodlist[f] + "(?![^es\t\n ])", "i");
+      if (patt.test(mail.subject)) {
+        console.log("Identified food: " + foodlist[f]);
         food = foodlist[f];
         break;
-      }
-      if (pattf.test(text)) {
-        console.log("Identified food f: " + foodlist[f]);
-        food = foodlist[f];
-        break;
-      }
-      if (pattb.test(text)) {
-        console.log("Identified food b: " + foodlist[f]);
-        food = foodlist[f];
-        break;
-      }
+      }  
     }
   }
   if (food === undefined) {
@@ -106,15 +81,10 @@ mailListener.on("mail", function(mail){
   // location in subject takes precedence over location in text
   for (var p = 0; p < placelist.length; p++) {
     var place = placelist[p].split("\t")[0];
-    if (place != "ti") {
-      var patt = new RegExp(place, "i");
-    }
-    else if (place == "ti") {
-      console.log("Exact TI search")
-      var patt = new RegExp("^" + place + "$", "i");
-    }
-    if (patt.test(text)) {
-      console.log("Identified place: " + placelist[p]);
+    console.log("Is it at: " + place);
+    var patt = new RegExp("(^| )" + place + "(?![a-zA-Z])", "i");
+    if (patt != undefined && patt.test(text)) {
+      console.log("Identified place text: " + placelist[p]);
       location = placelist[p]
       break;
     }
@@ -122,8 +92,7 @@ mailListener.on("mail", function(mail){
   if (mail.subject !== null) {
     for (var p = 0; p < placelist.length; p++) {
       var place = placelist[p].split("\t")[0];
-      var patt;
-      patt = new RegExp("(^| )" + place + "(?![a-zA-Z])", "i");
+      var patt = new RegExp("(^| )" + place + "(?![a-zA-Z])", "i");
       if (patt != undefined && patt.test(mail.subject)) {
         console.log("Identified place subject: " + placelist[p]);
         location = placelist[p]
