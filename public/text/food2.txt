@@ -480,6 +480,7 @@ calf's-foot jelly
 cambric tea
 camomile tea
 canape
+calzone
 canary seed
 candied apple
 candied citrus peel
@@ -836,6 +837,7 @@ duck
 duck pate
 duck sauce
 duff
+dim sum
 dumpling
 eatable
 eatage
@@ -863,6 +865,7 @@ ensilage
 entree
 entremets
 escalope de veau Orloff
+escargot
 espresso
 estragon
 ethyl alcohol
@@ -1319,6 +1322,7 @@ miso
 mixed drink
 mixer
 mixture
+mochi
 mocha
 mocha coffee
 mock turtle soup
@@ -1685,6 +1689,7 @@ salad
 salad cream
 salad dressing
 salad nicoise
+salami
 salmagundi
 salmi
 salmon loaf
@@ -1717,6 +1722,7 @@ savoury
 scalded milk
 scallopine
 scallopini
+scallion pancake
 scampi
 schnapps
 schnaps
