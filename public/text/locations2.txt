@@ -343,7 +343,6 @@ Food For Thought	40.346896, -74.655244
 Forbes College Dining Hall	40.342166, -74.660910
 Forbes Dining Hall	40.342166, -74.660910
 Forbes Common Room	40.341891, -74.661036
-Forbes	40.342166, -74.660910
 Garden Room	40.346973, -74.656549
 Genomics Cafe 40.344547, -74.653260
 Genomics Coffee Service 40.344547, -74.653260	
@@ -410,7 +409,6 @@ Furth Plasma Physics Library	40.350347, -74.604173
 Graphic Arts Collection	40.349558, -74.657378
 Humanities Resource Center	40.348757, -74.658472
 Industrial Relations Section	40.349795, -74.657480
-Lewis Library	40.346253, -74.652694
 Map Collection	40.346220, -74.652736
 Marquand Library of Art and Archaeology	40.347463, -74.658060
 Mendel Music Library	40.347325, -74.655943

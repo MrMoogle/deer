@@ -36,7 +36,7 @@ var mailListener = new MailListener({
 mailListener.on("mail", function(mail){
   // Constructs current date
   var date = new Date();
-  var curr_time = (date.getYear() + 1900) + '-' + date.getMonth() + '-' + date.getDate() + ' '
+  var curr_time = (date.getYear() + 1900) + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' '
                    + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
   var location;
   var food;
@@ -81,7 +81,6 @@ mailListener.on("mail", function(mail){
   // location in subject takes precedence over location in text
   for (var p = 0; p < placelist.length; p++) {
     var place = placelist[p].split("\t")[0];
-    console.log("Is it at: " + place);
     var patt = new RegExp("(^| )" + place + "(?![a-zA-Z])", "i");
     if (patt != undefined && patt.test(text)) {
       console.log("Identified place text: " + placelist[p]);

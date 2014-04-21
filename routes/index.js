@@ -27,7 +27,6 @@ exports.index = function(req, res) {
   console.log(req.url);
   res.location('index');
   if (key) {
-    console.log("jerje");
     cas.validate(key, function(err, status, username) {
       if (err) res.send({error: err});
       else {

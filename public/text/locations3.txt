@@ -133,10 +133,11 @@ Cordish Family Pavilion	40.341451, -74.654483
 Cordish Pavilion	40.341451, -74.654483
 Corwin Hall	40.348884, -74.654369
 Corwin	40.348884, -74.654369
+COS Building	40.350252, -74.652251
 Cotsen Children's Library	40.349418, -74.657046
 Cottage Club	40.348302, -74.651726
 Cottage	40.348302, -74.651726
-CS	40.350252, -74.652251
+CS Building	40.350252, -74.652251
 C-Store	40.346872, -74.655319
 Cuyler Hall	40.345912, -74.657424
 Cuyler	40.345912, -74.657424
@@ -187,6 +188,7 @@ FitzRandolph	40.345680, -74.645661
 Food For Thought	40.346896, -74.655244
 Forbes Addition	40.341656, -74.660670
 Forbes College Dining Hall	40.342166, -74.660910
+Forbes Common Room	40.341891, -74.661036
 Forbes Dining Hall	40.342166, -74.660910
 Forbes Main	40.342135, -74.661254
 Forbes	40.342135, -74.661254
@@ -239,7 +241,8 @@ Ivy	40.348186, -74.652206
 Jadwin Gym	40.343463, -74.648647
 Jadwin Hall	40.344908, -74.651700
 Jadwin	40.344908, -74.651700
-Center for Jewish Life	40.346611, -74.653713
+Jewish Life, Center for	40.346611, -74.653713
+Jewish Life, Center For	40.346848, -74.653702
 Joline Hall	40.347919, -74.662032
 Joline	40.347919, -74.662032
 Jones Hall	40.346433, -74.655903
@@ -271,8 +274,8 @@ Map Collection	40.346220, -74.652736
 Marquand Library of Art and Archaeology	40.347463, -74.658060
 Marx Hall	40.348068, -74.655563
 Marx	40.348068, -74.655563
-Mathey Dining Hall	40.348629, -74.662262
 Mathey College Dining Hall	40.348629, -74.662262
+Mathey Common Room	40.348286, -74.661876
 Mathey	40.348629, -74.662262
 McCarter Theatre	40.344203, -74.660627
 McCarter	40.344203, -74.660627
@@ -298,7 +301,6 @@ Myslik Field	40.342581, -74.653967
 Nassau Hall	40.348711, -74.659302
 Near East Collections	40.349578, -74.657577
 Neuroscience	40.343569, -74.652651
-New Grad College	40.340961, -74.666504
 New Graduate College	40.340961, -74.666504
 New South Building	40.343382, -74.658853
 New South	40.343382, -74.658853
@@ -335,7 +337,9 @@ Robertson Hall	40.348405, -74.654734
 Robertson	40.348405, -74.654734
 Rock Magnetism Laboratory	40.345232, -74.655167
 Rockefeller College Dining Hall	40.348610, -74.662547
+Rocky Common Room	40.348629, -74.662075
 Rocky Dining Hall	40.348610, -74.662547
+Rocky Mathey Theater	40.348556, -74.662037
 Rocky	40.348610, -74.662547
 Sayre Hall	40.345183, -74.616286
 Sayre	40.345183, -74.616286
@@ -351,6 +355,7 @@ Sherrerd Hall	40.349554, -74.652703
 Sherrerd	40.349554, -74.652703
 Spelman Halls	40.344623, -74.659256
 Spelman	40.344623, -74.659256
+Spoon	40.347490, -74.660156
 Springdale Club House	40.336797, -74.661979
 Stadium	40.345764, -74.649973
 Stanhope Hall	40.348743, -74.659991
@@ -387,6 +392,7 @@ West Lodge	40.339663, -74.666455
 Whig Hall	40.347853, -74.658634
 Whig	40.347853, -74.658634
 Whitman College Dining Hall	40.344192, -74.657622
+Whitman Common Room	40.343928, -74.657566
 Whitman Dining Hall	40.344192, -74.657622
 Whitman	40.344192, -74.657622
 Wilcox Hall	40.344839, -74.656113
@@ -394,10 +400,13 @@ Wilcox	40.344839, -74.656113
 Wilf Hall	40.344414, -74.655177
 Wilf	40.344414, -74.655177
 Wilson College Dining Hall 40.344757, -74.656264
+Wilson Common Room	40.344879, -74.656174
 Wilson Dining Hall	40.344757, -74.656264
 Wilson	40.344757, -74.656264
+Witherspoon Cafe	40.346872, -74.655255
 Witherspoon Hall	40.347490, -74.660156
 Witherspoon	40.347490, -74.660156
+Witherspoon's	40.346872, -74.655255
 Woodrow Wilson School	40.348395, -74.654738
 Woodrow Wilson	40.348395, -74.654738
 Woody Woo	40.348395, -74.654738

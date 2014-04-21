@@ -46,12 +46,11 @@ body
 					div.panel-body
 						ul.list-group
 							- for row in dataRows
-								div.small-container
-									a.subject-group-item.active(href='http://i.imgur.com/tSQQ0Wf.png')
-										div.subject-container
-											list-group-item #{row.subject} - #{row.time}
-										li.list-group-item LOCATION: #{row.location}
-										li.list-group-item FOOD: #{row.food}
+								a.list-group-item
+									div.subject-container
+										list-group-item #{row.subject} - #{row.time}
+									li.list-group-item LOCATION: #{row.location}
+									li.list-group-item FOOD: #{row.food}
 
 	- for row in dataRows
 		script.
