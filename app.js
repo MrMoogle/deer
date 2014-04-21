@@ -49,8 +49,6 @@ mailListener.on("mail", function(mail){
     console.log("FreeFood listserv email recieved");
     var start = (mail.text).indexOf("freefood@princeton.edu") + 25;
     var finish = (mail.text).indexOf("----- You are receiving this email because");
-    console.log(start);
-    console.log(finish);
     text = (mail.text).slice(start, finish);
   }
   else {  // not [FreeFood], look for food 
