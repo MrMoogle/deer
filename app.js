@@ -47,7 +47,11 @@ mailListener.on("mail", function(mail){
   var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
   if (freefoodpatt.test(mail.subject)) {
     console.log("FreeFood listserv email recieved");
-    text = mail.text.substr(0, mail.text.indexOf("-----"));
+    var start = (mail.text).indexOf("freefood@princeton.edu") + 25;
+    var finish = (mail.text).indexOf("----- You are receiving this email because");
+    console.log(start);
+    console.log(finish);
+    text = (mail.text).slice(start, finish);
   }
   else {  // not [FreeFood], look for food 
     //if ()
@@ -135,9 +139,9 @@ mailListener.on("mail", function(mail){
   pool.getConnection(function(err, connection) {
     if (err) console.log('database connection error');
     var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
-                mail.subject + '\', \'' + (text).slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
+                mail.subject + '\', \'' + text + '\', \'' + location[0] + '\', \'' + 
                 curr_time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
-    console.log(query);
+    console.log(query + "\n");
     connection.query(query);
     connection.release();
   });
