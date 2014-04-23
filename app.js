@@ -138,7 +138,7 @@ mailListener.on("mail", function(mail){
   pool.getConnection(function(err, connection) {
     if (err) console.log('database connection error');
     var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
-                mail.subject + '\', \'' + text + '\', \'' + location[0] + '\', \'' + 
+                mail.subject + '\', \'' + text.slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
                 curr_time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
     console.log(query + "\n");
     connection.query(query);
