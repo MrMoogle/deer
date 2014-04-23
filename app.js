@@ -116,6 +116,21 @@ mailListener.on("mail", function(mail){
   // time extraction
   var pattd = /at \d?\d/i;
   var pattf = /at \d?\d:\d\d/i;
+  var pattg = /Jan[.\s] \d|Feb[.\s] \d|Mar[.\s] \d|Apr[.\s] \d|May[.\s] \d|Jun[e.\s] \d|Jul[y.\s] \d|Aug[.\s] \d|Sep[t.\s] \d|Oct[.\s] \d|Nov[.\s] \d|Dec[.\s] \d|January \d|February \d|March \d|April \d|August \d|September \d|October \d|November \d|December \d/i;
+  var patth = /from \d?\d/i;
+  var patti = / \d?\d:\d\d/i;
+
+
+  var day;
+  if (pattg.test(mail.subject)) {
+    day = pattg.exec(mail.subject)[0].split(" ")[1] + " ";
+  }
+  else if (pattg.test(text)) {
+    day = pattg.exec(text)[0].split(" ")[1] + " ";
+  }
+  if (day === undefined) {
+    day = "";
+  }
 
   if (pattf.test(mail.subject)) {
     time = pattf.exec(mail.subject)[0].split(" ")[1];
@@ -183,6 +198,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/map', routes.map);
+app.get('/cover', routes.cover);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
