@@ -68,3 +68,50 @@ body {
 	background-color: #000000;
 	text-align: center;
 }
+
+.popup {
+    text-align: center;
+}
+.popup .slideshow {
+    width: 100%;
+}
+.popup .slideshow .image {
+    display: none;
+}
+.popup .slideshow .active {
+    display: block;
+}
+.popup .slideshow img {
+    width: 100%;
+}
+.popup .slideshow .caption {
+    background: #eee;
+    padding: 8px;
+}
+.popup .cycle {
+    height: 30px;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+.popup .cycle a.prev {
+    float: left;
+}
+.popup .cycle a.next {
+    float: right;
+}
+
+.main-button {
+	position: relative;
+	padding-top: 10%;
+  	padding-left: 11%;
+}
+
+.picture {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  background: url('http://www.wallpapersfolder.com/user-content/uploads/wall/o/2013/06/lovely-tiger-cub-look-back-sadly.jpg') no-repeat center center;
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}

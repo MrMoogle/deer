@@ -45,7 +45,7 @@ exports.index = function(req, res) {
             console.log('database connection error');
           
           // Queries database and renders page          
-          connection.query('SELECT * FROM data', function(err, rows, fields) {
+          connection.query('SELECT * FROM data ORDER by location', function(err, rows, fields) {
             if (err) console.log('database query error');
             res.render('index', {
               title: 'Princeton Free Food Map',
@@ -88,3 +88,8 @@ exports.map = function(req, res){
     res.redirect('http://localhost:3000/');
   }
 };
+
+exports.cover = function(req, res){
+  res.render('cover', {
+  title: 'Princeton Free Food Map'});
+}
