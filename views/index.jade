@@ -10,6 +10,9 @@ head
 
 	// Javascript
 	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
+	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+	script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
 
 body
 	#map
@@ -41,25 +44,21 @@ body
 	div.container-fluid
 		div.row
 			div.col-md-3
-				div.panel
-					div.panel-heading
-						h3.panel-title Free Food
-					div.panel-body
-						ul.list-group
-							- for row in dataRows
-								a.list-group-item
-									div.subject-container
-										list-group-item #{row.subject} - #{row.time}
-									li.list-group-item LOCATION: #{row.location}
-									li.list-group-item FOOD: #{row.food}
-
+				div#myheading.panel-heading 
+					h3 
+						b Princeton Food Map     
+				div#accordion.panel-group
+					- for row in dataRows
+						h4
+							div.panel-heading #{row.subject}
+						div.panel-body.mine #{row.mess}
+						
 	- for row in dataRows
 		script.
 			var lat = "#{row.lat}";
 			var longit = "#{row.longit}";
 			var subject = "#{row.subject}";
 			var food = "#{row.food}";
-			var message = "#{row.mess}";
 
 			L.mapbox.featureLayer({
 				// this feature is in the GeoJSON format: see geojson.org
@@ -73,10 +72,12 @@ body
 				},
 				properties: {
 					title: subject,
-					description: message,
 					// one can customize markers by adding simplestyle properties
 					// http://mapbox.com/developers/simplestyle/
 					'marker-size': 'small',
 					'marker-color': '#f0a'
 				}
 			}).addTo(map);
+
+script.
+	$("#accordion").accordion({collapsible: true});

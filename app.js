@@ -53,7 +53,6 @@ mailListener.on("mail", function(mail){
     text = (temptext).slice(0, finish);
   }
   else {  // not [FreeFood], look for food 
-    //if ()
     text = mail.text;
   }
 
