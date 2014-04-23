@@ -11,6 +11,9 @@ head
 	// Javascript
 	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
 
+	//Jquery
+	script(scr='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+
 body
 	#map
 		script.
@@ -60,8 +63,9 @@ body
 			var subject = "#{row.subject}";
 			var food = "#{row.food}";
 			var message = "#{row.mess}";
-
-			L.mapbox.featureLayer({
+			
+			var myLayer = L.mapbox.featureLayer().addTo(map);
+			var geoJson = [{
 				// this feature is in the GeoJSON format: see geojson.org
 				// for the full specification
 				type: 'Feature',
@@ -77,6 +81,72 @@ body
 					// one can customize markers by adding simplestyle properties
 					// http://mapbox.com/developers/simplestyle/
 					'marker-size': 'small',
-					'marker-color': '#f0a'
+					'marker-color': '#f0a',
+					// Store the image url and caption in an array
+					'images': [
+						['https://i.imgur.com/O6QEpBs.jpg','The U.S. Capitol after the burning of Washington during the War of 1812'],
+						['https://i.imgur.com/xND1MND.jpg','Ford\'s Theatre in the 19th century, site of the 1865 assassination of President Lincoln'],
+						['https://i.imgur.com/EKJmqui.jpg','The National Cherry Blossom Festival is celebrated around the city each spring.']
+					]
 				}
-			}).addTo(map);
+			}];
+
+			// Add custom popup html to each marker
+			myLayer.on('layeradd', function(e) {
+				var marker = e.layer;
+				var feature = marker.feature;
+				var images = feature.properties.images
+				var slideshowContent = '';
+
+				for(var i = 0; i < images.length; i++) {
+					var img = images[i];
+					slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+					'<img src="' + img[0] + '" />' +
+					'<div class="caption">' + img[1] + '</div>' +
+					'</div>';
+				}
+
+				// Create custom popup content
+				var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+					'<h2>' + feature.properties.title + '</h2>' +
+					'<div class="slideshow">' +
+					slideshowContent +
+					'</div>' +
+					'<div class="cycle">' +
+					'<a href="#" class="prev">&laquo; Previous</a>' +
+					'<a href="#" class="next">Next &raquo;</a>' +
+					'</div>'
+					'</div>';
+
+				// http://leafletjs.com/reference.html#popup
+				marker.bindPopup(popupContent,{
+					closeButton: false,
+					minWidth: 320
+				});
+			});
+
+			// Add features to the map
+			myLayer.setGeoJSON(geoJson);
+
+			// This example uses jQuery to make selecting items in the slideshow easier.
+			// Download it from http://jquery.com
+			$('#map').on('click', '.popup .cycle a', function() {
+				var $slideshow = $('.slideshow'),
+				$newSlide;
+
+			if ($(this).hasClass('prev')) {
+				$newSlide = $slideshow.find('.active').prev();
+				if ($newSlide.index() < 0) {
+					$newSlide = $('.image').last();
+				}
+			} else {
+				$newSlide = $slideshow.find('.active').next();
+				if ($newSlide.index() < 0) {
+					$newSlide = $('.image').first();
+				}
+			}
+
+			$slideshow.find('.active').removeClass('active').hide();
+			$newSlide.addClass('active').show();
+			return false;
+			});
