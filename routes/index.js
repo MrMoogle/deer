@@ -88,3 +88,8 @@ exports.map = function(req, res){
     res.redirect('http://localhost:3000/');
   }
 };
+
+exports.cover = function(req, res){
+  res.render('cover', {
+  title: 'Princeton Free Food Map'});
+}
