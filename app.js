@@ -15,7 +15,7 @@ var pool        = require('./dataConnection.js').pool;
 var foodlist = fs.readFileSync('./public/text/food2.txt').toString().toLowerCase().split("\n");
 
 // Location dictionary
-var placelist = fs.readFileSync('./public/text/locations2.txt').toString().toLowerCase().split("\n");
+var placelist = fs.readFileSync('./public/text/locations3.txt').toString().toLowerCase().split("\n");
 
 /*-------------- Mail Listener ----------------*/
 var mailListener = new MailListener({
@@ -47,9 +47,10 @@ mailListener.on("mail", function(mail){
   var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
   if (freefoodpatt.test(mail.subject)) {
     console.log("FreeFood listserv email recieved");
-    var start = (mail.text).indexOf("freefood@princeton.edu") + 25;
-    var finish = (mail.text).indexOf("----- You are receiving this email because");
-    text = (mail.text).slice(start, finish);
+    var start = (mail.text).indexOf("freefood@princeton.edu") + 22;
+    var temptext = (mail.text).slice(start, mail.text.length);
+    var finish = (temptext).indexOf("-----");
+    text = (temptext).slice(0, finish);
   }
   else {  // not [FreeFood], look for food 
     //if ()
