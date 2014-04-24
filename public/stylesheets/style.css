@@ -34,7 +34,14 @@ body {
 
 .panel-body {
 	overflow: auto;
-  	height:500px;
+}
+
+.panel-group {
+	box-shadow: 5px;
+	border-color: #000000;
+	background-color: #FFFFFF;
+	overflow: auto;
+	height: 500px;
 }
 
 .panel-heading {
