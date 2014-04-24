@@ -23,13 +23,8 @@ body {
 }
 
 .container-fluid {
-	padding-top: 2%; 
-	padding-left: 2.5%;
-}
-
-.panel {
-	box-shadow: 5px 5px 2px #888888; 
-	border-color: #000000;
+	padding-top: 0%; 
+	padding-left: 1.5%;
 }
 
 .panel-body.mine {
@@ -41,21 +36,31 @@ body {
 }
 
 .panel-group {
-	box-shadow: 5px;
-	border-color: #000000;
 	background-color: #FFFFFF;
 	overflow: auto;
 	height: 500px;
+	box-shadow: 5px 5px 2px #888888; 
 }
 
 .panel-heading {
 	background-color: #FFA300; 
+	color: #FFFFFF;
 	border-color: #000000;
 	cursor: pointer;
 	margin-top: 1.5%;
 	margin-right: 1%;
 	margin-left: 1%;
+	text-align: center;
 }
+
+#myheading{
+	color: #FFFFFF;
+	background-color: #000000;
+	text-align: center;
+	cursor: default;
+	box-shadow: 5px 5px 2px #888888; 
+}
+
 
 .small-container {
 	padding-top: 2.5%; 
@@ -68,12 +73,6 @@ body {
 	padding-left: 2.5%;
 	padding-right: 2.5%;
 	padding-bottom: 2.5%;
-}
-
-#myheading{
-	color: #FFFFFF;
-	background-color: #000000;
-	text-align: center;
 }
 
 #myh3{
