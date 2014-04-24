@@ -1243,6 +1243,7 @@ luncheon
 lutefisk
 lutfisk
 lye hominy
+macaroon
 macaroni and cheese
 macaroni salad
 mace
@@ -1429,6 +1430,7 @@ oyster stew
 oyster stuffing
 pabulum
 paddy
+pad thai
 paella
 pale ale
 pan gravy
