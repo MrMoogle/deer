@@ -7,12 +7,14 @@ head
 	link(rel='stylesheet', href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css')
 	link(rel='stylesheet', href='/stylesheets/style.css')
 	link(rel='stylesheet', href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+	link(href='/lib/jquery.bxslider.css', rel='stylesheet')
 
 	// Javascript
 	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
-	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
 	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
 	script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
+	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+	
 
 body
 	#map
@@ -52,32 +54,6 @@ body
 						h4
 							div.panel-heading #{row.subject}
 						div.panel-body.mine #{row.mess} #{row.time}
-						
-	//- for row in dataRows
-			script.
-			var lat = "#{row.lat}";
-			var longit = "#{row.longit}";
-			var subject = "#{row.subject}";
-			var food = "#{row.food}";
-
-			L.mapbox.featureLayer({
-				// this feature is in the GeoJSON format: see geojson.org
-				// for the full specification
-				type: 'Feature',
-				geometry: {
-					type: 'Point',
-					// coordinates here are in longitude, latitude order because
-					// x, y is the standard for GeoJSON and many formats
-					coordinates: [parseFloat(longit), parseFloat(lat)]
-				},
-				properties: {
-					title: subject,
-					// one can customize markers by adding simplestyle properties
-					// http://mapbox.com/developers/simplestyle/
-					'marker-size': 'small',
-					'marker-color': '#f0a'
-				}
-			}).addTo(map);
 	
 	- var buildings = [];		
 	- var current_location = dataRows[0].location;
@@ -92,18 +68,17 @@ body
 		- console.log("In consideration: " + row.location + " versus: " + current_location);
 		if row.location === current_location
 			- subjects.push(row.subject);
-			- console.log("++++++We pushed+++++");
 			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
-			- console.log(subjects);
-			- console.log(messages);
 			- currlong = row.longit;
 			- currlat = row.lat;
 		else 
 			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
-			- console.log("Subjects: " + subjects.length);
-			- console.log("Messages: " + messages.length);
+			- console.log("Subjects: " + subjects);
+			- console.log("Messages: " + messages);
 			script.
-				var myLayer = L.mapbox.featureLayer().addTo(map);
+				// a hackish way to force messages and subjects to be an array - Patrick
+				var messages = "#{messages.join('|~|')}";
+				var subjects = "#{subjects.join('|~|')}";
 				var geoJson = [{
 					// this feature is in the GeoJSON format: see geojson.org
 					// for the full specification
@@ -123,9 +98,43 @@ body
 						'marker-color': '#f0a',
 					}
 				}];
-				// Add features to the map
-				//L.mapbox.featureLayer(geoJson).addTo(map);
-				myLayer.setGeoJSON(geoJson);
+				var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+
+				// and here's where I force it to be an array - Patrick
+				messages = messages.split("|~|");
+				subjects = subjects.split("|~|");
+
+				var caritemsfirst = "<div class='item active'>" +
+															"<h1>" + subjects[0] + "</h1>" +
+															"<p>" + messages[0] + "</p>" +
+														"</div>";
+				var caritems = "";
+				for (var i = 1; i < messages.length; i++) {
+					caritems += "<div class='item'>" + 
+												"<h1>" + subjects[i] + "</h1>" + 
+												"<p>" + messages[i] + "</p>" +
+											"</div>";
+				}
+				var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+				var indicators = "";
+				for (var i = 0; i < subjects.length; i++) {
+					indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+				}
+				var content = "<div id='marker' class='carousel slide popup' data-ride='carousel'>" +
+												"<ol class='carousel-indicators'>" +
+													indicatorsfirst + indicators +
+												"</ol>" +
+												"<div class='carousel-inner'>" +
+													caritemsfirst + caritems +
+												"</div>" +
+												"<a class='left carousel-control' href='#marker' data-slide='prev'>" +
+													"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+												"</a>" + 
+												"<a class='right carousel-control' href='#marker' data-slide='next'>" +
+													"<span class='glyphicon glyphicon-chevron-right'></span>" +
+												"</a>" +  
+											"</div>";
+				myLayer.bindPopup(content);
 
 			- subjects = [];
 			- subjects.push(row.subject);
@@ -135,39 +144,9 @@ body
 			- currlong = row.longit;
 			- currlat = row.lat;
 
-	- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
-	- console.log("Subjects: " + subjects);
-	- console.log("Messages: " + messages);
-	script.
-		var myLayer = L.mapbox.featureLayer().addTo(map);
-		subject = subject + "#{buildings[0]}"
-		var geoJson = [{
-			// this feature is in the GeoJSON format: see geojson.org
-			// for the full specification
-			type: 'Feature',
-			geometry: {
-				type: 'Point',
-				// coordinates here are in longitude, latitude order because
-				// x, y is the standard for GeoJSON and many formats
-				coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
-			},
-			properties: {
-				title: "MOFO" //"#{subjects}",
-				description: "FOMO" //#{messages}",
-				// one can customize markers by adding simplestyle properties
-				// http://mapbox.com/developers/simplestyle/
-				'marker-size': 'small',
-				'marker-color': '#f0a',
-			}
-		}];		
-		myLayer.setGeoJSON(geoJson);
-
-
 script.
 	$("#accordion").accordion({collapsible: true, heightStyle: "content"});	
 
 	var format = function(str) {
 		return(str.substring(15, 5));
 	}
-
-
