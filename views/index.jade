@@ -14,9 +14,6 @@ head
 	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
 	script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
 
-	//Jquery
-	script(scr='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
-
 body
 	#map
 		script.
@@ -47,14 +44,14 @@ body
 	div.container-fluid
 		div.row
 			div.col-md-3
-				div#myheading.panel-heading 
-					h3 
+				div#myheading.panel-heading
+					h3#myh3
 						b Princeton Food Map     
 				div#accordion.panel-group
 					- for row in dataRows
 						h4
 							div.panel-heading #{row.subject}
-						div.panel-body.mine #{row.mess}
+						div.panel-body.mine #{row.mess} #{row.time}
 						
 	//- for row in dataRows
 			script.
@@ -167,4 +164,10 @@ body
 
 
 script.
-	$("#accordion").accordion({collapsible: true});
+	$("#accordion").accordion({collapsible: true, heightStyle: "content"});	
+
+	var format = function(str) {
+		return(str.substring(15, 5));
+	}
+
+

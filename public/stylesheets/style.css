@@ -3,10 +3,6 @@ body {
   	padding;: 0;
 }
 
-/*.list-group {
-	overflow: scroll;
-}*/
-
 #map { 
 	position:absolute; 
 	top:0; 
@@ -57,6 +53,16 @@ body {
 	padding-left: 2.5%;
 	padding-right: 2.5%;
 	padding-bottom: 2.5%;
+}
+
+#myheading{
+	color: #FFFFFF;
+	background-color: #000000;
+	text-align: center;
+}
+
+#myh3{
+	margin-top:10px;
 }
 
 .popup {
