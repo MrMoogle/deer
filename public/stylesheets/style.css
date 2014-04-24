@@ -3,6 +3,10 @@ body {
   	padding;: 0;
 }
 
+/*.list-group {
+	overflow: scroll;
+}*/
+
 #map { 
 	position:absolute; 
 	top:0; 
@@ -23,31 +27,23 @@ body {
 }
 
 .container-fluid {
-	padding-top: 1%; 
+	padding-top: 2%; 
 	padding-left: 2.5%;
 }
 
-.panel-group {
+.panel {
 	box-shadow: 5px 5px 2px #888888; 
 	border-color: #000000;
-	background-color:#FFFFFF;
-	overflow: auto;
-	height: 500px;
 }
 
-.panel-body.mine {
+.panel-body {
 	overflow: auto;
-	padding-top: 0%;
-	padding-bottom: 0%;
-	padding-right: 2%;
-	padding-left: 2%;
+  	height:500px;
 }
 
 .panel-heading {
 	background-color: #FFA300; 
 	border-color: #000000;
-	margin-top: 2.5%;
-	cursor: pointer;
 }
 
 .small-container {
@@ -61,12 +57,6 @@ body {
 	padding-left: 2.5%;
 	padding-right: 2.5%;
 	padding-bottom: 2.5%;
-}
-
-#myheading{
-	color: #FFFFFF;
-	background-color: #000000;
-	text-align: center;
 }
 
 .popup {
@@ -102,8 +92,8 @@ body {
 
 .main-button {
 	position: relative;
-	padding-top: 10%;
-  	padding-left: 11%;
+	padding-top: 35%;
+  	padding-left: 4%;
 }
 
 .picture {

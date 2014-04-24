@@ -194,10 +194,10 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', routes.cover);
 app.get('/users', user.list);
 app.get('/map', routes.map);
-app.get('/cover', routes.cover);
+app.get('/index', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

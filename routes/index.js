@@ -85,7 +85,7 @@ exports.map = function(req, res){
     });
 
     console.log(list);
-    res.redirect('http://localhost:3000/');
+    res.redirect('http://localhost:3000/index');
   }
 };
 
