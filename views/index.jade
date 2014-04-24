@@ -56,8 +56,8 @@ body
 							div.panel-heading #{row.subject}
 						div.panel-body.mine #{row.mess}
 						
-	- for row in dataRows
-		script.
+	//- for row in dataRows
+			script.
 			var lat = "#{row.lat}";
 			var longit = "#{row.longit}";
 			var subject = "#{row.subject}";
@@ -81,6 +81,90 @@ body
 					'marker-color': '#f0a'
 				}
 			}).addTo(map);
+	
+	- var buildings = [];		
+	- var current_location = dataRows[0].location;
+	- console.log("--------------------------------------");
+	- console.log("Starting location: " + current_location);
+
+	- var subjects = [];
+	- var messages = [];
+	- var currlong;
+	- var currlat;
+	- for row in dataRows
+		- console.log("In consideration: " + row.location + " versus: " + current_location);
+		if row.location === current_location
+			- subjects.push(row.subject);
+			- console.log("++++++We pushed+++++");
+			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+			- console.log(subjects);
+			- console.log(messages);
+			- currlong = row.longit;
+			- currlat = row.lat;
+		else 
+			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
+			- console.log("Subjects: " + subjects.length);
+			- console.log("Messages: " + messages.length);
+			script.
+				var myLayer = L.mapbox.featureLayer().addTo(map);
+				var geoJson = [{
+					// this feature is in the GeoJSON format: see geojson.org
+					// for the full specification
+					type: 'Feature',
+					geometry: {
+						type: 'Point',
+						// coordinates here are in longitude, latitude order because
+						// x, y is the standard for GeoJSON and many formats
+						coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+					},
+					properties: {
+						title: "#{subjects}",
+						description: "#{messages}",
+						// one can customize markers by adding simplestyle properties
+						// http://mapbox.com/developers/simplestyle/
+						'marker-size': 'small',
+						'marker-color': '#f0a',
+					}
+				}];
+				// Add features to the map
+				//L.mapbox.featureLayer(geoJson).addTo(map);
+				myLayer.setGeoJSON(geoJson);
+
+			- subjects = [];
+			- subjects.push(row.subject);
+			- messages = [];
+			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+			- current_location = row.location;
+			- currlong = row.longit;
+			- currlat = row.lat;
+
+	- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
+	- console.log("Subjects: " + subjects);
+	- console.log("Messages: " + messages);
+	script.
+		var myLayer = L.mapbox.featureLayer().addTo(map);
+		subject = subject + "#{buildings[0]}"
+		var geoJson = [{
+			// this feature is in the GeoJSON format: see geojson.org
+			// for the full specification
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				// coordinates here are in longitude, latitude order because
+				// x, y is the standard for GeoJSON and many formats
+				coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+			},
+			properties: {
+				title: "MOFO" //"#{subjects}",
+				description: "FOMO" //#{messages}",
+				// one can customize markers by adding simplestyle properties
+				// http://mapbox.com/developers/simplestyle/
+				'marker-size': 'small',
+				'marker-color': '#f0a',
+			}
+		}];		
+		myLayer.setGeoJSON(geoJson);
+
 
 script.
 	$("#accordion").accordion({collapsible: true});
