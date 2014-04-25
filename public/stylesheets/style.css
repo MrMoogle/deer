@@ -112,7 +112,24 @@ body {
   min-height: 100%;
 }
 
-.popup {
-	width: 250px;
-	height: 150px;
+a.carousel-control {
+	/*margin-right: -50px;
+	margin-left:-35px;*/
+	top:90%;
+}
+
+a.carousel-control.left, a.carousel-control.right {
+    background-image: none;
+}
+
+a.carousel-control.right {
+	margin-right: -5%;
+}
+
+#marker {
+	text-align: center;
+}
+
+.carousel-inner > .item {
+	margin: 5% 5% 10% 5%;
 }

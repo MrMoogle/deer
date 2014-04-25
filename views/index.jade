@@ -105,34 +105,44 @@ body
 				subjects = subjects.split("|~|");
 
 				var caritemsfirst = "<div class='item active'>" +
-															"<h1>" + subjects[0] + "</h1>" +
-															"<p>" + messages[0] + "</p>" +
+																"<h1 class=text-center>" + subjects[0] + "</h1>" +
+																"<p class=text-center>" + messages[0] + "</p>" +
 														"</div>";
 				var caritems = "";
 				for (var i = 1; i < messages.length; i++) {
 					caritems += "<div class='item'>" + 
-												"<h1>" + subjects[i] + "</h1>" + 
-												"<p>" + messages[i] + "</p>" +
+												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+												"<p class=text-center>" + messages[i] + "</p>" +
 											"</div>";
 				}
-				var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
-				var indicators = "";
-				for (var i = 0; i < subjects.length; i++) {
-					indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+				
+				var arrows = "";
+				if (subjects.length > 1) {
+					arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
+											"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+											"</a>" + 
+											"<a class='right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+											"<span class='glyphicon glyphicon-chevron-right'></span>" +
+										"</a>";
 				}
-				var content = "<div id='marker' class='carousel slide popup' data-ride='carousel'>" +
-												"<ol class='carousel-indicators'>" +
-													indicatorsfirst + indicators +
-												"</ol>" +
+
+				////
+				// indicators are dots corresponding to each page. Uncomment if you want it.
+				////
+				//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+				//- var indicators = "";
+				//- for (var i = 1; i < subjects.length; i++) {
+				//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+				//- }
+				
+				var content = "<div id='marker' class='carousel slide foodmarker text-center' data-ride='carousel' data-interval='false'>" +
+												//- "<ol class='carousel-indicators'>" +
+												//- 	indicatorsfirst + indicators +
+												//- "</ol>" +
 												"<div class='carousel-inner'>" +
 													caritemsfirst + caritems +
-												"</div>" +
-												"<a class='left carousel-control' href='#marker' data-slide='prev'>" +
-													"<span class='glyphicon glyphicon-chevron-left'></span>" + 
-												"</a>" + 
-												"<a class='right carousel-control' href='#marker' data-slide='next'>" +
-													"<span class='glyphicon glyphicon-chevron-right'></span>" +
-												"</a>" +  
+												"</div>" + 
+												arrows + 
 											"</div>";
 				myLayer.bindPopup(content);
 
