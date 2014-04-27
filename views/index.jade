@@ -19,7 +19,7 @@ head
 body
 	#map
 		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.672224], [40.354200, -74.643299]]}).setView([40.346056,-74.654007], 16);
+			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.356200, -74.643299]]}).setView([40.346056,-74.654007], 16);
 
 	nav.navbar.navbar-default(role='navigation')
 		.container-fluids
@@ -36,6 +36,8 @@ body
 			#bs-example-navbar-collapse-1.collapse.navbar-collapse
 				ul.nav.navbar-nav
 					li.active
+						a(href='#') Map
+					li
 						a(href='#') About
 					li
 						a(href='#') Contact
@@ -62,6 +64,7 @@ body
 
 	- var subjects = [];
 	- var messages = [];
+	- var times = [];
 	- var currlong;
 	- var currlat;
 	- for row in dataRows
@@ -69,16 +72,20 @@ body
 		if row.location === current_location
 			- subjects.push(row.subject);
 			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+			- times.push(row.time);
 			- currlong = row.longit;
 			- currlat = row.lat;
 		else 
 			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
 			- console.log("Subjects: " + subjects);
 			- console.log("Messages: " + messages);
+			- console.log("Times: " + times);
 			script.
-				// a hackish way to force messages and subjects to be an array - Patrick
+				// a hackish way to force messages, tiems, and subjects to be an array - Patrick
 				var messages = "#{messages.join('|~|')}";
 				var subjects = "#{subjects.join('|~|')}";
+				var times = "#{times.join('|~|')}";
+				times = times.split("|~|");
 				var geoJson = [{
 					// this feature is in the GeoJSON format: see geojson.org
 					// for the full specification
@@ -103,15 +110,18 @@ body
 				// and here's where I force it to be an array - Patrick
 				messages = messages.split("|~|");
 				subjects = subjects.split("|~|");
+				
 
 				var caritemsfirst = "<div class='item active'>" +
 																"<h1 class=text-center>" + subjects[0] + "</h1>" +
+																"<h3 class=text-center>" + times[0] + "</h3>" + 
 																"<p class=text-center>" + messages[0] + "</p>" +
 														"</div>";
 				var caritems = "";
 				for (var i = 1; i < messages.length; i++) {
 					caritems += "<div class='item'>" + 
 												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+												"<h3 class=text-center>" + times[i] + "</h3>" +
 												"<p class=text-center>" + messages[i] + "</p>" +
 											"</div>";
 				}
@@ -150,6 +160,8 @@ body
 			- subjects.push(row.subject);
 			- messages = [];
 			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+			- times = [];
+			- times.push(row.time);
 			- current_location = row.location;
 			- currlong = row.longit;
 			- currlat = row.lat;

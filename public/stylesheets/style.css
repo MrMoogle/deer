@@ -136,7 +136,7 @@ a.carousel-control.left, a.carousel-control.right {
     background-image: none;
 }
 
-a.carousel-control.right {
+a.right, a.carousel-control, a.right-arrow {
 	margin-right: -5%;
 }
 
