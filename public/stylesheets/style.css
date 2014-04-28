@@ -59,6 +59,8 @@ body {
 	text-align: center;
 	cursor: default;
 	box-shadow: 5px 5px 2px #888888; 
+	margin-right: 0%;
+	margin-left: 0%;
 }
 
 
@@ -144,6 +146,13 @@ a.right, a.carousel-control, a.right-arrow {
 	text-align: center;
 }
 
+/* Trying to make carousel content more centered */
 .carousel-inner > .item {
 	margin: 5% 5% 10% 5%;
+}
+
+/* make pointer mouse appear on mouseover of markers */
+.leaflet-overlay-pane path,
+.leaflet-marker-icon {
+  cursor: pointer;
 }
