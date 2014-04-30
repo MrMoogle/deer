@@ -122,11 +122,27 @@ a.carousel-control.right {
 .navbar.deer {
 	margin-bottom: 0px;
 	background-color: #333;
-	border-color: #333;
+	border-color: transparent;
 	z-index: 200;
 }
+.nav>li>a:hover {
+	color: #FFFFFF;
+	background-color: #333;
+}
 
+.nav>li>a {
+	color: #555;
+	background-color: #333;
+}
 /*----------- Sidebar ------------*/
+#title {
+	text-align: center; 
+	color: #555; 
+	text-shadow: none; 
+	margin-top: 10px; 
+	margin-bottom: 0px;
+}
+
 #sidebar, #sidebar a, #sidebar-footer a {
     color:#ffffff;
     background-color:#333;
@@ -135,12 +151,16 @@ a.carousel-control.right {
     padding-right:0px;
     height:100%;
     width: 25%;
-    z-index: 90;
-    overflow: auto;
+    z-index: 900;
     position: fixed;
+    overflow: auto;
 }
 
 #sidebar .nav li>a:hover {
+    background-color:#393939;
+}
+
+#sidebar .nav li>a:active{
     background-color:#393939;
 }
 
@@ -157,13 +177,12 @@ a.carousel-control.right {
 .panel-body.mine {
 	padding-top: 0%;
 	padding-bottom: 0%;
-	padding-right: 2%;
-	padding-left: 2%;
+	padding-right: 10%;
+	padding-left: 10%;
 }
 
 .panel-group {
 	background-color: transparent;
-	overflow: auto;
 }
 
 .panel-heading {
