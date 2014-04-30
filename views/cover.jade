@@ -27,15 +27,41 @@ body.coverbody
 	//- 	.main-button
 	//- 		a.btn.btn-warning.btn-lg(type='button', href='http://localhost:3000/index') WHERE'S THE FREE FOOD?
 	.container-fluid
-		.jumbotron.col-md-4.text-center
-			h1 
-				font(color='FFFFFF') Princeton Free Food Map
-			br
-			p 
-				font(color='FFFFFF') Never pay for a meal again (maybe)
-			br		
-			p
-				a.btn.btn-primary.btn-lg.btn-warning(type='button', href='http://localhost:3000/index') Where's the food?
+		.row
+			.col-md-12#covertextcont
+				.jumbotron.text-center.covertext
+					h1 
+						font(color='FFFFFF') Princeton Free Food Map
+					br
+					p 
+						font(color='FFFFFF') Never pay for a meal again (maybe)
+					br		
+					p
+						a.btn.btn-primary.btn-lg#enterbutton(type='button', href='http://localhost:3000/index') Where's the food?
+		.row
+			.col-md-12.text-center#inboxcont
+				h1 
+					font(color='FFFFFF') Cleaner Inbox 
+				h4
+					font(color='FFFFFF') No need to subscribe to the free food listserv. Just check the map.			
+				img#inboximg(src='http://i.imgur.com/qGVO2cs.png', title='Clutter')
+		.row
+			.col-md-12.text-center#mapcont
+				h1 
+					font(color='FFFFFF') Never Miss an Opportunity
+				h4
+					font(color='FFFFFF') See what's up for grabs when and where.	
+				img#mapimg(src='http://i.imgur.com/MoGGwZ5.png', title='I like scones')
+		.row
+			.col-md-12.text-center#coverfooter
+				h1 
+					font(color='FFFFFF') Filler
+				a.twitter-follow-button(href='https://twitter.com/twitter', data-show-count='false', data-size='large') Follow @deer
+
+script#twitter-wjs(src='http://platform.twitter.com/widgets.js')
+script
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
 
 	//- .img-overlay
 	//- 	img(src='d')

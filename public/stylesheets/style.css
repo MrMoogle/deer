@@ -205,16 +205,56 @@ a.carousel-control.right {
   cursor: pointer;
 }
 
+
+
+/*-------- Cover Page --------*/
+
 .coverbody {
 	height:100%;
 	min-height:100%;
+	background-color: black;
 }
 
-.jumbotron.col-md-4 {
+/*.col-md-4 {
 	position: absolute;
 	top: 0px;
 	bottom: 0px;
-	padding-bottom:0;
 	margin-bottom:0;
+	padding:0;
 	height: 100%;
 	background-color: black;
+}
+*/
+.jumbotron.covertext {
+	height:100%;
+	background-color: black;
+	margin:0;
+}
+
+#covertextcont {
+	margin-bottom:auto;
+}
+
+#mapimg {
+	/*max-width: 50%;*/
+	max-width: 800px;
+	padding:2%;
+}
+
+#inboximg {
+	max-width: 800px;
+	padding:2%;
+}
+
+#inboxcont, #mapcont {
+	background-color: #3D3C3A;
+}
+
+#enterbutton {
+	background-color: #E87511;
+	border-color:#E87511;
+}
+
+#enterbutton:hover {
+	background-color: #F88017;
+}
