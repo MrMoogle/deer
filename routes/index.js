@@ -31,8 +31,7 @@ exports.index = function(req, res) {
       if (err) res.send({error: err});
       else {
         console.log('Status: ' + status);
-        if (status == false)
-        {
+        if (status == false) {
           console.log(key);
           console.log(status);
           console.log("IsFAlse");
@@ -46,23 +45,28 @@ exports.index = function(req, res) {
           
           // Queries database and renders page          
           connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%l:%i %p\') as time, lat, longit, food FROM data ORDER by location', function(err, rows, fields) {
-            if (err) console.log('database query error');
-            res.render('index', {
-              title: 'Princeton Free Food Map',
-              dataRows: rows,
-              status: status,
-              username: username
+            if (err) 
+              console.log('database location ordered query error');
+            connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%l:%i %p\') as time, lat, longit, food FROM data ORDER by time', function(err, rowstime, fields) {
+              if (err) 
+                console.log('database time ordered query error');
+              res.render('index', {
+                title: 'Princeton Free Food Map',
+                dataRows: rows,
+                timeRows: rowstime, 
+                status: status,
+                username: username
+              });
             });
           });
-
+                   
           // Terminates connection
           connection.release(); 
         });
       }
     });
   } 
-  else 
-  {
+  else {
     console.log("redirected");
     res.redirect('https://fed.princeton.edu/cas/login?service=' + cas.service); 
   }
@@ -70,8 +74,7 @@ exports.index = function(req, res) {
 
 exports.map = function(req, res){
   var ticket = req.param('ticket');
-  if (ticket)
-  {
+  if (ticket) {
     res.cookie('ticket', ticket, {path: '/'});
     console.log("added cookie");
     console.log(req.path);

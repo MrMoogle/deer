@@ -61,7 +61,6 @@ body
 	- var current_location = dataRows[0].location;
 	- console.log("--------------------------------------");
 	- console.log("Starting location: " + current_location);
-
 	- var subjects = [];
 	- var messages = [];
 	- var times = [];
@@ -129,8 +128,8 @@ body
 				if (subjects.length > 1) {
 					arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
 											"<span class='glyphicon glyphicon-chevron-left'></span>" + 
-											"</a>" + 
-											"<a class='right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+										"</a>" + 
+										"<a class='right pull-right right-arrow carousel-control' href='#marker' data-slide='next'>" +
 											"<span class='glyphicon glyphicon-chevron-right'></span>" +
 										"</a>";
 				}
@@ -144,7 +143,7 @@ body
 				//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
 				//- }
 				
-				var content = "<div id='marker' class='carousel slide foodmarker text-center' data-ride='carousel' data-interval='false'>" +
+				var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
 												//- "<ol class='carousel-indicators'>" +
 												//- 	indicatorsfirst + indicators +
 												//- "</ol>" +
