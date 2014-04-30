@@ -7,7 +7,7 @@ var https = require('https');
 https.globalAgent.options.secureProtocol = 'SSLv3_method';
 var cas = new CAS({
   base_url: 'https://fed.princeton.edu/cas/', 
-  service: 'deer.herokuapp.com', // change later
+  service: 'http://deer.herokuapp.com', // change later
   version: 2.0
 });
 
@@ -88,7 +88,7 @@ exports.map = function(req, res){
     });
 
     console.log(list);
-    res.redirect('deer.herokuapp.com/index');
+    res.redirect('http://deer.herokuapp.com/index');
   }
 };
 
