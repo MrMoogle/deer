@@ -27,43 +27,6 @@ body {
 	padding-left: 1.5%;
 }
 
-.panel-body.mine {
-	overflow: auto;
-	padding-top: 0%;
-	padding-bottom: 0%;
-	padding-right: 2%;
-	padding-left: 2%;
-}
-
-.panel-group {
-	background-color: #FFFFFF;
-	overflow: auto;
-	height: 500px;
-	box-shadow: 5px 5px 2px #888888; 
-}
-
-.panel-heading {
-	background-color: #FFA300; 
-	color: #FFFFFF;
-	border-color: #000000;
-	cursor: pointer;
-	margin-top: 1.5%;
-	margin-right: 1%;
-	margin-left: 1%;
-	text-align: center;
-}
-
-#myheading{
-	color: #FFFFFF;
-	background-color: #000000;
-	text-align: center;
-	cursor: default;
-	box-shadow: 5px 5px 2px #888888; 
-	margin-right: 0%;
-	margin-left: 0%;
-}
-
-
 .small-container {
 	padding-top: 2.5%; 
 	padding-left: 2.5%;
@@ -138,30 +101,68 @@ a.carousel-control.left, a.carousel-control.right {
     background-image: none;
 }
 
-a.right, a.carousel-control, a.right-arrow {
+a.carousel-control.right {
 	margin-right: -5%;
-	padding-right: 0;
-	/*text-align: right;*/
-	/*text-align: center;*/
-}
-
-a.left, a.carousel-control, a.left-arrow {
-	/*margin-left: auto;*/
-	margin-left: 0%;
-	/*text-align: center;*/
 }
 
 #marker {
 	text-align: center;
 }
 
-/* Trying to make carousel content more centered */
 .carousel-inner > .item {
 	margin: 5% 5% 10% 5%;
 }
-
-/* make pointer mouse appear on mouseover of markers */
-.leaflet-overlay-pane path,
-.leaflet-marker-icon {
-  cursor: pointer;
+ 
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
+
+/*----------- Navbar -------------*/
+.navbar.deer {
+	margin-bottom: 0px;
+	background-color: #333;
+	border-color: #333;
+	z-index: 90;
+}
+
+/*----------- Sidebar ------------*/
+#sidebar, #sidebar a, #sidebar-footer a {
+    color:#ffffff;
+    background-color:#333;
+	text-shadow:0 0 2px #000000;
+    padding-left:0px;
+    padding-right:0px;
+    height:100%;
+    width: 25%;
+    z-index: 200;
+}
+#sidebar .nav li>a:hover {
+    background-color:#393939;
+}
+
+.panel-body.mine {
+	padding-top: 0%;
+	padding-bottom: 0%;
+	padding-right: 2%;
+	padding-left: 2%;
+}
+
+.panel-group {
+	background-color: transparent;
+	overflow: auto;
+}
+
+.panel-heading {
+	background-color: transparent; 
+	color: #FFFFFF;
+	cursor: pointer;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.panel-heading:hover{
+	background-color:#393939;
+}
+/*--------------------------------*/

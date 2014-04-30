@@ -5,8 +5,8 @@ head
 
 	// Stylesheets
 	link(rel='stylesheet', href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css')
-	link(rel='stylesheet', href='/stylesheets/style.css')
 	link(rel='stylesheet', href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+	link(rel='stylesheet', href='/stylesheets/style.css')
 	link(href='/lib/jquery.bxslider.css', rel='stylesheet')
 
 	// Javascript
@@ -21,7 +21,7 @@ body
 		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.356200, -74.643299]]}).setView([40.346056,-74.654007], 16);
 
-	nav.navbar.navbar-default(role='navigation')
+	nav.navbar.deer.navbar-default.navbar-static-top(role='navigation', style='margin-bottom=0px;')
 		.container-fluids
 			// Brand and toggle get grouped for better mobile display
 			.navbar-header
@@ -45,17 +45,13 @@ body
 					li
 						a(href='https://fed.princeton.edu/cas/logout') LOGOUT
 
-	div.container-fluid
-		div.row
-			div.col-md-3
-				div#myheading.panel-heading
-					h3#myh3
-						b Princeton Food Map     
-				div#accordion.panel-group
-					- for row in dataRows
-						h4
-							div.panel-heading #{row.subject}
-						div.panel-body.mine #{row.mess} #{row.time}
+	#sidebar.column.col-sm-2.col-xs-1.sidebar-offcanvas
+		h3(style='text-align: center; color: #555; text-shadow: none;') Free Food Map    
+		div#accordion.panel-group
+			- for row in dataRows
+				h5
+					div.panel-heading #{row.subject}
+				div.panel-body.mine #{row.mess} #{row.time}
 	
 	- var buildings = [];		
 	- var current_location = dataRows[0].location;
