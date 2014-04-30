@@ -10,19 +10,33 @@ head
 
 	// Javascript
 	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+	script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
+	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
 
-body
+body.coverbody
 	//- img#bg(src='http://www.wallpapersfolder.com/user-content/uploads/wall/o/2013/06/lovely-tiger-cub-look-back-sadly.jpg', alt='')
 	//- .intro-header
 		//- .numbers
 		//- 	a.btn.btn-warning(type='button', href='http://localhost:3000/') Success (ORANGE) Button
-	.picture
-		.container-fluid
+	//- .picture
+	//- 	.container-fluid
+	//- 		h1 
+	//- 			b 
+	//- 				font(color='FF6600') Project Deer
+	//- 	.main-button
+	//- 		a.btn.btn-warning.btn-lg(type='button', href='http://localhost:3000/index') WHERE'S THE FREE FOOD?
+	.container-fluid
+		.jumbotron.col-md-4.text-center
 			h1 
-				b 
-					font(color='FF6600') Project Deer
-		.main-button
-			a.btn.btn-warning.btn-lg(type='button', href='http://localhost:3000/index') WHERE'S THE FREE FOOD?
+				font(color='FFFFFF') Princeton Free Food Map
+			br
+			p 
+				font(color='FFFFFF') Never pay for a meal again (maybe)
+			br		
+			p
+				a.btn.btn-primary.btn-lg.btn-warning(type='button', href='http://localhost:3000/index') Where's the food?
+
 	//- .img-overlay
 	//- 	img(src='d')
 	//- 	.overlay
@@ -31,4 +45,4 @@ body
 	//- 		.lay
 	//- 			.container-fluids
 	//- 				a.btn.btn-success(type='button', href='http://localhost:3000/') Success (ORANGE) Button
-
+	
