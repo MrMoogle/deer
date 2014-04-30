@@ -116,7 +116,6 @@ Madeira
 Manhattan clam chowder
 Manzanilla
 Marsala
-Maryland chicken
 May wine
 Medoc
 Melba toast
@@ -569,27 +568,7 @@ chelsea
 chervil
 chevre
 chewing gum
-chicken Kiev
-chicken Marengo
-chicken Tetrazzini
-chicken and rice
-chicken broth
-chicken cacciatora
-chicken cacciatore
-chicken casserole
-chicken cordon bleu
-chicken feed
-chicken mousse
-chicken paprika
-chicken paprikash
-chicken provencale
-chicken purloo
-chicken salad
-chicken sandwich
-chicken soup
-chicken stew
-chicken stock
-chicken taco
+chicken
 chicory
 chicory root
 chili
@@ -1924,9 +1903,7 @@ table salt
 table wine
 tabooli
 taco
-taco sauce
 taffy
-taffy apple
 tahini
 tamale
 tamale pie
