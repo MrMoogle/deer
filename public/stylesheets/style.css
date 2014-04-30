@@ -1,6 +1,6 @@
 body {
-  	padding: 0;
-  	padding;: 0;
+	padding: 0;
+	padding;: 0;
 }
 
 #map { 
@@ -45,40 +45,40 @@ body {
 }
 
 .popup {
-    text-align: center;
+	text-align: center;
 }
 .popup .slideshow {
-    width: 100%;
+	width: 100%;
 }
 .popup .slideshow .image {
-    display: none;
+	display: none;
 }
 .popup .slideshow .active {
-    display: block;
+	display: block;
 }
 .popup .slideshow img {
-    width: 100%;
+	width: 100%;
 }
 .popup .slideshow .caption {
-    background: #eee;
-    padding: 8px;
+	background: #eee;
+	padding: 8px;
 }
 .popup .cycle {
-    height: 30px;
-    margin-top: 5px;
-    padding-top: 5px;
+	height: 30px;
+	margin-top: 5px;
+	padding-top: 5px;
 }
 .popup .cycle a.prev {
-    float: left;
+	float: left;
 }
 .popup .cycle a.next {
-    float: right;
+	float: right;
 }
 
 .main-button {
 	position: relative;
 	padding-top: 35%;
-  	padding-left: 4%;
+	padding-left: 4%;
 }
 
 .picture {
@@ -98,7 +98,7 @@ a.carousel-control {
 }
 
 a.carousel-control.left, a.carousel-control.right {
-    background-image: none;
+	background-image: none;
 }
 
 a.carousel-control.right {
@@ -198,3 +198,24 @@ a.carousel-control.right {
 	background-color:#393939;
 }
 /*--------------------------------*/
+
+/* make pointer mouse appear on mouseover of markers */
+.leaflet-overlay-pane path,
+.leaflet-marker-icon {
+  cursor: pointer;
+}
+
+.coverbody {
+	height:100%;
+	min-height:100%;
+}
+
+.jumbotron.col-md-4 {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	padding-bottom:0;
+	margin-bottom:0;
+	height: 100%;
+	background-color: black;
+}
