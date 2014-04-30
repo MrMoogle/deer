@@ -33,6 +33,7 @@ Canary wine
 Chablis
 Chardonnay
 Chartreuse
+Cheese
 Chenin blanc
 Cheshire cheese
 Chianti
@@ -425,7 +426,6 @@ branch water
 brandy
 brandy sling
 brandyball
-bread
 bread
 bread and butter pickle
 bread dough
@@ -928,15 +928,7 @@ foie gras
 fondant
 fondu
 fondue
-food cache
-food color
-food coloring
-food colour
-food colouring
-food grain
-food product
-foodstuff
-forage
+food
 forcemeat
 foremilk
 formula
@@ -1797,8 +1789,6 @@ snowball
 soda
 soda biscuit
 soda cracker
-soda pop
-soda water
 soft drink
 soft ice cream
 soft roll
@@ -2006,14 +1996,11 @@ tuck
 tuna fish salad
 tuna salad
 tunaburger
-turkey stew
+turkey
 turkey stuffing
-turmeric
 turtle soup
 tutti-frutti
-twice-baked bread
 twist
-unleavened bread
 vanilla
 vanilla bean
 vanilla extract
