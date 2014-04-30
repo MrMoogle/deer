@@ -76,7 +76,7 @@ mailListener.on("mail", function(mail){
     }
   }
   if (food === undefined) {
-    food = "";
+    return;
   }
 
   // location recognition
@@ -113,47 +113,258 @@ mailListener.on("mail", function(mail){
   }
 
   // time extraction
-  var pattd = /at \d?\d/i;
-  var pattf = /at \d?\d:\d\d/i;
-  var pattg = /Jan[.\s] \d|Feb[.\s] \d|Mar[.\s] \d|Apr[.\s] \d|May[.\s] \d|Jun[e.\s] \d|Jul[y.\s] \d|Aug[.\s] \d|Sep[t.\s] \d|Oct[.\s] \d|Nov[.\s] \d|Dec[.\s] \d|January \d|February \d|March \d|April \d|August \d|September \d|October \d|November \d|December \d/i;
-  var patth = /from \d?\d/i;
-  var patti = / \d?\d:\d\d/i;
+  var pattg = /Jan[.\s] \d?\d|Feb[.\s] \d?\d|Mar[.\s] \d?\d|Apr[.\s] \d?\d|May[.\s] \d?\d|Jun[e.\s] \d?\d|Jul[y.\s] \d?\d|Aug[.\s] \d?\d|Sep[t.\s] \d?\d|Oct[.\s] \d?\d|Nov[.\s] \d?\d|Dec[.\s] \d?\d|January \d?\d|February \d?\d|March \d?\d|April \d?\d|August \d?\d|September \d?\d|October \d?\d|November \d?\d|December \d?\d/i;
 
+  var months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+  var match = "";
+  var month = "";
+  var cal;
 
   var day;
   if (pattg.test(mail.subject)) {
-    day = pattg.exec(mail.subject)[0].split(" ")[1] + " ";
+    match = pattg.exec(mail.subject)[0];
+    month = months.indexOf(match.split(" ")[0] + " ".substring(0,3)) + 1;
+    day = match.split(" ")[1] + " ";
+    cal = (date.getYear() + 1900) + '-' + month + '-' + day;
   }
   else if (pattg.test(text)) {
-    day = pattg.exec(text)[0].split(" ")[1] + " ";
+    match = pattg.exec(text)[0];
+    month = months.indexOf(match.split(" ")[0].substring(0,3)) + 1;
+    day = match.split(" ")[1] + " ";
+    cal = (date.getYear() + 1900) + '-' + month + '-' + day;
   }
-  if (day === undefined) {
-    day = "";
+  if (cal === undefined) {
+    cal = (date.getYear() + 1900) + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   }
+  console.log("Match " + match);
+  console.log("Month: " + month);
+  console.log("Day: " + day);
+  console.log("Date: " + date.getDate());
+  console.log("Date2: " + cal)
+
+  var findAM = false;
+
+  var pattd = /at\s?\d?\d/i;
+  var pattf = /at\s?\d?\d:\d\d/i;
+  var patth = /from\s?\d?\d/i;
+  var patti = /from\s?\d?\d:\d\d/i;
+  var pattj = /\d?\d\s?\-\s?\d?\d/i;
+  var pattk = /\d?\d:\d\d\s?\-\s?\d?\d/i;
+  var pattl = /between\s?\d?\d/i;
+  var pattm = /between\s?\d?\d:\d\d/i;
+  var pattn = /\d?\d\s?to/i;
+  var patto = /\d?\d:\d\d\s?to/i;
+
+  var pattam = /\d?\d\s?am/i;
+  var pattam2 = /\d?\d:\d\d\s?am/i;
+  var pattpm = /\d?\d\s?pm/i;
+  var pattpm2 = /\d?\d:\d\d\s?pm/i;
+
+  var isam = /\d?\d\s?am|\d?\d:\d\d\s?am/i
+
+  var pattnum = /\d?\d/i;
+  var pattnum2 = /\d?\d:\d\d/i;
 
   if (pattf.test(mail.subject)) {
-    time = pattf.exec(mail.subject)[0].split(" ")[1];
+    temp = pattf.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
   }
   else if (pattd.test(mail.subject)) {
-    time = pattd.exec(mail.subject)[0].split(" ")[1];
+    temp = pattd.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
   }
-  else if (pattf.test(text)) {
-    time = pattf.exec(text)[0].split(" ")[1];
+  else if (patti.test(mail.subject)) {
+    temp = patti.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (patth.test(mail.subject)) {
+    temp = patth.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattk.test(mail.subject)) {
+    temp = pattk.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattj.test(mail.subject)) {
+    temp = pattj.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattm.test(mail.subject)) {
+    temp = pattm.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattl.test(mail.subject)) {
+    temp = pattl.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (patto.test(mail.subject)) {
+    temp = patto.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattn.test(mail.subject)) {
+    temp = pattn.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattam2.test(mail.subject)) {
+    temp = pattam2.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattam.test(mail.subject)) {
+    temp = pattam.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+
+  }
+  else if (pattpm2.test(mail.subject)) {
+    temp = pattpm2.exec(mail.subject)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattpm.test(mail.subject)) {
+    temp = pattpm.exec(mail.subject)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else 
+    time = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+ 
+  if (pattf.test(text)) {
+    temp = pattf.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
   }
   else if (pattd.test(text)) {
-    time = pattd.exec(text)[0].split(" ")[1];
+    temp = pattd.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
   }
-  console.log("Time: " + time);
-  if (time === undefined) {
-    time = "";
+  else if (patti.test(text)) {
+    temp = patti.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
   }
+  else if (patth.test(text)) {
+    temp = patth.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattk.test(text)) {
+    temp = pattk.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattj.test(text)) {
+    temp = pattj.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattm.test(text)) {
+    temp = pattm.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattl.test(text)) {
+    temp = pattl.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (patto.test(text)) {
+    temp = patto.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattn.test(text)) {
+    temp = pattn.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattam2.test(text)) {
+    temp = pattam2.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattam.test(text)) {
+    temp = pattam.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  else if (pattpm2.test(text)) {
+    temp = pattpm2.exec(text)[0];
+    time = pattnum2.exec(temp);
+    time = time + ":00";
+  }
+  else if (pattpm.test(text)) {
+    temp = pattpm.exec(text)[0];
+    time = pattnum.exec(temp);
+    time = time + ":00:00";
+  }
+  // else if (time === undefined)
+  //   time = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+
+  findAM = isam.test(text) | isam.test(mail.subject);
+  if (!isam.test(text) && !isam.test(mail.subject))
+  {
+    temp = time.split(':');
+    time = (parseInt(temp[0]) + 12) + ":" + temp[1] + ":00";
+  }
+
+  console.log("TIME IS: " + time);
+
+  // var pattk = /\d?\d|\d?\d:\d?\d/i;
+  
+  // var index = mail.subject.search(pattj);
+  // if (index > 0)
+  // {
+  //   find = mail.subject.slice(0, index).match(pattk);
+
+  // }
+
+  // if (patti.test(mail.subject)) {
+  //   time = patti.exec(mail.subject)[0].replace("am", "").trim() + ":00";
+  // }
+  // else if (pattf.test(mail.subject)) {
+  //   time = pattf.exec(mail.subject)[0].split(" ")[1];
+  //   temp = time.split(':
+  //   time = (parseInt(temp[0]) + 12) + ":" + temp[1] + ":00";
+  // }
+  // else if (patth.test(mail.subject)) {
+  //   time = patth.exec(mail.subject)[0].replace("am", "").trim() + ":00:00";
+  // }
+  // else if (pattd.test(mail.subject)) {
+  //   time = pattd.exec(mail.subject)[0].split(" ")[1];
+  //   time = (parseInt(time) + 12) + ":00:00";
+  // }
+  // else if (pattf.test(text)) {
+  //   time = pattf.exec(text)[0].split(" ")[1];
+  //   temp = time.split(':');
+  //   time = (parseInt(temp[0]) + 12) + ":" + temp[1] + ":00";
+  // }
+  // else if (pattd.test(text)) {
+  //   time = pattd.exec(text)[0].split(" ")[1];
+  //   time = (parseInt(time) + 12) + ":00:00";
+  // }
+  // console.log("Time: " + time);
+  // if (time === undefined) {
+  //   time = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+  // }
 
   // Inserts into database 
   pool.getConnection(function(err, connection) {
     if (err) console.log('database connection error');
     var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
                 mail.subject + '\', \'' + text.slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
-                curr_time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
+                cal + " " + time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
     console.log(query + "\n");
     connection.query(query);
     connection.release();
