@@ -358,6 +358,12 @@ mailListener.on("mail", function(mail){
   // if (time === undefined) {
   //   time = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
   // }
+  pattapos = /\'/g;
+  pattback = /\\/g;
+  text = text.replace(pattback, "\\\\");
+  text = text.replace(pattapos, "\\'");
+
+  console.log(text);
 
   // Inserts into database 
   pool.getConnection(function(err, connection) {
