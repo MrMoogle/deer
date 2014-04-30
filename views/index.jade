@@ -21,8 +21,8 @@ body
 		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.356200, -74.643299]]}).setView([40.346056,-74.654007], 16);
 
-	nav.navbar.deer.navbar-default.navbar-static-top(role='navigation', style='margin-bottom=0px;')
-		.container-fluids
+	nav.navbar.deer.navbar-static-top(role='navigation', style='margin-bottom=0px;')
+		.container-fluid
 			// Brand and toggle get grouped for better mobile display
 			.navbar-header
 				button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
@@ -30,7 +30,7 @@ body
 					span.icon-bar
 					span.icon-bar
 					span.icon-bar
-				a.navbar-brand(href='#') Princeton Food Map
+				//a.navbar-brand(href='#') Princeton Food Map
 			
 			// Collect the nav links, forms, and other content for toggling
 			#bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -44,15 +44,16 @@ body
 				ul.nav.navbar-nav.navbar-right
 					li
 						a(href='https://fed.princeton.edu/cas/logout') LOGOUT
+	.row 
+		h3(style='text-align: center; color: #555; text-shadow: none; position: fixed') Free Food Events    
+	.row 
+		#sidebar.column.col-sm-2.col-xs-1
+			div#accordion.panel-group
+				- for row in dataRows
+					h5
+						div.panel-heading #{row.subject}
+					div.panel-body.mine #{row.mess} #{row.time}
 
-	#sidebar.column.col-sm-2.col-xs-1.sidebar-offcanvas
-		h3(style='text-align: center; color: #555; text-shadow: none;') Free Food Map    
-		div#accordion.panel-group
-			- for row in dataRows
-				h5
-					div.panel-heading #{row.subject}
-				div.panel-body.mine #{row.mess} #{row.time}
-	
 	- var buildings = [];		
 	- var current_location = dataRows[0].location;
 	- console.log("--------------------------------------");
@@ -161,4 +162,4 @@ body
 			- currlat = row.lat;
 
 script.
-	$("#accordion").accordion({collapsible: true, heightStyle: "content"});	
+	$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
