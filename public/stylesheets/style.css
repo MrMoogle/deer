@@ -197,6 +197,13 @@ a.carousel-control.right {
 .panel-heading:hover{
 	background-color:#393939;
 }
+
+table,th,td {
+	border:1px transparent;
+	width: 100%;
+	height: auto;
+}
+
 /*--------------------------------*/
 
 /* make pointer mouse appear on mouseover of markers */
