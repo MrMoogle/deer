@@ -50,10 +50,14 @@ body
 	.row
 		#sidebar.column.col-sm-2.col-xs-1
 			#accordion.panel-group
-				- for row in dataRows
+				- for row in timeRows
 					h4
-						div.panel-heading #{row.subject}
-					div.panel-body.mine #{row.mess} #{row.time}
+						div.panel-heading 
+							table
+								tr
+									td(style='border-style: solid; border-color: transparent #555 transparent transparent; padding-right:4%; padding-left:4%') #{row.subject}
+									td(style= 'padding-left:4%') #{row.time}
+					div.panel-body.mine #{row.mess}
 
 	- var buildings = [];		
 	- var current_location = dataRows[0].location;

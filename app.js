@@ -164,6 +164,7 @@ mailListener.on("mail", function(mail){
 
   var pattnum = /\d?\d/i;
   var pattnum2 = /\d?\d:\d\d/i;
+  var setCurr = false;
 
   if (pattf.test(mail.subject)) {
     temp = pattf.exec(mail.subject)[0];
@@ -236,8 +237,10 @@ mailListener.on("mail", function(mail){
     time = pattnum.exec(temp);
     time = time + ":00:00";
   }
-  else 
+  else {
     time = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+    setCurr = true;
+  }
  
   if (pattf.test(text)) {
     temp = pattf.exec(text)[0];
@@ -313,7 +316,7 @@ mailListener.on("mail", function(mail){
   //   time = date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
 
   findAM = isam.test(text) | isam.test(mail.subject);
-  if (!isam.test(text) && !isam.test(mail.subject))
+  if (!isam.test(text) && !isam.test(mail.subject) && !setCurr)
   {
     temp = time.split(':');
     time = (parseInt(temp[0]) + 12) + ":" + temp[1] + ":00";
