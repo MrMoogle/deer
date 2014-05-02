@@ -20,33 +20,25 @@ body
 	#map
 		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.356200, -74.643299]]}).setView([40.346056,-74.654007], 16);
-	.row 
-		#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
-			.panel-group(style='background-color: #333;')
-				h3#title Free Food Events
+	.row
+		.rowhead 
+			#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
+				.panel-group(style='background-color: #333;')
+					h3#title Free Food Events
 
-		nav.navbar.deer.navbar-static-top(role='navigation', style='margin-bottom=0px;')
-			.container-fluid
-				// Brand and toggle get grouped for better mobile display
-				.navbar-header
-					button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-						span.sr-only Toggle navigation
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
-					//a.navbar-brand(href='#') Princeton Food Map
-				
-				// Collect the nav links, forms, and other content for toggling
-				#bs-example-navbar-collapse-1.collapse.navbar-collapse
-					ul.nav.navbar-nav.navbar-right
-						li.active
-							a(href='#') Map
-						li
-							a(href='#') About
-						li
-							a(href='#') Contact
-						li
-							a(href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
+			ul#myTab.nav.nav-tabs
+				li.active
+					a(href='#Map', data-toggle='tab') Map
+				li
+					a(href='#About', data-toggle='tab') About
+				li
+					a(href='#Team', data-toggle='tab') Team
+				li
+					a(href='#Contact', data-toggle='tab') Contact
+				li
+					a(href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
+
+
 	.row
 		#sidebar.column.col-sm-2.col-xs-1
 			#accordion.panel-group
@@ -58,6 +50,66 @@ body
 									td(style='border-style: solid; border-color: transparent #555 transparent transparent; padding-right:4%; padding-left:4%') #{row.subject}
 									td(style= 'padding-left:4%') #{row.time}
 					div.panel-body.mine #{row.mess}
+
+		// Tab panes
+		.tab-content
+			#Map.tab-pane.active CAN YOU SEE MY SHIT!
+			#About.tab-pane IS THIS THE SHIT YOU SEE?
+				.col-sm-12.col-md-12
+					.jumbotron
+						h1 WHAT DO TIGERS EAT?
+						h3 Deer. Categorically and unequivocally.
+						p 
+							|Bengal and Indian tigers eat sambar deer. 
+							|Siberian tigers eat roe deer and sika deer. 
+							|Sumatran tigers eat muntjac deer. Caspian tigers, 
+							|now extinct, ate camels (which I am told are the equivalent of desert deer). 
+							|For the sake of rhetorical consistency, Princeton tigers use DEER to find food.
+						p
+							|DEER is Princeton's Free Food Map. Never again will you have to trawl your inbox looking for free
+							|food handouts to supplement your meager diet of gourmet sodium infused ramen. DEER aggregates Princeton
+							|listserv emails, searching for free food events, and displaying all the relevant email information 
+							|on an interactive map. 
+			#Team.tab-pane THIS IS THE SHIT YOU SHOULD SEE!
+				.row
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-frc1/t31.0-8/1150473_10200255008049025_214182866_o.jpg?dl=1, https://www.facebook.com/photo.php?fbid=10200255008049025&set=a.1351172030512.2045216.1567716721&type=3&theater', alt='..')
+							.caption
+								h3 Patrick Ding
+								p Patrick is a freaking stud. When Patrick is not coding or doing ORFE things, Patrick likes to spend time building and launching rockets, looking beautiful, and performing as a virtuosic flautist.
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/10170692_10152747485783272_4225563882897453574_n.jpg', alt='..')
+							.caption
+								h3 Erick Chen
+								p Erick is a beast at making maps. He likes to go to the gym late at nights after daily coding sessions and eating Hogie Haven. He is probably the sexiest contributer of the DEER project.
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/t1.0-9/1618431_10152092289133542_1329434398_n.jpg', alt='..')
+							.caption
+								h3 Oscar Li
+								p Oscar just likes to SLEEP! SLEEEP!! SLEEEP!!! SLEEEEP!!!! SLEEEEEP!!!!! SLEEEEEEP!!!!!! SLEEEEEEEP!!!!!!! SLEEEEEEEEP!!!!!!!! SLEEEEEEEEEP!!!!!!!!!
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-prn2/t1.0-9/1175682_544752075572984_842042088_n.jpg', alt='..')
+							.caption
+								h3 Brandon Lam
+								p Brandon is both a musician and programmer. Although he plays viola (ewwww), he still likes to believe that he can actually play music. He should have picked up the basson instead.
+
+			#Contact.tab-pane
+				.col-sm-12.col-md-12
+					.jumbotron
+						h2 Comments, Suggestions, Soiree Invitations?
+						p 	Contact us at pdiddy@gmail.com
+						p 
+							|Please address comments, suggestions, and insults to our fearless Project Manager, OSCAR LI, 
+							|not to be confused with his alter ego, SIR CALO, our village idiot. 	
+						p
+							|Please address all soiree and coffee date invitations to BRANDON LAM. His herald, PDIDDY will 
+							|handle the details. 
+
+			#LOGOUT.tab-pane ...		
 
 	- var buildings = [];		
 	- var current_location = dataRows[0].location;
