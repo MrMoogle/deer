@@ -123,6 +123,7 @@ a.carousel-control.right {
 	margin-right: 0;
 	margin-bottom: 0px;
 	background-color: #333;
+	color: #FF6600;
 	border-color: #FFFFFF;
 	z-index: 200;
 	float:right;
@@ -147,10 +148,17 @@ a.carousel-control.right {
 	background-color: #FFFFFF;
 	height: 100%;
 }
+#mcolor {
+	color: #FF6600; 
+}
+.jumbotron
+{
+	background-color: #FFF;
+}
 /*----------- Sidebar ------------*/
 #title {
 	text-align: center; 
-	color: #555; 
+	color: #FF6600; 
 	text-shadow: none; 
 	margin-top: 10px; 
 	margin-bottom: 0px;
