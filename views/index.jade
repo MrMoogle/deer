@@ -19,7 +19,7 @@ head
 body(style='overflow: hidden')
 	#map
 		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.356200, -74.643299]]}).setView([40.346056,-74.654007], 16);
+			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
 	.row
 		.rowhead 
 			#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
@@ -28,15 +28,15 @@ body(style='overflow: hidden')
 
 			ul#myTab.nav.nav-tabs
 				li.active
-					a(href='#Map', data-toggle='tab') Map
+					a(id = 'mcolor', href='#Map', data-toggle='tab') Map
 				li
-					a(href='#About', data-toggle='tab') About
+					a(id = 'mcolor', href='#About', data-toggle='tab') About
 				li
-					a(href='#Team', data-toggle='tab') Team
+					a(id = 'mcolor', href='#Team', data-toggle='tab') Team
 				li
-					a(href='#Contact', data-toggle='tab') Contact
+					a(id = 'mcolor', href='#Contact', data-toggle='tab') Contact
 				li
-					a(href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
+					a(id = 'mcolor', href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
 
 
 	.row
@@ -53,11 +53,11 @@ body(style='overflow: hidden')
 
 		// Tab panes
 		.tab-content
-			#Map.tab-pane.active CAN YOU SEE MY SHIT!
-			#About.tab-pane IS THIS THE SHIT YOU SEE?
+			#Map.tab-pane.fade.in.active
+			#About.tab-pane.fade
 				.col-sm-12.col-md-12
 					.jumbotron
-						h1 WHAT DO TIGERS EAT?
+						h2 WHAT DO TIGERS EAT?
 						h3 Deer. Categorically and unequivocally.
 						p 
 							|Bengal and Indian tigers eat sambar deer. 
@@ -70,7 +70,7 @@ body(style='overflow: hidden')
 							|food handouts to supplement your meager diet of gourmet sodium infused ramen. DEER aggregates Princeton
 							|listserv emails, searching for free food events, and displaying all the relevant email information 
 							|on an interactive map. 
-			#Team.tab-pane THIS IS THE SHIT YOU SHOULD SEE!
+			#Team.tab-pane.fade
 				.row
 					.col-sm-12.col-md-3
 						.thumbnail
@@ -95,18 +95,18 @@ body(style='overflow: hidden')
 							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-prn2/t1.0-9/1175682_544752075572984_842042088_n.jpg', alt='..')
 							.caption
 								h3 Brandon Lam
-								p Brandon is both a musician and programmer. Although he plays viola (ewwww), he still likes to believe that he can actually play music. He should have picked up the basson instead.
+								p Brandon is both a musician and programmer. Although he plays viola (ewwww), he still likes to believe that he can actually play music. He should have picked up the basson instead. Also, Brandon routinely benches 170.
 
-			#Contact.tab-pane
+			#Contact.tab-pane.fade
 				.col-sm-12.col-md-12
 					.jumbotron
 						h2 Comments, Suggestions, Soiree Invitations?
 						p 	Contact us at pdiddy@gmail.com
 						p 
-							|Please address comments, suggestions, and insults to our fearless Project Manager, OSCAR LI, 
-							|not to be confused with his alter ego, SIR CALO, our village idiot. 	
+							|Please address comments, suggestions, and insults to our fearless Project Manager, Oscar Li, 
+							|not to be confused with his alter ego, Sir Calo, our village idiot. 	
 						p
-							|Please address all soiree and coffee date invitations to BRANDON LAM. His herald, PDIDDY will 
+							|Please address all soiree and coffee date invitations to Brandon Lam. His herald, PDiddy will 
 							|handle the details. 
 
 			#LOGOUT.tab-pane ...		
@@ -155,7 +155,7 @@ body(style='overflow: hidden')
 						// one can customize markers by adding simplestyle properties
 						// http://mapbox.com/developers/simplestyle/
 						'marker-size': 'small',
-						'marker-color': '#f0a',
+						'marker-color': '#FF6600',
 					}
 				}];
 				var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
