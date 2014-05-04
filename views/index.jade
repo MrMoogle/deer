@@ -38,7 +38,6 @@ body(style='overflow: hidden')
 				li
 					a(id = 'mcolor', href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
 
-
 	.row
 		#sidebar.column.col-sm-2.col-xs-1
 			#accordion.panel-group
@@ -136,6 +135,8 @@ body(style='overflow: hidden')
 
 			#LOGOUT.tab-pane ...		
 
+
+	//- Plot the makers, build carousel popups
 	- var current_location = dataRows[0].location;
 	- console.log("--------------------------------------");
 	- console.log("Starting location: " + current_location);
@@ -153,7 +154,7 @@ body(style='overflow: hidden')
 			- currlong = row.longit;
 			- currlat = row.lat;
 		else 
-			//- - console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
+			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
 			//- - console.log("Subjects: " + subjects);
 			//- - console.log("Messages: " + messages);
 			//- - console.log("Times: " + times);
@@ -186,21 +187,7 @@ body(style='overflow: hidden')
 				times = times.split("|~|");
 				messages = messages.split("|~|");
 				subjects = subjects.split("|~|");
-				
-				var caritemsfirst = "<div class='item active'>" +
-																"<h1 class=text-center>" + subjects[0] + "</h1>" +
-																"<h3 class=text-center>" + times[0] + "</h3>" + 
-																"<p class=text-center>" + messages[0] + "</p>" +
-														"</div>";
-				var caritems = "";
-				for (var i = 1; i < messages.length; i++) {
-					caritems += "<div class='item'>" + 
-												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
-												"<h3 class=text-center>" + times[i] + "</h3>" +
-												"<p class=text-center>" + messages[i] + "</p>" +
-											"</div>";
-				}
-				
+
 				var arrows = "";
 				if (subjects.length > 1) {
 					arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
@@ -209,6 +196,20 @@ body(style='overflow: hidden')
 										"<a class='right pull-right right-arrow carousel-control' href='#marker' data-slide='next'>" +
 											"<span class='glyphicon glyphicon-chevron-right'></span>" +
 										"</a>";
+				}
+
+				var caritemsfirst = "<div class='item active'>" +
+																"<h1 class=text-center>" + subjects[0] + "</h1>" +
+																"<h3 class=text-center>" + times[0] + arrows + "</h3>" + 
+																"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+														"</div>";
+				var caritems = "";
+				for (var i = 1; i < messages.length; i++) {
+					caritems += "<div class='item'>" + 
+												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+												"<h3 class=text-center>" + times[i] + arrows + "</h3>" +
+												"<p class='text-center markermsg'>" + messages[i] + "</p>" +
+											"</div>";
 				}
 
 				////
@@ -226,10 +227,9 @@ body(style='overflow: hidden')
 												//- "</ol>" +
 												"<div class='carousel-inner'>" +
 													caritemsfirst + caritems +
-												"</div>" + 
-												arrows + 
+												"</div>" +  
 											"</div>";
-				myLayer.bindPopup(content);
+				myLayer.bindPopup(content, {minWidth: 300});
 	
 			- subjects = [];
 			- subjects.push(row.subject);
@@ -240,11 +240,78 @@ body(style='overflow: hidden')
 			- current_location = row.location;
 			- currlong = row.longit;
 			- currlat = row.lat;
-	- var sidebarlongit = [];
-	- var sidebarlat = [];
-	- for row in timeRows
-		- sidebarlongit.push(row.longit);
-		- sidebarlat.push(row.lat);
+	script.
+		var geoJson = [{
+			// this feature is in the GeoJSON format: see geojson.org
+			// for the full specification
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				// coordinates here are in longitude, latitude order because
+				// x, y is the standard for GeoJSON and many formats
+				coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+			},
+			properties: {
+				title: "#{subjects}",
+				description: "#{messages}",
+				// one can customize markers by adding simplestyle properties
+				// http://mapbox.com/developers/simplestyle/
+				'marker-size': 'small',
+				'marker-color': '#FF6600',
+			}
+		}];
+		var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+		markers.push(myLayer);
+
+		var messages = "#{messages.join('|~|')}";
+		var subjects = "#{subjects.join('|~|')}";
+		var times = "#{times.join('|~|')}";
+		times = times.split("|~|");
+		messages = messages.split("|~|");
+		subjects = subjects.split("|~|");
+
+		var arrows = "";
+		if (subjects.length > 1) {
+			arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
+									"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+								"</a>" + 
+								"<a class='right pull-right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+									"<span class='glyphicon glyphicon-chevron-right'></span>" +
+								"</a>";
+		}
+
+		var caritemsfirst = "<div class='item active'>" +
+														"<h1 class=text-center>" + subjects[0] + "</h1>" +
+														"<h3 class=text-center>" + times[0] + arrows + "</h3>" + 
+														"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+												"</div>";
+		var caritems = "";
+		for (var i = 1; i < messages.length; i++) {
+			caritems += "<div class='item'>" + 
+										"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+										"<h3 class=text-center>" + times[i] + arrows + "</h3>" +
+										"<p class='text-center markermsg'>" + messages[i] + "</p>" +
+									"</div>";
+		}
+
+		////
+		// indicators are dots corresponding to each page. Uncomment if you want it.
+		////
+		//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+		//- var indicators = "";
+		//- for (var i = 1; i < subjects.length; i++) {
+		//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+		//- }
+		
+		var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
+										//- "<ol class='carousel-indicators'>" +
+										//- 	indicatorsfirst + indicators +
+										//- "</ol>" +
+										"<div class='carousel-inner'>" +
+											caritemsfirst + caritems +
+										"</div>" +  
+									"</div>";
+		myLayer.bindPopup(content, {minWidth: 300});
 
 	script.
 		$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
@@ -255,11 +322,11 @@ body(style='overflow: hidden')
 			};
 		}
 
-		function closemarker(i) {
-			return function() {
-				alert(i);
-			};
-		}
+		//- function closemarker(i) {
+		//- 	return function() {
+		//- 		alert(i);
+		//- 	};
+		//- }
 
 		for (var j = 0; j < sidestuff.length; j++) {
 			document.getElementById(sidestuff[j].id).onmouseover = openmarker(sidestuff[j].id.split('-')[1]);
@@ -267,6 +334,6 @@ body(style='overflow: hidden')
 		//document.getElementById("sideid-" + 2 + "-" + 15).onmouseover = openmarker(2);	
 
 
-		for (var i = 0; i < markers.length; i++) {
-			document.getElementById("sideid" + i).onmouseout = closemarker(i);
-		}
+		//- for (var i = 0; i < markers.length; i++) {
+		//- 	document.getElementById("sideid" + i).onmouseout = closemarker(i);
+		//- }

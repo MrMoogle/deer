@@ -374,6 +374,14 @@ mailListener.on("mail", function(mail){
     var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
                 mail.subject + '\', \'' + text.slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
                 cal + " " + time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
+    
+    /*---------------------- Test section ------------*/
+    //insert into test database
+    // var query = 'INSERT INTO datatest(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
+    //            mail.subject + '\', \'' + text.slice(0,-1) + '\', \'' + location[0] + '\', \'' + 
+    //            cal + " " + time + '\', \'' + lat + '\', \'' + longit + '\', \'' + food + '\')';
+    /*------------------------------------------------*/
+
     console.log(query + "\n");
     connection.query(query);
     connection.release();

@@ -91,10 +91,25 @@ body {
   min-height: 100%;
 }
 
+
+/*----------- Carousel and Popup --------------*/
+
+.carousel {
+	max-width: auto;
+	width: auto;
+	overflow: auto;
+	max-height: 280px;
+	margin: 10px;
+}
+
 a.carousel-control {
 	/*margin-right: -50px;
 	margin-left:-35px;*/
-	top:90%;
+	/*top:90%;*/
+	position: absolute;
+	top:0px;
+
+	
 }
 
 a.carousel-control.left, a.carousel-control.right {
@@ -112,6 +127,12 @@ a.carousel-control.right {
 .carousel-inner > .item {
 	margin: 5% 5% 10% 5%;
 }
+
+.markermsg {
+	max-height: 95%;
+	overflow: auto;
+}
+
  
 .sub-header {
   padding-bottom: 10px;
@@ -165,24 +186,24 @@ a.carousel-control.right {
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {
-    color:#ffffff;
-    background-color:#333;
+	color:#ffffff;
+	background-color:#333;
 	text-shadow:0 0 2px #000000;
-    padding-left:0px;
-    padding-right:0px;
-    height:100%;
-    width: 25%;
-    z-index: 900;
-    position: fixed;
-    overflow: auto;
+	padding-left:0px;
+	padding-right:0px;
+	height:100%;
+	width: 25%;
+	z-index: 900;
+	position: fixed;
+	overflow: auto;
 }
 
 #sidebar .nav li>a:hover {
-    background-color:#393939;
+	background-color:#393939;
 }
 
 #sidebar .nav li>a:active{
-    background-color:#393939;
+	background-color:#393939;
 }
 
 #sidebar-footer {
