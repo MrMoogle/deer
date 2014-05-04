@@ -54,12 +54,37 @@ body
 					h4
 						div.panel-heading 
 							table
-								tr
+								tr.sideentry
 									td(style='border-style: solid; border-color: transparent #555 transparent transparent; padding-right:4%; padding-left:4%') #{row.subject}
 									td(style= 'padding-left:4%') #{row.time}
 					div.panel-body.mine #{row.mess}
 
-	- var buildings = [];		
+	//- put each sidebar element in a class corresponding to marker
+	script.
+		var sidestuff = document.querySelectorAll('.sideentry');
+		var markers = [];
+		var locid = 0;
+		var eid = 0;
+		var locationid = {};
+		console.debug("Hey there");
+
+	- var current_location = dataRows[0].location;
+	- for row in dataRows
+		if row.location !== current_location
+			script.
+				locationid["#{current_location}"] = locid;
+				locid++;
+			- console.log(current_location);
+			- current_location = row.location;
+		script.
+			locationid["#{current_location}"] = locid;
+	- for row in timeRows
+		- var loc = row.location;
+		script.
+			sidestuff[eid].id = "sideid-" + locationid["#{loc}"] + "-" + eid;
+			eid++;
+
+
 	- var current_location = dataRows[0].location;
 	- console.log("--------------------------------------");
 	- console.log("Starting location: " + current_location);
@@ -69,7 +94,7 @@ body
 	- var currlong;
 	- var currlat;
 	- for row in dataRows
-		- console.log("In consideration: " + row.location + " versus: " + current_location);
+		//- - console.log("In consideration: " + row.location + " versus: " + current_location);
 		if row.location === current_location
 			- subjects.push(row.subject);
 			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
@@ -77,16 +102,11 @@ body
 			- currlong = row.longit;
 			- currlat = row.lat;
 		else 
-			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
-			- console.log("Subjects: " + subjects);
-			- console.log("Messages: " + messages);
-			- console.log("Times: " + times);
+			//- - console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
+			//- - console.log("Subjects: " + subjects);
+			//- - console.log("Messages: " + messages);
+			//- - console.log("Times: " + times);
 			script.
-				// a hackish way to force messages, tiems, and subjects to be an array - Patrick
-				var messages = "#{messages.join('|~|')}";
-				var subjects = "#{subjects.join('|~|')}";
-				var times = "#{times.join('|~|')}";
-				times = times.split("|~|");
 				var geoJson = [{
 					// this feature is in the GeoJSON format: see geojson.org
 					// for the full specification
@@ -107,8 +127,12 @@ body
 					}
 				}];
 				var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+				markers.push(myLayer);
 
-				// and here's where I force it to be an array - Patrick
+				var messages = "#{messages.join('|~|')}";
+				var subjects = "#{subjects.join('|~|')}";
+				var times = "#{times.join('|~|')}";
+				times = times.split("|~|");
 				messages = messages.split("|~|");
 				subjects = subjects.split("|~|");
 				
@@ -155,7 +179,7 @@ body
 												arrows + 
 											"</div>";
 				myLayer.bindPopup(content);
-
+	
 			- subjects = [];
 			- subjects.push(row.subject);
 			- messages = [];
@@ -165,6 +189,33 @@ body
 			- current_location = row.location;
 			- currlong = row.longit;
 			- currlat = row.lat;
+	- var sidebarlongit = [];
+	- var sidebarlat = [];
+	- for row in timeRows
+		- sidebarlongit.push(row.longit);
+		- sidebarlat.push(row.lat);
 
-script.
-	$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
+	script.
+		$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
+
+		function openmarker(i) {
+			return function() {
+				markers[i].openPopup();
+			};
+		}
+
+		function closemarker(i) {
+			return function() {
+				alert(i);
+			};
+		}
+
+		for (var j = 0; j < sidestuff.length; j++) {
+			document.getElementById(sidestuff[j].id).onmouseover = openmarker(sidestuff[j].id.split('-')[1]);
+		}
+		//document.getElementById("sideid-" + 2 + "-" + 15).onmouseover = openmarker(2);	
+
+
+		for (var i = 0; i < markers.length; i++) {
+			document.getElementById("sideid" + i).onmouseout = closemarker(i);
+		}
