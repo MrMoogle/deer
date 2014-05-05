@@ -190,24 +190,24 @@ body(style='overflow: hidden')
 
 				var arrows = "";
 				if (subjects.length > 1) {
-					arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
+					arrows = "<a class='left carousel-control' href='#marker' data-slide='prev'>" +
 											"<span class='glyphicon glyphicon-chevron-left'></span>" + 
 										"</a>" + 
-										"<a class='right pull-right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+										"<a class='right carousel-control' href='#marker' data-slide='next'>" +
 											"<span class='glyphicon glyphicon-chevron-right'></span>" +
 										"</a>";
 				}
 
 				var caritemsfirst = "<div class='item active'>" +
 																"<h1 class=text-center>" + subjects[0] + "</h1>" +
-																"<h3 class=text-center>" + times[0] + arrows + "</h3>" + 
+																"<h3 class=text-center>" + times[0] + "</h3>" + 
 																"<p class='text-center markermsg'>" + messages[0] + "</p>" +
 														"</div>";
 				var caritems = "";
 				for (var i = 1; i < messages.length; i++) {
 					caritems += "<div class='item'>" + 
 												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
-												"<h3 class=text-center>" + times[i] + arrows + "</h3>" +
+												"<h3 class=text-center>" + times[i] + "</h3>" +
 												"<p class='text-center markermsg'>" + messages[i] + "</p>" +
 											"</div>";
 				}
@@ -228,7 +228,7 @@ body(style='overflow: hidden')
 												"<div class='carousel-inner'>" +
 													caritemsfirst + caritems +
 												"</div>" +  
-											"</div>";
+											"</div>" + arrows;
 				myLayer.bindPopup(content, {minWidth: 300});
 	
 			- subjects = [];
@@ -275,21 +275,21 @@ body(style='overflow: hidden')
 			arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
 									"<span class='glyphicon glyphicon-chevron-left'></span>" + 
 								"</a>" + 
-								"<a class='right pull-right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+								"<a class='right right-arrow carousel-control' href='#marker' data-slide='next'>" +
 									"<span class='glyphicon glyphicon-chevron-right'></span>" +
 								"</a>";
 		}
 
 		var caritemsfirst = "<div class='item active'>" +
 														"<h1 class=text-center>" + subjects[0] + "</h1>" +
-														"<h3 class=text-center>" + times[0] + arrows + "</h3>" + 
+														"<h3 class='text-center arrowparent'>" + times[0] + "</h3>" + 
 														"<p class='text-center markermsg'>" + messages[0] + "</p>" +
 												"</div>";
 		var caritems = "";
 		for (var i = 1; i < messages.length; i++) {
 			caritems += "<div class='item'>" + 
 										"<h1 class=text-center>" + subjects[i] + "</h1>" + 
-										"<h3 class=text-center>" + times[i] + arrows + "</h3>" +
+										"<h3 class='text-center arrowparent'>" + times[i] + "</h3>" +
 										"<p class='text-center markermsg'>" + messages[i] + "</p>" +
 									"</div>";
 		}
@@ -308,9 +308,9 @@ body(style='overflow: hidden')
 										//- 	indicatorsfirst + indicators +
 										//- "</ol>" +
 										"<div class='carousel-inner'>" +
-											caritemsfirst + caritems +
+											caritemsfirst + caritems + 
 										"</div>" +  
-									"</div>";
+									"</div>" + arrows;
 		myLayer.bindPopup(content, {minWidth: 300});
 
 	script.
@@ -319,21 +319,22 @@ body(style='overflow: hidden')
 		function openmarker(i) {
 			return function() {
 				markers[i].openPopup();
+				markers[i].setIcon(bigIcon);
+				//markers[i].layer.feature.properties['marker-color'] = '#000000';
 			};
 		}
 
 		//- function closemarker(i) {
 		//- 	return function() {
-		//- 		alert(i);
+		//- 		markers[i].feature.properties['marker-color'] = '#FF6600';
 		//- 	};
 		//- }
 
 		for (var j = 0; j < sidestuff.length; j++) {
 			document.getElementById(sidestuff[j].id).onmouseover = openmarker(sidestuff[j].id.split('-')[1]);
 		}
-		//document.getElementById("sideid-" + 2 + "-" + 15).onmouseover = openmarker(2);	
 
-
-		//- for (var i = 0; i < markers.length; i++) {
-		//- 	document.getElementById("sideid" + i).onmouseout = closemarker(i);
+		//- for (var j = 0; j < sidestuff.length; j++) {
+		//- 	document.getElementById(sidestuff[j].id).onmouseout = closemarker(sidestuff[j].id.split('-')[1]);
 		//- }
+

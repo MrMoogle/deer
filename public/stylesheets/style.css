@@ -103,13 +103,7 @@ body {
 }
 
 a.carousel-control {
-	/*margin-right: -50px;
-	margin-left:-35px;*/
-	/*top:90%;*/
-	position: absolute;
-	top:0px;
-
-	
+	position: absolute;	
 }
 
 a.carousel-control.left, a.carousel-control.right {
@@ -117,7 +111,8 @@ a.carousel-control.left, a.carousel-control.right {
 }
 
 a.carousel-control.right {
-	margin-right: -5%;
+	margin-right: -13px;
+	margin-top: -5px;
 }
 
 #marker {
@@ -125,7 +120,7 @@ a.carousel-control.right {
 }
 
 .carousel-inner > .item {
-	margin: 5% 5% 10% 5%;
+	margin: 5% 7% 5% 7%;
 }
 
 .markermsg {
@@ -133,7 +128,10 @@ a.carousel-control.right {
 	overflow: auto;
 }
 
- 
+.arrowparent {
+	display: table;
+} 
+
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
