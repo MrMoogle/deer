@@ -173,6 +173,9 @@ a.carousel-control.right {
 .jumbotron
 {
 	background-color: #FFF;
+	background-image: url("http://i.imgur.com/ZbIH492.png");
+	background-repeat:no-repeat;
+	background-size:contain;
 }
 #rowcolor
 {
