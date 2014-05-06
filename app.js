@@ -358,41 +358,42 @@ var mailListener = new MailListener({
 });
 
 // event listener for when new email is received
-mailListener.on("mail", function(mail) {
-  var text;
-  
-  // identify listserv
-  var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
-  if (freefoodpatt.test(mail.subject)) {  
-    console.log("FreeFood listserv email recieved");
-    var start = (mail.text).indexOf("freefood@princeton.edu") + 22;
-    var temptext = (mail.text).slice(start, mail.text.length);
-    var finish = (temptext).indexOf("-----");
-    text = (temptext).slice(0, finish);
-    parseEmail(text, mail.subject, foodlist, placelist);
-  }
-  else {  
-    console.log("Other email received"); 
-    // save example to train on later
-    pool.getConnection(function(errtrain, connection) {
-      if (errtrain) 
-        console.log("database connection error");
-      var pattapos = /\'/g;
-      var pattback = /\\/g;
-      text = mail.text.replace(pattback, "\\\\");
-      text = mail.text.replace(pattapos, "\\'");
-      var query = 'INSERT INTO traindata(subject, mess, label) VALUES ( \'' + 
-                  mail.subject.replace("/\n/g", " ") + '\', \'' + 
-                  text.slice(0,-1).replace("/\n/g") + '\',\'' + "U" + '\')';
-      connection.query(query);
-      console.log("Storing example into training set: " + query);
-      connection.release();
-    });
-
-    // Classify email, and parse if classified as free food
-    natural.BayesClassifier.load('classifier.json', null, function(err, classifier) {
+natural.BayesClassifier.load('classifier.json', null, function(err, classifier) {
       if (err)
-        console.log("error loading classifier");
+        console.log("classifier loading error");
+      
+  mailListener.on("mail", function(mail) {
+    var text;
+    
+    // identify listserv
+    var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
+    if (freefoodpatt.test(mail.subject)) {  
+      console.log("FreeFood listserv email recieved");
+      var start = (mail.text).indexOf("freefood@princeton.edu") + 22;
+      var temptext = (mail.text).slice(start, mail.text.length);
+      var finish = (temptext).indexOf("-----");
+      text = (temptext).slice(0, finish);
+      parseEmail(text, mail.subject, foodlist, placelist);
+    }
+    else {  
+      console.log("Other email received"); 
+      // save example to train on later
+      pool.getConnection(function(errtrain, connection) {
+        if (errtrain) 
+          console.log("database connection error");
+        var pattapos = /\'/g;
+        var pattback = /\\/g;
+        text = mail.text.replace(pattback, "\\\\");
+        text = mail.text.replace(pattapos, "\\'");
+        var query = 'INSERT INTO traindata(subject, mess, label) VALUES ( \'' + 
+                    mail.subject.replace("/\n/g", " ") + '\', \'' + 
+                    text.slice(0,-1).replace("/\n/g") + '\',\'' + "U" + '\')';
+        connection.query(query);
+        console.log("Storing example into training set: " + query);
+        connection.release();
+      });
+
+      // Classify email, and parse if classified as free food
       if (classifier.classify(mail.subject) === "yes") {
         console.log("Classifying as free food email, and parsing");
         text = mail.text;
@@ -400,10 +401,9 @@ mailListener.on("mail", function(mail) {
       }
       else {
         console.log("Classifying as not a free food email");
-      }
-      return;
-    });  
-  }
+      }  
+    }
+  });    
 });
 
 // event listener for server connection
