@@ -20,23 +20,23 @@ body(style='overflow: hidden')
 	#map
 		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
-	.row
+	#rowcolor.row
 		.rowhead 
-			#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
-				.panel-group(style='background-color: #333;')
-					h3#title Free Food Events
+				#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
+					.panel-group(style='background-color: #333; margin:0; padding:0;')
+						h2#title Free Food Events
 
-			ul#myTab.nav.nav-tabs
-				li.active
-					a(id = 'mcolor', href='#Map', data-toggle='tab') Map
-				li
-					a(id = 'mcolor', href='#About', data-toggle='tab') About
-				li
-					a(id = 'mcolor', href='#Team', data-toggle='tab') Team
-				li
-					a(id = 'mcolor', href='#Contact', data-toggle='tab') Contact
-				li
-					a(id = 'mcolor', href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
+				ul#myTab.nav.nav-tabs
+					li.active
+						a(id = 'mcolor', href='#Map', data-toggle='tab') Map
+					li
+						a(id = 'mcolor', href='#About', data-toggle='tab') About
+					li
+						a(id = 'mcolor', href='#Team', data-toggle='tab') Team
+					li
+						a(id = 'mcolor', href='#Contact', data-toggle='tab') Contact
+					li
+						a(id = 'mcolor', href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
 
 	.row
 		#sidebar.column.col-sm-2.col-xs-1
