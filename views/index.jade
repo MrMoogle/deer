@@ -21,8 +21,8 @@ body(style='overflow: hidden')
 		script.
 			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
 	.row
-		.rowhead 
-			#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
+		.rowhead
+			#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible;')
 				.panel-group(style='background-color: #333;')
 					h3#title Free Food Events
 
@@ -39,7 +39,7 @@ body(style='overflow: hidden')
 					a(id = 'mcolor', href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
 
 	.row
-		#sidebar.column.col-sm-2.col-xs-1
+		#sidebar.column.col-sm-2.col-xs-1(style='padding-bottom: 5%')
 			#accordion.panel-group
 				- for row in timeRows
 					h4
