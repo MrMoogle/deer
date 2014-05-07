@@ -177,6 +177,13 @@ a.carousel-control.right {
 	background-repeat:no-repeat;
 	background-size:contain;
 }
+#jumbotronscroll
+{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height:500px;
+
+}
 #rowcolor
 {
 	background-color: #333;
