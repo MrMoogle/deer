@@ -47,7 +47,7 @@ body(style='overflow: hidden')
 							table
 								tr.sideentry.h5
 									td(style='width: 75%; border-style: solid; border-color: transparent #555 transparent transparent; padding-right:4%; padding-left:4%') #{row.subject}
-									td(style= 'width: 90%; padding-left:4%') #{row.time}
+									td(style= 'width: 90%; padding-left:4%') #{row.time_format}
 					div.panel-body.mine #{row.mess}
 
 	//- put each sidebar element in a class corresponding to marker
@@ -86,9 +86,9 @@ body(style='overflow: hidden')
 							h2 WHAT DO TIGERS EAT?
 							h3 Deer. Categorically and unequivocally.
 							p 
-								|Bengal and Indian tigers eat sambar deer. 
-								|Siberian tigers eat roe deer and sika deer. 
-								|Sumatran tigers eat muntjac deer. Caspian tigers, 
+								|Bengal and Indian tigers eat Sambar deer. 
+								|Siberian tigers eat Roe deer and Sika deer. 
+								|Sumatran tigers eat Muntjac deer. Caspian tigers, 
 								|now extinct, ate camels (which I am told are the equivalent of desert deer). 
 								|For the sake of rhetorical consistency, Princeton tigers use DEER to find food.
 							p
@@ -104,13 +104,13 @@ body(style='overflow: hidden')
 										.caption
 											h3 DEER Schematic Diagram
 											p 
-												|Princeton listserv emails are forwarded to our gmail account where it is caught by a 
-												|mail listener. If the incoming email is not from the free food listserv, The Free Food 
-												|Identifier labels the email using a naive bayes classifier. The naive bayes classifier
-												|is trained using manually-labeled nonfree food listserv emails. Succesfully identified 
-												|free food emails are then parsed for food, location, and time. The email and its relevant
-												|attributes are stored in a MySQL database to be displayed on the website. We use MapBox to 
-												|plot the map and display the markers.
+												|Princeton listserv emails are forwarded to our Gmail account where they are caught by  
+												|MailListener. If the incoming email is not from the FreeFood listserv, The Free Food 
+												|Identifier labels the email using a Naive Bayes classifier. The Naive Bayes classifier
+												|is trained using manually-labeled listserv emails. Succesfully identified free food emails
+												|are then parsed for food, location, and time. The email and its relevant attributes are
+												|stored in our MySQL database to be displayed on the website. We use MapBox to plot the map 
+												|and display the markers.
 
 
 
