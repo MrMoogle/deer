@@ -51,7 +51,7 @@ exports.index = function(req, res) {
 
 
           // Queries database and renders page          
-          connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%l:%i %p\') as time, lat, longit, food FROM data ORDER by location', function(err, rows, fields) {
+          connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() AND time + INTERVAL 2 HOUR > NOW() ORDER by location', function(err, rows, fields) {
             if (err) 
               console.log('database location ordered query error');
             connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e %l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() AND time + INTERVAL 2 HOUR > NOW() ORDER by time DESC ', function(err, rowstime, fields) {
