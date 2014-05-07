@@ -170,9 +170,12 @@ a.carousel-control.right {
 #mcolor {
 	color: #FF6600; 
 }
-.jumbotron
+#jumbotronlogo
 {
 	background-color: #FFF;
+	background-image: url("http://i.imgur.com/ZbIH492.png");
+	background-repeat:no-repeat;
+	background-size:contain;
 }
 #rowcolor
 {
@@ -312,4 +315,9 @@ table,th,td {
 
 #enterbutton:hover {
 	background-color: #F88017;
+}
+
+#coverlogo {
+	width: 200px;
+	margin: 20px;
 }
