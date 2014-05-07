@@ -313,3 +313,8 @@ table,th,td {
 #enterbutton:hover {
 	background-color: #F88017;
 }
+
+#coverlogo {
+	width: 200px;
+	margin: 20px;
+}
