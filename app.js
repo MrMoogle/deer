@@ -422,10 +422,9 @@ natural.BayesClassifier.load('classifier.json', null, function(err, classifier) 
     var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
     if (freefoodpatt.test(mail.subject)) {  
       console.log("FreeFood listserv email recieved");
-      var start = (mail.text).indexOf("freefood@princeton.edu") + 22;
-      var temptext = (mail.text).slice(start, mail.text.length);
-      var finish = (temptext).indexOf("-----");
-      text = (temptext).slice(0, finish);
+      // var start = (mail.text).indexOf("freefood@princeton.edu") + 22;
+      // var temptext = (mail.text).slice(start, mail.text.length);
+      text = mail.text.slice(0, mail.text.indexOf("-----"));
       parseEmail(text, mail.subject, foodlist, placelist);
     }
     else {  
