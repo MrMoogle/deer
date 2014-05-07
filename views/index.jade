@@ -59,21 +59,22 @@ body(style='overflow: hidden')
 		var locationid = {};
 		console.debug("Hey there");
 
-	- var current_location = dataRows[0].location;
-	- for row in dataRows
-		if row.location !== current_location
+	if dataRows.length != 0
+		- var current_location = dataRows[0].location;
+		- for row in dataRows
+			if row.location !== current_location
+				script.
+					locationid["#{current_location}"] = locid;
+					locid++;
+				- console.log(current_location);
+				- current_location = row.location;
 			script.
 				locationid["#{current_location}"] = locid;
-				locid++;
-			- console.log(current_location);
-			- current_location = row.location;
-		script.
-			locationid["#{current_location}"] = locid;
-	- for row in timeRows
-		- var loc = row.location;
-		script.
-			sidestuff[eid].id = "sideid-" + locationid["#{loc}"] + "-" + eid;
-			eid++;
+		- for row in timeRows
+			- var loc = row.location;
+			script.
+				sidestuff[eid].id = "sideid-" + locationid["#{loc}"] + "-" + eid;
+				eid++;
 
 		//- Tab panes
 		.tab-content
@@ -157,181 +158,182 @@ body(style='overflow: hidden')
 
 
 	//- Plot the makers, build carousel popups
-	- var current_location = dataRows[0].location;
-	- console.log("--------------------------------------");
-	- console.log("Starting location: " + current_location);
-	- var subjects = [];
-	- var messages = [];
-	- var times = [];
-	- var currlong;
-	- var currlat;
-	- for row in dataRows
-		//- - console.log("In consideration: " + row.location + " versus: " + current_location);
-		if row.location === current_location
-			- subjects.push(row.subject);
-			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
-			- times.push(row.time);
-			- currlong = row.longit;
-			- currlat = row.lat;
-		else 
-			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
-			//- - console.log("Subjects: " + subjects);
-			//- - console.log("Messages: " + messages);
-			//- - console.log("Times: " + times);
-			script.
-				var geoJson = [{
-					// this feature is in the GeoJSON format: see geojson.org
-					// for the full specification
-					type: 'Feature',
-					geometry: {
-						type: 'Point',
-						// coordinates here are in longitude, latitude order because
-						// x, y is the standard for GeoJSON and many formats
-						coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
-					},
-					properties: {
-						title: "#{subjects}",
-						description: "#{messages}",
-						// one can customize markers by adding simplestyle properties
-						// http://mapbox.com/developers/simplestyle/
-						'marker-size': 'small',
-						'marker-color': '#FF6600',
+	if dataRows.length != 0
+		- var current_location = dataRows[0].location;
+		- console.log("--------------------------------------");
+		- console.log("Starting location: " + current_location);
+		- var subjects = [];
+		- var messages = [];
+		- var times = [];
+		- var currlong;
+		- var currlat;
+		- for row in dataRows
+			//- - console.log("In consideration: " + row.location + " versus: " + current_location);
+			if row.location === current_location
+				- subjects.push(row.subject);
+				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+				- times.push(row.time);
+				- currlong = row.longit;
+				- currlat = row.lat;
+			else 
+				- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
+				//- - console.log("Subjects: " + subjects);
+				//- - console.log("Messages: " + messages);
+				//- - console.log("Times: " + times);
+				script.
+					var geoJson = [{
+						// this feature is in the GeoJSON format: see geojson.org
+						// for the full specification
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							// coordinates here are in longitude, latitude order because
+							// x, y is the standard for GeoJSON and many formats
+							coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+						},
+						properties: {
+							title: "#{subjects}",
+							description: "#{messages}",
+							// one can customize markers by adding simplestyle properties
+							// http://mapbox.com/developers/simplestyle/
+							'marker-size': 'small',
+							'marker-color': '#FF6600',
+						}
+					}];
+					var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+					markers.push(myLayer);
+
+					var messages = "#{messages.join('|~|')}";
+					var subjects = "#{subjects.join('|~|')}";
+					var times = "#{times.join('|~|')}";
+					times = times.split("|~|");
+					messages = messages.split("|~|");
+					subjects = subjects.split("|~|");
+
+					var arrows = "";
+					if (subjects.length > 1) {
+						arrows = "<a class='left carousel-control' href='#marker' data-slide='prev'>" +
+												"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+											"</a>" + 
+											"<a class='right carousel-control' href='#marker' data-slide='next'>" +
+												"<span class='glyphicon glyphicon-chevron-right'></span>" +
+											"</a>";
 					}
-				}];
-				var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
-				markers.push(myLayer);
 
-				var messages = "#{messages.join('|~|')}";
-				var subjects = "#{subjects.join('|~|')}";
-				var times = "#{times.join('|~|')}";
-				times = times.split("|~|");
-				messages = messages.split("|~|");
-				subjects = subjects.split("|~|");
-
-				var arrows = "";
-				if (subjects.length > 1) {
-					arrows = "<a class='left carousel-control' href='#marker' data-slide='prev'>" +
-											"<span class='glyphicon glyphicon-chevron-left'></span>" + 
-										"</a>" + 
-										"<a class='right carousel-control' href='#marker' data-slide='next'>" +
-											"<span class='glyphicon glyphicon-chevron-right'></span>" +
-										"</a>";
-				}
-
-				var caritemsfirst = "<div class='item active'>" +
-																"<h1 class=text-center>" + subjects[0] + "</h1>" +
-																"<h3 class=text-center>" + times[0] + "</h3>" + 
-																"<p class='text-center markermsg'>" + messages[0] + "</p>" +
-														"</div>";
-				var caritems = "";
-				for (var i = 1; i < messages.length; i++) {
-					caritems += "<div class='item'>" + 
-												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
-												"<h3 class=text-center>" + times[i] + "</h3>" +
-												"<p class='text-center markermsg'>" + messages[i] + "</p>" +
-											"</div>";
-				}
-
-				////
-				// indicators are dots corresponding to each page. Uncomment if you want it.
-				////
-				//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
-				//- var indicators = "";
-				//- for (var i = 1; i < subjects.length; i++) {
-				//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
-				//- }
-				
-				var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
-												//- "<ol class='carousel-indicators'>" +
-												//- 	indicatorsfirst + indicators +
-												//- "</ol>" +
-												"<div class='carousel-inner'>" +
-													caritemsfirst + caritems +
-												"</div>" +  
-											"</div>" + arrows;
-				myLayer.bindPopup(content, {minWidth: 300});
-	
-			- subjects = [];
-			- subjects.push(row.subject);
-			- messages = [];
-			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
-			- times = [];
-			- times.push(row.time);
-			- current_location = row.location;
-			- currlong = row.longit;
-			- currlat = row.lat;
-	script.
-		var geoJson = [{
-			// this feature is in the GeoJSON format: see geojson.org
-			// for the full specification
-			type: 'Feature',
-			geometry: {
-				type: 'Point',
-				// coordinates here are in longitude, latitude order because
-				// x, y is the standard for GeoJSON and many formats
-				coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
-			},
-			properties: {
-				title: "#{subjects}",
-				description: "#{messages}",
-				// one can customize markers by adding simplestyle properties
-				// http://mapbox.com/developers/simplestyle/
-				'marker-size': 'small',
-				'marker-color': '#FF6600',
-			}
-		}];
-		var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
-		markers.push(myLayer);
-
-		var messages = "#{messages.join('|~|')}";
-		var subjects = "#{subjects.join('|~|')}";
-		var times = "#{times.join('|~|')}";
-		times = times.split("|~|");
-		messages = messages.split("|~|");
-		subjects = subjects.split("|~|");
-
-		var arrows = "";
-		if (subjects.length > 1) {
-			arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
-									"<span class='glyphicon glyphicon-chevron-left'></span>" + 
-								"</a>" + 
-								"<a class='right right-arrow carousel-control' href='#marker' data-slide='next'>" +
-									"<span class='glyphicon glyphicon-chevron-right'></span>" +
-								"</a>";
-		}
-
-		var caritemsfirst = "<div class='item active'>" +
-														"<h1 class=text-center>" + subjects[0] + "</h1>" +
-														"<h3 class='text-center arrowparent'>" + times[0] + "</h3>" + 
-														"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+					var caritemsfirst = "<div class='item active'>" +
+																	"<h1 class=text-center>" + subjects[0] + "</h1>" +
+																	"<h3 class=text-center>" + times[0] + "</h3>" + 
+																	"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+															"</div>";
+					var caritems = "";
+					for (var i = 1; i < messages.length; i++) {
+						caritems += "<div class='item'>" + 
+													"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+													"<h3 class=text-center>" + times[i] + "</h3>" +
+													"<p class='text-center markermsg'>" + messages[i] + "</p>" +
 												"</div>";
-		var caritems = "";
-		for (var i = 1; i < messages.length; i++) {
-			caritems += "<div class='item'>" + 
-										"<h1 class=text-center>" + subjects[i] + "</h1>" + 
-										"<h3 class='text-center arrowparent'>" + times[i] + "</h3>" +
-										"<p class='text-center markermsg'>" + messages[i] + "</p>" +
-									"</div>";
-		}
+					}
 
-		////
-		// indicators are dots corresponding to each page. Uncomment if you want it.
-		////
-		//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
-		//- var indicators = "";
-		//- for (var i = 1; i < subjects.length; i++) {
-		//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
-		//- }
+					////
+					// indicators are dots corresponding to each page. Uncomment if you want it.
+					////
+					//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+					//- var indicators = "";
+					//- for (var i = 1; i < subjects.length; i++) {
+					//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+					//- }
+					
+					var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
+													//- "<ol class='carousel-indicators'>" +
+													//- 	indicatorsfirst + indicators +
+													//- "</ol>" +
+													"<div class='carousel-inner'>" +
+														caritemsfirst + caritems +
+													"</div>" +  
+												"</div>" + arrows;
+					myLayer.bindPopup(content, {minWidth: 300});
 		
-		var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
-										//- "<ol class='carousel-indicators'>" +
-										//- 	indicatorsfirst + indicators +
-										//- "</ol>" +
-										"<div class='carousel-inner'>" +
-											caritemsfirst + caritems + 
-										"</div>" +  
-									"</div>" + arrows;
-		myLayer.bindPopup(content, {minWidth: 300});
+				- subjects = [];
+				- subjects.push(row.subject);
+				- messages = [];
+				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+				- times = [];
+				- times.push(row.time);
+				- current_location = row.location;
+				- currlong = row.longit;
+				- currlat = row.lat;
+		script.
+			var geoJson = [{
+				// this feature is in the GeoJSON format: see geojson.org
+				// for the full specification
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					// coordinates here are in longitude, latitude order because
+					// x, y is the standard for GeoJSON and many formats
+					coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+				},
+				properties: {
+					title: "#{subjects}",
+					description: "#{messages}",
+					// one can customize markers by adding simplestyle properties
+					// http://mapbox.com/developers/simplestyle/
+					'marker-size': 'small',
+					'marker-color': '#FF6600',
+				}
+			}];
+			var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+			markers.push(myLayer);
+
+			var messages = "#{messages.join('|~|')}";
+			var subjects = "#{subjects.join('|~|')}";
+			var times = "#{times.join('|~|')}";
+			times = times.split("|~|");
+			messages = messages.split("|~|");
+			subjects = subjects.split("|~|");
+
+			var arrows = "";
+			if (subjects.length > 1) {
+				arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
+										"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+									"</a>" + 
+									"<a class='right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+										"<span class='glyphicon glyphicon-chevron-right'></span>" +
+									"</a>";
+			}
+
+			var caritemsfirst = "<div class='item active'>" +
+															"<h1 class=text-center>" + subjects[0] + "</h1>" +
+															"<h3 class='text-center arrowparent'>" + times[0] + "</h3>" + 
+															"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+													"</div>";
+			var caritems = "";
+			for (var i = 1; i < messages.length; i++) {
+				caritems += "<div class='item'>" + 
+											"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+											"<h3 class='text-center arrowparent'>" + times[i] + "</h3>" +
+											"<p class='text-center markermsg'>" + messages[i] + "</p>" +
+										"</div>";
+			}
+
+			////
+			// indicators are dots corresponding to each page. Uncomment if you want it.
+			////
+			//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+			//- var indicators = "";
+			//- for (var i = 1; i < subjects.length; i++) {
+			//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+			//- }
+			
+			var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
+											//- "<ol class='carousel-indicators'>" +
+											//- 	indicatorsfirst + indicators +
+											//- "</ol>" +
+											"<div class='carousel-inner'>" +
+												caritemsfirst + caritems + 
+											"</div>" +  
+										"</div>" + arrows;
+			myLayer.bindPopup(content, {minWidth: 300});
 
 	script.
 		$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
