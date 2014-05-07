@@ -192,6 +192,7 @@ Helm Building	40.336570, -74.655525
 Hargadon Hall	40.343845, -74.658369
 Hamilton Hall	40.348099, -74.662244
 Friend Center	40.350265, -74.652743
+Fields Center	40.349218, -74.651799
 Feinberg Hall	40.345803, -74.656523
 DeNunzio Pool	40.343898, -74.647436
 Colonial Club	40.348726, -74.652812
