@@ -202,6 +202,10 @@ a.carousel-control.right {
 }
 
 /*----------- Sidebar ------------*/
+.ui-state-focus{
+	outline: transparent;
+}
+
 #title {
 	text-align: center; 
 	color: #FF6600; 
@@ -217,7 +221,7 @@ a.carousel-control.right {
 	padding-left:0px;
 	padding-right:0px;
 	height:100%;
-	width: 25%;
+	width: 26%;
 	z-index: 900;
 	position: fixed;
 	overflow: auto;

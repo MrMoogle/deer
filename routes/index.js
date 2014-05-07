@@ -42,18 +42,12 @@ exports.index = function(req, res) {
           // Checks for error
           if (err) 
             console.log('database connection error');
-          
-          connection.query('SET time_zone = "US/Eastern"');
-
-          connection.query('SET time_zone = "US/Eastern";', function(err, rows, fields) {
-            if (err) throw err;
-          });
 
           // Queries database and renders page          
-          connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() AND time + INTERVAL 2 HOUR > NOW() ORDER by location', function(err, rows, fields) {
+          connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e, %l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() - INTERVAL 4 HOUR AND time + INTERVAL 2 HOUR > NOW() - INTERVAL 4 HOUR ORDER by location', function(err, rows, fields) {
             if (err) 
               console.log('database location ordered query error');
-            connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e %l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() AND time + INTERVAL 2 HOUR > NOW() ORDER by time', function(err, rowstime, fields) {
+            connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e %l:%i %p\') as time_format, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() - INTERVAL 4 HOUR AND time + INTERVAL 4 HOUR > NOW() - INTERVAL 4 HOUR ORDER by time', function(err, rowstime, fields) {
               if (err) 
                 console.log('database time ordered query error');
               res.render('index', {
