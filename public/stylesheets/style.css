@@ -91,10 +91,19 @@ body {
   min-height: 100%;
 }
 
+
+/*----------- Carousel and Popup --------------*/
+
+.carousel {
+	max-width: auto;
+	width: auto;
+	overflow: auto;
+	max-height: 280px;
+	margin: 10px;
+}
+
 a.carousel-control {
-	/*margin-right: -50px;
-	margin-left:-35px;*/
-	top:90%;
+	position: absolute;	
 }
 
 a.carousel-control.left, a.carousel-control.right {
@@ -102,7 +111,8 @@ a.carousel-control.left, a.carousel-control.right {
 }
 
 a.carousel-control.right {
-	margin-right: -5%;
+	margin-right: -13px;
+	margin-top: -5px;
 }
 
 #marker {
@@ -110,21 +120,41 @@ a.carousel-control.right {
 }
 
 .carousel-inner > .item {
-	margin: 5% 5% 10% 5%;
+	margin: 5% 7% 5% 7%;
 }
- 
+
+.markermsg {
+	max-height: 95%;
+	overflow: auto;
+}
+
+.arrowparent {
+	display: table;
+} 
+
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
 
-/*----------- Navbar -------------*/
-.navbar.deer {
+/*----------- Tab Bar -------------*/
+.nav {
+	margin-right: 0;
 	margin-bottom: 0px;
 	background-color: #333;
-	border-color: transparent;
+	color: #FF6600;
+	border-color: #FFFFFF;
 	z-index: 200;
+	float:right;
 }
+
+.nav, .nav-tabs > li > a {
+	-webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    margin:0;
+}
+
 .nav>li>a:hover {
 	color: #FFFFFF;
 	background-color: #333;
@@ -134,34 +164,71 @@ a.carousel-control.right {
 	color: #555;
 	background-color: #333;
 }
+.tab-content {
+	margin-bottom: 0px;
+	border-color: transparent;
+	z-index: 999;
+	padding-right: 2%;
+	padding-left: 25%;
+}
+
+.rowhead {
+	background-color: #FFFFFF;
+	/*height: 100%;*/
+}
+#mcolor {
+	color: #FF6600; 
+}
+#jumbotronlogo
+{
+	background-color: #FFF;
+	background-image: url("http://i.imgur.com/ZbIH492.png");
+	background-repeat:no-repeat;
+	background-size:contain;
+}
+#jumbotronscroll
+{
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height:500px;
+
+}
+#rowcolor
+{
+	background-color: #333;
+	/*z-index: 910;*/
+	position:relative;
+	padding:0;
+}
+
 /*----------- Sidebar ------------*/
 #title {
 	text-align: center; 
-	color: #555; 
+	color: #FF6600; 
 	text-shadow: none; 
 	margin-top: 10px; 
 	margin-bottom: 0px;
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {
-    color:#ffffff;
-    background-color:#333;
+	color:#ffffff;
+	background-color:#333;
 	text-shadow:0 0 2px #000000;
-    padding-left:0px;
-    padding-right:0px;
-    height:100%;
-    width: 25%;
-    z-index: 900;
-    position: fixed;
-    overflow: auto;
+	padding-left:0px;
+	padding-right:0px;
+	height:100%;
+	width: 25%;
+	z-index: 900;
+	position: fixed;
+	overflow: auto;
 }
 
 #sidebar .nav li>a:hover {
-    background-color:#393939;
+	background-color:#393939;
 }
 
 #sidebar .nav li>a:active{
-    background-color:#393939;
+	background-color:#393939;
 }
 
 #sidebar-footer {
@@ -264,4 +331,9 @@ table,th,td {
 
 #enterbutton:hover {
 	background-color: #F88017;
+}
+
+#coverlogo {
+	width: 200px;
+	margin: 20px;
 }

@@ -16,155 +16,347 @@ head
 	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
 	
 
-body
+body(style='overflow: hidden')
 	#map
 		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.356200, -74.643299]]}).setView([40.346056,-74.654007], 16);
-	.row 
-		#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
-			.panel-group(style='background-color: #333;')
-				h3#title Free Food Events
+			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
 
-		nav.navbar.deer.navbar-static-top(role='navigation', style='margin-bottom=0px;')
-			.container-fluid
-				// Brand and toggle get grouped for better mobile display
-				.navbar-header
-					button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-						span.sr-only Toggle navigation
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
-					//a.navbar-brand(href='#') Princeton Food Map
-				
-				// Collect the nav links, forms, and other content for toggling
-				#bs-example-navbar-collapse-1.collapse.navbar-collapse
-					ul.nav.navbar-nav.navbar-right
-						li.active
-							a(href='#') Map
-						li
-							a(href='#') About
-						li
-							a(href='#') Contact
-						li
-							a(href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
+	#rowcolor.row
+		.rowhead 
+				#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
+					.panel-group(style='background-color: #333; margin:0; padding-left:auto; padding-bottom:0px;')
+						h2#title Free Food Events
+
+				ul#myTab.nav.nav-tabs
+					li.active
+						a(id = 'mcolor', href='#Map', data-toggle='tab') Map
+					li
+						a(id = 'mcolor', href='#About', data-toggle='tab') About
+					li
+						a(id = 'mcolor', href='#Team', data-toggle='tab') Team
+					li
+						a(id = 'mcolor', href='#Contact', data-toggle='tab') Contact
+					li
+						a(id = 'mcolor', href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
 	.row
-		#sidebar.column.col-sm-2.col-xs-1
+		#sidebar.column.col-sm-2.col-xs-1(style='padding-bottom: 5%')
 			#accordion.panel-group
 				- for row in timeRows
 					h4
 						div.panel-heading 
 							table
-								tr
-									td(style='border-style: solid; border-color: transparent #555 transparent transparent; padding-right:4%; padding-left:4%') #{row.subject}
-									td(style= 'padding-left:4%') #{row.time}
+								tr.sideentry.h5
+									td(style='width: 75%; border-style: solid; border-color: transparent #555 transparent transparent; padding-right:4%; padding-left:4%') #{row.subject}
+									td(style= 'width: 90%; padding-left:4%') #{row.time}
 					div.panel-body.mine #{row.mess}
 
-	- var buildings = [];		
-	- var current_location = dataRows[0].location;
-	- console.log("--------------------------------------");
-	- console.log("Starting location: " + current_location);
-	- var subjects = [];
-	- var messages = [];
-	- var times = [];
-	- var currlong;
-	- var currlat;
-	- for row in dataRows
-		- console.log("In consideration: " + row.location + " versus: " + current_location);
-		if row.location === current_location
-			- subjects.push(row.subject);
-			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
-			- times.push(row.time);
-			- currlong = row.longit;
-			- currlat = row.lat;
-		else 
-			- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
-			- console.log("Subjects: " + subjects);
-			- console.log("Messages: " + messages);
-			- console.log("Times: " + times);
+	//- put each sidebar element in a class corresponding to marker
+	script.
+		var sidestuff = document.querySelectorAll('.sideentry');
+		var markers = [];
+		var locid = 0;
+		var eid = 0;
+		var locationid = {};
+		console.debug("Hey there");
+
+	if dataRows.length != 0
+		- var current_location = dataRows[0].location;
+		- for row in dataRows
+			if row.location !== current_location
+				script.
+					locationid["#{current_location}"] = locid;
+					locid++;
+				- console.log(current_location);
+				- current_location = row.location;
 			script.
-				// a hackish way to force messages, tiems, and subjects to be an array - Patrick
-				var messages = "#{messages.join('|~|')}";
-				var subjects = "#{subjects.join('|~|')}";
-				var times = "#{times.join('|~|')}";
-				times = times.split("|~|");
-				var geoJson = [{
-					// this feature is in the GeoJSON format: see geojson.org
-					// for the full specification
-					type: 'Feature',
-					geometry: {
-						type: 'Point',
-						// coordinates here are in longitude, latitude order because
-						// x, y is the standard for GeoJSON and many formats
-						coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
-					},
-					properties: {
-						title: "#{subjects}",
-						description: "#{messages}",
-						// one can customize markers by adding simplestyle properties
-						// http://mapbox.com/developers/simplestyle/
-						'marker-size': 'small',
-						'marker-color': '#f0a',
+				locationid["#{current_location}"] = locid;
+		- for row in timeRows
+			- var loc = row.location;
+			script.
+				sidestuff[eid].id = "sideid-" + locationid["#{loc}"] + "-" + eid;
+				eid++;
+
+		//- Tab panes
+		.tab-content
+			#Map.tab-pane.fade.in.active
+			#About.tab-pane.fade
+				.col-sm-12.col-md-12
+					#jumbotronlogo.jumbotron
+						#jumbotronscroll
+							h2 WHAT DO TIGERS EAT?
+							h3 Deer. Categorically and unequivocally.
+							p 
+								|Bengal and Indian tigers eat sambar deer. 
+								|Siberian tigers eat roe deer and sika deer. 
+								|Sumatran tigers eat muntjac deer. Caspian tigers, 
+								|now extinct, ate camels (which I am told are the equivalent of desert deer). 
+								|For the sake of rhetorical consistency, Princeton tigers use DEER to find food.
+							p
+								|DEER is Princeton's Free Food Map. Never again will you have to trawl your inbox looking for free
+								|food handouts to supplement your meager diet of gourmet sodium infused ramen. DEER aggregates Princeton
+								|listserv emails, searches for free food events, and displays all the relevant email information 
+								|on an interactive map. 
+
+							.row
+								.col-sm-12.col-md-12
+									.thumbnail
+										img(src='http://i.imgur.com/M0GyUJR.png', alt='...')
+										.caption
+											h3 DEER Schematic Diagram
+											p 
+												|Princeton listserv emails are forwarded to our gmail account where it is caught by a 
+												|mail listener. If the incoming email is not from the free food listserv, The Free Food 
+												|Identifier labels the email using a naive bayes classifier. The naive bayes classifier
+												|is trained using manually-labeled nonfree food listserv emails. Succesfully identified 
+												|free food emails are then parsed for food, location, and time. The email and its relevant
+												|attributes are stored in a MySQL database to be displayed on the website. We use MapBox to 
+												|plot the map and display the markers.
+
+
+
+							
+			#Team.tab-pane.fade
+				.row
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-frc1/t31.0-8/1150473_10200255008049025_214182866_o.jpg?dl=1, https://www.facebook.com/photo.php?fbid=10200255008049025&set=a.1351172030512.2045216.1567716721&type=3&theater', alt='..')
+							.caption
+								h3 Patrick Ding
+								p Patrick is a freaking stud. When Patrick is not coding or doing ORFE things, Patrick likes to spend time building and launching rockets, looking beautiful, and performing as a virtuosic flautist.
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/10170692_10152747485783272_4225563882897453574_n.jpg', alt='..')
+							.caption
+								h3 Erick Chen
+								p Erick is a beast at making maps. He likes to go to the gym late at nights after daily coding sessions and eating Hogie Haven. He is probably the sexiest contributer of the DEER project.
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/t1.0-9/1618431_10152092289133542_1329434398_n.jpg', alt='..')
+							.caption
+								h3 Oscar Li
+								p Oscar just likes to SLEEP! SLEEEP!! SLEEEP!!! SLEEEEP!!!! SLEEEEEP!!!!! SLEEEEEEP!!!!!! SLEEEEEEEP!!!!!!! SLEEEEEEEEP!!!!!!!! SLEEEEEEEEEP!!!!!!!!!
+					.col-sm-12.col-md-3
+						.thumbnail
+							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-prn2/t1.0-9/1175682_544752075572984_842042088_n.jpg', alt='..')
+							.caption
+								h3 Brandon Lam
+								p Brandon is both a musician and programmer. Although he plays viola (ewwww), he still likes to believe that he can actually play music. He should have picked up the basson instead.
+
+			#Contact.tab-pane.fade
+				.col-sm-12.col-md-12
+					#jumbotronlogo.jumbotron
+						h2 Comments, Suggestions, Soiree Invitations?
+						p 	Contact us at pdiddy@gmail.com
+						p 
+							|Please address comments, suggestions, and insults to our fearless Project Manager, Oscar Li, 
+							|not to be confused with his alter ego, Sir Calo, our village idiot. 	
+						p
+							|Please address all soiree and coffee date invitations to Brandon Lam. His herald, PDiddy will 
+							|handle the details. 
+
+			#LOGOUT.tab-pane ...		
+
+
+	//- Plot the makers, build carousel popups
+	if dataRows.length != 0
+		- var current_location = dataRows[0].location;
+		- console.log("--------------------------------------");
+		- console.log("Starting location: " + current_location);
+		- var subjects = [];
+		- var messages = [];
+		- var times = [];
+		- var currlong;
+		- var currlat;
+		- for row in dataRows
+			//- - console.log("In consideration: " + row.location + " versus: " + current_location);
+			if row.location === current_location
+				- subjects.push(row.subject);
+				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+				- times.push(row.time);
+				- currlong = row.longit;
+				- currlat = row.lat;
+			else 
+				- console.log("Mapping at: " + current_location + " " + currlong + " " + currlat);
+				//- - console.log("Subjects: " + subjects);
+				//- - console.log("Messages: " + messages);
+				//- - console.log("Times: " + times);
+				script.
+					var geoJson = [{
+						// this feature is in the GeoJSON format: see geojson.org
+						// for the full specification
+						type: 'Feature',
+						geometry: {
+							type: 'Point',
+							// coordinates here are in longitude, latitude order because
+							// x, y is the standard for GeoJSON and many formats
+							coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+						},
+						properties: {
+							title: "#{subjects}",
+							description: "#{messages}",
+							// one can customize markers by adding simplestyle properties
+							// http://mapbox.com/developers/simplestyle/
+							'marker-size': 'small',
+							'marker-color': '#FF6600',
+						}
+					}];
+					var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+					markers.push(myLayer);
+
+					var messages = "#{messages.join('|~|')}";
+					var subjects = "#{subjects.join('|~|')}";
+					var times = "#{times.join('|~|')}";
+					times = times.split("|~|");
+					messages = messages.split("|~|");
+					subjects = subjects.split("|~|");
+
+					var arrows = "";
+					if (subjects.length > 1) {
+						arrows = "<a class='left carousel-control' href='#marker' data-slide='prev'>" +
+												"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+											"</a>" + 
+											"<a class='right carousel-control' href='#marker' data-slide='next'>" +
+												"<span class='glyphicon glyphicon-chevron-right'></span>" +
+											"</a>";
 					}
-				}];
-				var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
 
-				// and here's where I force it to be an array - Patrick
-				messages = messages.split("|~|");
-				subjects = subjects.split("|~|");
-				
-				var caritemsfirst = "<div class='item active'>" +
-																"<h1 class=text-center>" + subjects[0] + "</h1>" +
-																"<h3 class=text-center>" + times[0] + "</h3>" + 
-																"<p class=text-center>" + messages[0] + "</p>" +
-														"</div>";
-				var caritems = "";
-				for (var i = 1; i < messages.length; i++) {
-					caritems += "<div class='item'>" + 
-												"<h1 class=text-center>" + subjects[i] + "</h1>" + 
-												"<h3 class=text-center>" + times[i] + "</h3>" +
-												"<p class=text-center>" + messages[i] + "</p>" +
-											"</div>";
+					var caritemsfirst = "<div class='item active'>" +
+																	"<h1 class=text-center>" + subjects[0] + "</h1>" +
+																	"<h3 class=text-center>" + times[0] + "</h3>" + 
+																	"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+															"</div>";
+					var caritems = "";
+					for (var i = 1; i < messages.length; i++) {
+						caritems += "<div class='item'>" + 
+													"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+													"<h3 class=text-center>" + times[i] + "</h3>" +
+													"<p class='text-center markermsg'>" + messages[i] + "</p>" +
+												"</div>";
+					}
+
+					////
+					// indicators are dots corresponding to each page. Uncomment if you want it.
+					////
+					//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+					//- var indicators = "";
+					//- for (var i = 1; i < subjects.length; i++) {
+					//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+					//- }
+					
+					var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
+													//- "<ol class='carousel-indicators'>" +
+													//- 	indicatorsfirst + indicators +
+													//- "</ol>" +
+													"<div class='carousel-inner'>" +
+														caritemsfirst + caritems +
+													"</div>" +  
+												"</div>" + arrows;
+					myLayer.bindPopup(content, {minWidth: 300});
+		
+				- subjects = [];
+				- subjects.push(row.subject);
+				- messages = [];
+				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
+				- times = [];
+				- times.push(row.time);
+				- current_location = row.location;
+				- currlong = row.longit;
+				- currlat = row.lat;
+		script.
+			var geoJson = [{
+				// this feature is in the GeoJSON format: see geojson.org
+				// for the full specification
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					// coordinates here are in longitude, latitude order because
+					// x, y is the standard for GeoJSON and many formats
+					coordinates: [parseFloat("#{currlong}"), parseFloat("#{currlat}")]
+				},
+				properties: {
+					title: "#{subjects}",
+					description: "#{messages}",
+					// one can customize markers by adding simplestyle properties
+					// http://mapbox.com/developers/simplestyle/
+					'marker-size': 'small',
+					'marker-color': '#FF6600',
 				}
-				
-				var arrows = "";
-				if (subjects.length > 1) {
-					arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
-											"<span class='glyphicon glyphicon-chevron-left'></span>" + 
-										"</a>" + 
-										"<a class='right pull-right right-arrow carousel-control' href='#marker' data-slide='next'>" +
-											"<span class='glyphicon glyphicon-chevron-right'></span>" +
-										"</a>";
-				}
+			}];
+			var myLayer = L.mapbox.featureLayer(geoJson).addTo(map);
+			markers.push(myLayer);
 
-				////
-				// indicators are dots corresponding to each page. Uncomment if you want it.
-				////
-				//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
-				//- var indicators = "";
-				//- for (var i = 1; i < subjects.length; i++) {
-				//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
-				//- }
-				
-				var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
-												//- "<ol class='carousel-indicators'>" +
-												//- 	indicatorsfirst + indicators +
-												//- "</ol>" +
-												"<div class='carousel-inner'>" +
-													caritemsfirst + caritems +
-												"</div>" + 
-												arrows + 
-											"</div>";
-				myLayer.bindPopup(content);
+			var messages = "#{messages.join('|~|')}";
+			var subjects = "#{subjects.join('|~|')}";
+			var times = "#{times.join('|~|')}";
+			times = times.split("|~|");
+			messages = messages.split("|~|");
+			subjects = subjects.split("|~|");
 
-			- subjects = [];
-			- subjects.push(row.subject);
-			- messages = [];
-			- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
-			- times = [];
-			- times.push(row.time);
-			- current_location = row.location;
-			- currlong = row.longit;
-			- currlat = row.lat;
+			var arrows = "";
+			if (subjects.length > 1) {
+				arrows = "<a class='left left-arrow carousel-control' href='#marker' data-slide='prev'>" +
+										"<span class='glyphicon glyphicon-chevron-left'></span>" + 
+									"</a>" + 
+									"<a class='right right-arrow carousel-control' href='#marker' data-slide='next'>" +
+										"<span class='glyphicon glyphicon-chevron-right'></span>" +
+									"</a>";
+			}
 
-script.
-	$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
+			var caritemsfirst = "<div class='item active'>" +
+															"<h1 class=text-center>" + subjects[0] + "</h1>" +
+															"<h3 class='text-center'>" + times[0] + "</h3>" + 
+															"<p class='text-center markermsg'>" + messages[0] + "</p>" +
+													"</div>";
+			var caritems = "";
+			for (var i = 1; i < messages.length; i++) {
+				caritems += "<div class='item'>" + 
+											"<h1 class=text-center>" + subjects[i] + "</h1>" + 
+											"<h3 class='text-center'>" + times[i] + "</h3>" +
+											"<p class='text-center markermsg'>" + messages[i] + "</p>" +
+										"</div>";
+			}
+
+			////
+			// indicators are dots corresponding to each page. Uncomment if you want it.
+			////
+			//- var indicatorsfirst = "<li data-target='#marker' data-slide-to='0' class='active'></li>";
+			//- var indicators = "";
+			//- for (var i = 1; i < subjects.length; i++) {
+			//- 	indicators += "<li data-target='#marker' data-slide-to='" + i + "'></li>";
+			//- }
+			
+			var content = "<div id='marker' class='carousel slide foodmarker' data-ride='carousel' data-interval='false'>" +
+											//- "<ol class='carousel-indicators'>" +
+											//- 	indicatorsfirst + indicators +
+											//- "</ol>" +
+											"<div class='carousel-inner'>" +
+												caritemsfirst + caritems + 
+											"</div>" +  
+										"</div>" + arrows;
+			myLayer.bindPopup(content, {minWidth: 300});
+
+	script.
+		$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
+
+		function openmarker(i) {
+			return function() {
+				markers[i].openPopup();
+				//markers[i].setIcon(bigIcon);
+				//markers[i].layer.feature.properties['marker-color'] = '#000000';
+			};
+		}
+
+		//- function closemarker(i) {
+		//- 	return function() {
+		//- 		markers[i].feature.properties['marker-color'] = '#FF6600';
+		//- 	};
+		//- }
+
+		for (var j = 0; j < sidestuff.length; j++) {
+			document.getElementById(sidestuff[j].id).onmouseover = openmarker(sidestuff[j].id.split('-')[1]);
+		}
+
+		//- for (var j = 0; j < sidestuff.length; j++) {
+		//- 	document.getElementById(sidestuff[j].id).onmouseout = closemarker(sidestuff[j].id.split('-')[1]);
+		//- }
+

@@ -1,0 +1,49 @@
+doctype html
+head
+	meta(charset='utf-8', name='viewport', content='width=device-width', initial-scale='1.0', maximum-scale='1.0', user-scalable='no')
+	title= 'DEER MAP'
+
+	// Stylesheets
+	link(rel='stylesheet', href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css')
+	link(rel='stylesheet', href='/stylesheets/style.css')
+	link(rel='stylesheet', href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+
+	// Javascript
+	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+	script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
+	script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+
+body
+	.row 
+		#sidebar.column.col-sm-2.col-xs-1(style='position: relative; width: 24.5%; overflow: visible')
+			.panel-group(style='background-color: #333;')
+				h3#title Free Food Events
+
+		nav.navbar.deer.navbar-static-top(role='navigation', style='margin-bottom=0px;')
+			.container-fluid
+				// Brand and toggle get grouped for better mobile display
+				.navbar-header
+					button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					//a.navbar-brand(href='#') Princeton Food Map
+				
+				// Collect the nav links, forms, and other content for toggling
+				#bs-example-navbar-collapse-1.collapse.navbar-collapse
+					ul.nav.navbar-nav.navbar-right
+						li.active
+							a(href='/index') Map
+						li
+							a(href='/about') About
+						li
+							a(href='/contact') Contact
+						li
+							a(href='https://fed.princeton.edu/cas/logout') LOGOUT &nbsp;
+
+	div.jumbotron
+		h1 WELCOME to Princeton DEER
+		p Your food stamp alternative on Princeton Campus
+		p
