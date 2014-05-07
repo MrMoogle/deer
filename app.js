@@ -92,16 +92,16 @@ function findTime(text, subject, date) {
   var time;
   var findAM = false;
 
-  var pattd = /at\s?\d?\d/i;
-  var pattf = /at\s?\d?\d:\d\d/i;
-  var patth = /from\s?\d?\d/i;
-  var patti = /from\s?\d?\d:\d\d/i;
-  var pattj = /\d?\d\s?\-\s?\d?\d/i;
-  var pattk = /\d?\d:\d\d\s?\-\s?\d?\d/i;
-  var pattl = /between\s?\d?\d/i;
-  var pattm = /between\s?\d?\d:\d\d/i;
-  var pattn = /\d?\d\s?to/i;
-  var patto = /\d?\d:\d\d\s?to/i;
+  var pattd = /at\s?\*?\d?\d/i;
+  var pattf = /at\s?\*?\d?\d:\d\d/i;
+  var patth = /from\s?\*?\d?\d/i;
+  var patti = /from\s?\*?\d?\d:\d\d/i;
+  var pattj = /\d?\d\s?\-\s?\d?\d[^\d]/i;
+  var pattk = /\d?\d:\d\d\s?\-\s?\d?\d[^\d]/i;
+  var pattl = /between\s?\*?\d?\d/i;
+  var pattm = /between\s?\*?\d?\d:\d\d/i;
+  var pattn = /\d?\d\s?to|\d?\d\s?o'?clock/i;
+  var patto = /\d?\d:\d\d\s?to|\d?\d:\d\d\s?o'?clock/i;
 
   var pattam = /\d?\d\s?am/i;
   var pattam2 = /\d?\d:\d\d\s?am/i;
@@ -194,78 +194,129 @@ function findTime(text, subject, date) {
     temp = pattf.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
+    console.log("A");
+    setCurr = false;
   }
   else if (pattd.test(text)) {
     temp = pattd.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
+        console.log("B");
+
+    setCurr = false;
   }
   else if (patti.test(text)) {
     temp = patti.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
+        console.log("C");
+
+    setCurr = false;
   }
   else if (patth.test(text)) {
     temp = patth.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
+        console.log("D");
+
+    setCurr = false;
   }
   else if (pattk.test(text)) {
     temp = pattk.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
+        console.log("E");
+
+    setCurr = false;
   }
   else if (pattj.test(text)) {
     temp = pattj.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
+        console.log("F");
+    console.log(temp);
+
+    setCurr = false;
   }
   else if (pattm.test(text)) {
     temp = pattm.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
+        console.log("G");
+
+    setCurr = false;
   }
   else if (pattl.test(text)) {
     temp = pattl.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
+        console.log("Z");
+
+    setCurr = false;
   }
   else if (patto.test(text)) {
     temp = patto.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
+        console.log("H");
+
+    setCurr = false;
   }
   else if (pattn.test(text)) {
     temp = pattn.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
+        console.log("I");
+
+    setCurr = false;
   }
   else if (pattam2.test(text)) {
     temp = pattam2.exec(text)[0];
     time = pattnum2.exec(temp);
+    console.log("akk " + pattam2.exec(text));
     time = time + ":00";
+    setCurr = false;
   }
   else if (pattam.test(text)) {
     temp = pattam.exec(text)[0];
     time = pattnum.exec(temp);
+    console.log("ajja " + pattam.exec(text));
     time = time + ":00:00";
+    setCurr = false;
   }
   else if (pattpm2.test(text)) {
     temp = pattpm2.exec(text)[0];
     time = pattnum2.exec(temp);
+    console.log("wf " + pattpm2.exec(text));
     time = time + ":00";
+    setCurr = false;
   }
   else if (pattpm.test(text)) {
     temp = pattpm.exec(text)[0];
     time = pattnum.exec(temp);
+    console.log("dad " + pattpm.exec(text));
     time = time + ":00:00";
+    setCurr = false;
   }
 
   findAM = isam.test(text) | isam.test(subject);
-  if (!isam.test(text) && !isam.test(subject) && !setCurr)
+  console.log("AM? " + findAM);
+  if (!setCurr)
   {
     var temp = time.split(':');
-    time = (parseInt(temp[0]) + 12) + ":" + temp[1] + ":00";
+    console.log(temp[0]);
+    if (temp[0] === "12") {
+      console.log("is12");
+      temp[0] = parseInt(temp[0]) - 12;
+      time = (parseInt(temp[0])) + ":" + temp[1] + ":00";
+    }
+    console.log(time);
+    if (!findAM)
+    {
+      temp = time.split(':');
+      time = (parseInt(temp[0]) + 12) + ":" + temp[1] + ":00";
+    }
+    console.log(time);
   }
 
   return time;
@@ -311,7 +362,9 @@ function parseEmail(text, subject, foodlist, placelist) {
    
   // time extraction  
   var cal = findCal(text, subject, date);
-  var time = findTime(text, subject, date);
+
+  var pattloc = new RegExp(location, "ig");
+  var time = findTime(text.replace(pattloc, ""), subject, date);
   console.log("TIME IS: " + time);
 
   var pattapos = /\'/g;
