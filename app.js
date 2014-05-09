@@ -54,10 +54,12 @@ function findPlace(placelist, text) {
 function findCal(text, subject, date) {
   var cal;
   var pattg = /Jan[.\s] \d?\d|Feb[.\s] \d?\d|Mar[.\s] \d?\d|Apr[.\s] \d?\d|May[.\s] \d?\d|Jun[e.\s] \d?\d|Jul[y.\s] \d?\d|Aug[.\s] \d?\d|Sep[t.\s] \d?\d|Oct[.\s] \d?\d|Nov[.\s] \d?\d|Dec[.\s] \d?\d|January \d?\d|February \d?\d|March \d?\d|April \d?\d|August \d?\d|September \d?\d|October \d?\d|November \d?\d|December \d?\d/i;
+  var patth = /\d?\d\/\d?\d/
 
   var months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
   var match = "";
   var month = "";
+  var temp;
   
 
   var day;
@@ -71,6 +73,20 @@ function findCal(text, subject, date) {
     match = pattg.exec(text)[0];
     month = months.indexOf(match.split(" ")[0].substring(0,3)) + 1;
     day = match.split(" ")[1] + " ";
+    cal = (date.getYear() + 1900) + '-' + month + '-' + day;
+  }
+  else if (patth.test(subject)) {
+    match = patth.exec(subejct)[0];
+    temp = match.split('/');
+    month = parseInt(temp[0]);
+    day = parseInt(temp[1]);
+    cal = (date.getYear() + 1900) + '-' + month + '-' + day;
+  }
+  else if (patth.test(text)) {
+    match = patth.exec(text)[0];
+    temp = match.split('/');
+    month = parseInt(temp[0]);
+    day = parseInt(temp[1]);
     cal = (date.getYear() + 1900) + '-' + month + '-' + day;
   }
   if (cal === undefined) {
@@ -194,14 +210,12 @@ function findTime(text, subject, date) {
     temp = pattf.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
-    console.log("A");
     setCurr = false;
   }
   else if (pattd.test(text)) {
     temp = pattd.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
-        console.log("B");
 
     setCurr = false;
   }
@@ -209,7 +223,6 @@ function findTime(text, subject, date) {
     temp = patti.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
-        console.log("C");
 
     setCurr = false;
   }
@@ -217,7 +230,6 @@ function findTime(text, subject, date) {
     temp = patth.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
-        console.log("D");
 
     setCurr = false;
   }
@@ -225,7 +237,6 @@ function findTime(text, subject, date) {
     temp = pattk.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
-        console.log("E");
 
     setCurr = false;
   }
@@ -233,7 +244,6 @@ function findTime(text, subject, date) {
     temp = pattj.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
-        console.log("F");
     console.log(temp);
 
     setCurr = false;
@@ -242,7 +252,6 @@ function findTime(text, subject, date) {
     temp = pattm.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
-        console.log("G");
 
     setCurr = false;
   }
@@ -250,7 +259,6 @@ function findTime(text, subject, date) {
     temp = pattl.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
-        console.log("Z");
 
     setCurr = false;
   }
@@ -258,7 +266,6 @@ function findTime(text, subject, date) {
     temp = patto.exec(text)[0];
     time = pattnum2.exec(temp);
     time = time + ":00";
-        console.log("H");
 
     setCurr = false;
   }
@@ -266,47 +273,40 @@ function findTime(text, subject, date) {
     temp = pattn.exec(text)[0];
     time = pattnum.exec(temp);
     time = time + ":00:00";
-        console.log("I");
 
     setCurr = false;
   }
   else if (pattam2.test(text)) {
     temp = pattam2.exec(text)[0];
     time = pattnum2.exec(temp);
-    console.log("akk " + pattam2.exec(text));
     time = time + ":00";
     setCurr = false;
   }
   else if (pattam.test(text)) {
     temp = pattam.exec(text)[0];
     time = pattnum.exec(temp);
-    console.log("ajja " + pattam.exec(text));
     time = time + ":00:00";
     setCurr = false;
   }
   else if (pattpm2.test(text)) {
     temp = pattpm2.exec(text)[0];
     time = pattnum2.exec(temp);
-    console.log("wf " + pattpm2.exec(text));
     time = time + ":00";
     setCurr = false;
   }
   else if (pattpm.test(text)) {
     temp = pattpm.exec(text)[0];
     time = pattnum.exec(temp);
-    console.log("dad " + pattpm.exec(text));
     time = time + ":00:00";
     setCurr = false;
   }
 
   findAM = isam.test(text) | isam.test(subject);
-  console.log("AM? " + findAM);
   if (!setCurr)
   {
     var temp = time.split(':');
     console.log(temp[0]);
     if (temp[0] === "12") {
-      console.log("is12");
       temp[0] = parseInt(temp[0]) - 12;
       time = (parseInt(temp[0])) + ":" + temp[1] + ":00";
     }
