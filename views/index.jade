@@ -57,24 +57,27 @@ body(style='overflow: hidden')
 		var locid = 0;
 		var eid = 0;
 		var locationid = {};
-		console.debug("Hey there");
 
 	if dataRows.length != 0
 		- var current_location = dataRows[0].location;
 		- for row in dataRows
+			script.
+				numloc++;
 			if row.location !== current_location
 				script.
-					locationid["#{current_location}"] = locid;
+					locationid["#{current_location}"] = [locid, 0];
 					locid++;
+					numloc = 0;
 				- console.log(current_location);
 				- current_location = row.location;
 			script.
-				locationid["#{current_location}"] = locid;
+				locationid["#{current_location}"] = [locid, 0];
 		- for row in timeRows
 			- var loc = row.location;
 			script.
-				sidestuff[eid].id = "sideid-" + locationid["#{loc}"] + "-" + eid;
+				sidestuff[eid].id = "sideid-" + locationid["#{loc}"][0] + "-" + locationid["#{loc}"][1] + "-" + eid;
 				eid++;
+				locationid["#{loc}"][1]++;
 
 		//- Tab panes
 		.tab-content
@@ -338,9 +341,10 @@ body(style='overflow: hidden')
 	script.
 		$("#accordion").accordion({collapsible: true, heightStyle: "content", active: false});	
 
-		function openmarker(i) {
+		function openmarker(i, j) {
 			return function() {
 				markers[i].openPopup();
+				$('marker').carousel(j);
 				//markers[i].setIcon(bigIcon);
 				//markers[i].layer.feature.properties['marker-color'] = '#000000';
 			};
@@ -353,7 +357,7 @@ body(style='overflow: hidden')
 		//- }
 
 		for (var j = 0; j < sidestuff.length; j++) {
-			document.getElementById(sidestuff[j].id).onmouseover = openmarker(sidestuff[j].id.split('-')[1]);
+			document.getElementById(sidestuff[j].id).onmouseover = openmarker(sidestuff[j].id.split('-')[1], sidestuff[j].id.split('-')[2]);
 		}
 
 		//- for (var j = 0; j < sidestuff.length; j++) {

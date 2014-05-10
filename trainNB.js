@@ -55,11 +55,14 @@ natural.BayesClassifier.load('classifier.json', null, function(err, classifier) 
     console.log("'lost my coat at tower help!' is free food: " + classifier.classify('lost my coat at tower help!'));
     console.log("'Mad Women conference on gender' is free food: " + classifier.classify('Mad Women conference on gender'));
     console.log("'I have tickets to the concert' is free food: " + classifier.classify('I have tickets to the concert'));
- 	console.log("'Bike stolen' is free food: " + classifier.classify('Bike stolen'));
- 	console.log("'Qdoba and pizza!' is free food: " + classifier.classify('Qdoba and pizza!'));
- 	
- 	
+ 	  console.log("'Bike stolen' is free food: " + classifier.classify('Bike stolen'));
+ 	  console.log("'Qdoba and pizza!' is free food: " + classifier.classify('Qdoba and pizza!'));
+ 	  console.log("'Feed the hungry' is free food: " + classifier.classify('Feed the hungry'));
+    console.log("'Students in fashion panel' is free food: " + classifier.classify('Students in fashion panel'));
+    console.log("'Participate in 5-minute survey + Win one of two $25 Amazon gift cards!' is free food: " + 
+                classifier.classify('Participate in 5-minute survey + Win one of two $25 Amazon gift cards!'));
 
+ 	
  	var i = 0;
     mailListener.on("mail", function(mail) { 
     	console.log("---------------- Test Email " + i + " ---------------");
