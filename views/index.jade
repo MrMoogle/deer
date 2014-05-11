@@ -138,21 +138,18 @@ body(style='overflow: hidden')
 
 	if dataRows.length != 0
 		- var current_longit = dataRows[0].longit;
-		- var current_lat = dataRows[0].lat;
 		- for row in dataRows
 			script.
-				numloc++;
-			if row.longit !== current_longit || row.lat !== current_lat
+			if row.longit !== current_longit
 				script.
-					locationid["#{current_location}"] = [locid, 0];
+					locationid["#{current_longit}"] = [locid, 0];
 					locid++;
-					numloc = 0;
 				- console.log(current_location);
 				- current_location = row.location;
 			script.
-				locationid["#{current_location}"] = [locid, 0];
+				locationid["#{current_longit}"] = [locid, 0];
 		- for row in timeRows
-			- var loc = row.location;
+			- var loc = row.longit;
 			script.
 				sidestuff[eid].id = "sideid-" + locationid["#{loc}"][0] + "-" + locationid["#{loc}"][1] + "-" + eid;
 				eid++;
