@@ -7,7 +7,7 @@ var https = require('https');
 https.globalAgent.options.secureProtocol = 'SSLv3_method';
 var cas = new CAS({
   base_url: 'https://fed.princeton.edu/cas/', 
-  service: 'http://deer.herokuapp.com/map', // change later
+  service:  'http://localhost:3000/map', //'http://deer.herokuapp.com/map', // change later
   version: 2.0
 });
 
@@ -44,7 +44,7 @@ exports.index = function(req, res) {
             console.log('database connection error');
 
           // Queries database and renders page          
-          connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e, %l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() - INTERVAL 4 HOUR AND time + INTERVAL 2 HOUR > NOW() - INTERVAL 4 HOUR ORDER by location', function(err, rows, fields) {
+          connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e, %l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() - INTERVAL 4 HOUR AND time + INTERVAL 2 HOUR > NOW() - INTERVAL 4 HOUR ORDER by longit', function(err, rows, fields) {
             if (err) 
               console.log('database location ordered query error');
             connection.query('SELECT subject, mess, location, DATE_FORMAT(time, \'%b %e %l:%i %p\') as time, lat, longit, food FROM data WHERE time - INTERVAL 1 DAY < NOW() - INTERVAL 4 HOUR AND time + INTERVAL 2 HOUR > NOW() - INTERVAL 4 HOUR ORDER by time', function(err, rowstime, fields) {
@@ -107,7 +107,8 @@ exports.map = function(req, res){
     });
 
     console.log(list);
-    res.redirect('http://deer.herokuapp.com/index');
+    // res.redirect('http://deer.herokuapp.com/index');
+    res.redirect('http://localhost:3000/index')
   }
 };
 
