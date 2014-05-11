@@ -137,11 +137,12 @@ body(style='overflow: hidden')
 		var locationid = {};
 
 	if dataRows.length != 0
-		- var current_location = dataRows[0].location;
+		- var current_longit = dataRows[0].longit;
+		- var current_lat = dataRows[0].lat;
 		- for row in dataRows
 			script.
 				numloc++;
-			if row.location !== current_location
+			if row.longit !== current_longit || row.lat !== current_lat
 				script.
 					locationid["#{current_location}"] = [locid, 0];
 					locid++;
