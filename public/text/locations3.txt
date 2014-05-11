@@ -144,7 +144,6 @@ Engineering Quad	40.350751, -74.650512
 Cordish Pavilion	40.341451, -74.654483
 Computer Science	40.350252, -74.652251
 Chancellor Green	40.349083, -74.658611
-Chancellor Green	40.349050, -74.658600
 Cafe Witherspoon	40.346872, -74.655255
 Bainbridge House	40.350441, -74.657547
 Tennis Pavilion	40.341679, -74.653202
@@ -188,6 +187,7 @@ Maclean House	40.349106, -74.660220
 Lockhart Hall	40.346685, -74.661260
 Lewis Library	40.346187, -74.652656
 Laughlin Hall	40.346422, -74.660368
+Julian Street	40.345075, -74.656303
 Helm Building	40.336570, -74.655525
 Hargadon Hall	40.343845, -74.658369
 Hamilton Hall	40.348099, -74.662244
@@ -323,6 +323,8 @@ Prospect	40.347086, -74.656654
 McCarter	40.344203, -74.660627
 Lockhart	40.346685, -74.661260
 Laughlin	40.346422, -74.660368
+J Street	40.345075, -74.656303
+J-Street	40.345075, -74.656303
 Ivy Club	40.348186, -74.652206
 Hoyt Lab	40.349655, -74.654649
 Hargadon	40.343845, -74.658369

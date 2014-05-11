@@ -18,8 +18,8 @@ head
 
 body(style='overflow: hidden')
 	#map
-		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
+		//- script.
+		//- 	var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
 
 	#rowcolor.row
 		.rowhead 
@@ -50,6 +50,86 @@ body(style='overflow: hidden')
 									td(style= 'width: 90%; padding-left:4%') #{row.time}
 					div.panel-body.mine #{row.mess}
 
+	//- Tab panes
+	.tab-content
+		#Map.tab-pane.fade.in.active
+		#About.tab-pane.fade
+			.col-sm-12.col-md-12
+				#jumbotronlogo.jumbotron
+					#jumbotronscroll
+						h2 WHAT DO TIGERS EAT?
+						h3 Deer. Categorically and unequivocally.
+						p 
+							|Bengal and Indian tigers eat Sambar deer. 
+							|Siberian tigers eat Roe deer and Sika deer. 
+							|Sumatran tigers eat Muntjac deer. Caspian tigers, 
+							|now extinct, ate camels (which I am told are the equivalent of desert deer). 
+							|For the sake of rhetorical consistency, Princeton tigers use DEER to find food.
+						p
+							|DEER is Princeton's Free Food Map. Never again will you have to trawl your inbox looking for free
+							|food handouts to supplement your meager diet of gourmet sodium infused ramen. DEER aggregates Princeton
+							|listserv emails, searches for free food events, and displays all the relevant email information 
+							|on an interactive map. 
+
+						.row
+							.col-sm-12.col-md-12
+								.thumbnail
+									img(src='http://i.imgur.com/M0GyUJR.png', alt='...')
+									.caption
+										h3 DEER Schematic Diagram
+										p 
+											|Princeton listserv emails are forwarded to our Gmail account where they are caught by  
+											|MailListener. If the incoming email is not from the FreeFood listserv, The Free Food 
+											|Identifier labels the email using a Naive Bayes classifier. The Naive Bayes classifier
+											|is trained using manually-labeled listserv emails. Succesfully identified free food emails
+											|are then parsed for food, location, and time. The email and its relevant attributes are
+											|stored in our MySQL database to be displayed on the website. We use MapBox to plot the map 
+											|and display the markers.
+
+
+
+						
+		#Team.tab-pane.fade
+			.row
+				.col-sm-12.col-md-3
+					.thumbnail
+						img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-frc1/t31.0-8/1150473_10200255008049025_214182866_o.jpg?dl=1, https://www.facebook.com/photo.php?fbid=10200255008049025&set=a.1351172030512.2045216.1567716721&type=3&theater', alt='..')
+						.caption
+							h3 Patrick Ding
+							p Patrick is a freaking stud. When Patrick is not coding or doing ORFE things, Patrick likes to spend time building and launching rockets, looking beautiful, and performing as a virtuosic flautist.
+				.col-sm-12.col-md-3
+					.thumbnail
+						img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/10170692_10152747485783272_4225563882897453574_n.jpg', alt='..')
+						.caption
+							h3 Erick Chen
+							p Erick is a beast at making maps. He likes to go to the gym late at nights after daily coding sessions and eating Hogie Haven. He is probably the sexiest contributer of the DEER project.
+				.col-sm-12.col-md-3
+					.thumbnail
+						img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/t1.0-9/1618431_10152092289133542_1329434398_n.jpg', alt='..')
+						.caption
+							h3 Oscar Li
+							p Oscar just likes to SLEEP! SLEEEP!! SLEEEP!!! SLEEEEP!!!! SLEEEEEP!!!!! SLEEEEEEP!!!!!! SLEEEEEEEP!!!!!!! SLEEEEEEEEP!!!!!!!! SLEEEEEEEEEP!!!!!!!!!
+				.col-sm-12.col-md-3
+					.thumbnail
+						img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-prn2/t1.0-9/1175682_544752075572984_842042088_n.jpg', alt='..')
+						.caption
+							h3 Brandon Lam
+							p Brandon is both a musician and programmer. Although he plays viola (ewwww), he still likes to believe that he can actually play music. He should have picked up the basson instead.
+
+		#Contact.tab-pane.fade
+			.col-sm-12.col-md-12
+				#jumbotronlogo.jumbotron
+					h2 Comments, Suggestions, Soiree Invitations?
+					p 	Contact us at pfreefoodmap@gmail.com
+					p 
+						|Please address comments, suggestions, and insults to our fearless Project Manager, Oscar Li, 
+						|not to be confused with his alter ego, Sir Calo, our village idiot. 	
+					p
+						|Please address all soiree and coffee date invitations to Brandon Lam. His herald, PDiddy will 
+						|handle the details. 
+
+		#LOGOUT.tab-pane ...		
+
 	//- put each sidebar element in a class corresponding to marker
 	script.
 		var sidestuff = document.querySelectorAll('.sideentry');
@@ -79,90 +159,11 @@ body(style='overflow: hidden')
 				eid++;
 				locationid["#{loc}"][1]++;
 
-		//- Tab panes
-		.tab-content
-			#Map.tab-pane.fade.in.active
-			#About.tab-pane.fade
-				.col-sm-12.col-md-12
-					#jumbotronlogo.jumbotron
-						#jumbotronscroll
-							h2 WHAT DO TIGERS EAT?
-							h3 Deer. Categorically and unequivocally.
-							p 
-								|Bengal and Indian tigers eat Sambar deer. 
-								|Siberian tigers eat Roe deer and Sika deer. 
-								|Sumatran tigers eat Muntjac deer. Caspian tigers, 
-								|now extinct, ate camels (which I am told are the equivalent of desert deer). 
-								|For the sake of rhetorical consistency, Princeton tigers use DEER to find food.
-							p
-								|DEER is Princeton's Free Food Map. Never again will you have to trawl your inbox looking for free
-								|food handouts to supplement your meager diet of gourmet sodium infused ramen. DEER aggregates Princeton
-								|listserv emails, searches for free food events, and displays all the relevant email information 
-								|on an interactive map. 
-
-							.row
-								.col-sm-12.col-md-12
-									.thumbnail
-										img(src='http://i.imgur.com/M0GyUJR.png', alt='...')
-										.caption
-											h3 DEER Schematic Diagram
-											p 
-												|Princeton listserv emails are forwarded to our Gmail account where they are caught by  
-												|MailListener. If the incoming email is not from the FreeFood listserv, The Free Food 
-												|Identifier labels the email using a Naive Bayes classifier. The Naive Bayes classifier
-												|is trained using manually-labeled listserv emails. Succesfully identified free food emails
-												|are then parsed for food, location, and time. The email and its relevant attributes are
-												|stored in our MySQL database to be displayed on the website. We use MapBox to plot the map 
-												|and display the markers.
-
-
-
-							
-			#Team.tab-pane.fade
-				.row
-					.col-sm-12.col-md-3
-						.thumbnail
-							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-frc1/t31.0-8/1150473_10200255008049025_214182866_o.jpg?dl=1, https://www.facebook.com/photo.php?fbid=10200255008049025&set=a.1351172030512.2045216.1567716721&type=3&theater', alt='..')
-							.caption
-								h3 Patrick Ding
-								p Patrick is a freaking stud. When Patrick is not coding or doing ORFE things, Patrick likes to spend time building and launching rockets, looking beautiful, and performing as a virtuosic flautist.
-					.col-sm-12.col-md-3
-						.thumbnail
-							img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/10170692_10152747485783272_4225563882897453574_n.jpg', alt='..')
-							.caption
-								h3 Erick Chen
-								p Erick is a beast at making maps. He likes to go to the gym late at nights after daily coding sessions and eating Hogie Haven. He is probably the sexiest contributer of the DEER project.
-					.col-sm-12.col-md-3
-						.thumbnail
-							img(src='https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/t1.0-9/1618431_10152092289133542_1329434398_n.jpg', alt='..')
-							.caption
-								h3 Oscar Li
-								p Oscar just likes to SLEEP! SLEEEP!! SLEEEP!!! SLEEEEP!!!! SLEEEEEP!!!!! SLEEEEEEP!!!!!! SLEEEEEEEP!!!!!!! SLEEEEEEEEP!!!!!!!! SLEEEEEEEEEP!!!!!!!!!
-					.col-sm-12.col-md-3
-						.thumbnail
-							img(src='https://scontent-a-iad.xx.fbcdn.net/hphotos-prn2/t1.0-9/1175682_544752075572984_842042088_n.jpg', alt='..')
-							.caption
-								h3 Brandon Lam
-								p Brandon is both a musician and programmer. Although he plays viola (ewwww), he still likes to believe that he can actually play music. He should have picked up the basson instead.
-
-			#Contact.tab-pane.fade
-				.col-sm-12.col-md-12
-					#jumbotronlogo.jumbotron
-						h2 Comments, Suggestions, Soiree Invitations?
-						p 	Contact us at pfreefoodmap@gmail.com
-						p 
-							|Please address comments, suggestions, and insults to our fearless Project Manager, Oscar Li, 
-							|not to be confused with his alter ego, Sir Calo, our village idiot. 	
-						p
-							|Please address all soiree and coffee date invitations to Brandon Lam. His herald, PDiddy will 
-							|handle the details. 
-
-			#LOGOUT.tab-pane ...		
-
 
 	//- Plot the makers, build carousel popups
 	if dataRows.length != 0
-		- var current_location = dataRows[0].location;
+		- var current_longit = dataRows[0].longit;
+		- var current_lat = dataRows[0].lat;
 		- console.log("--------------------------------------");
 		- console.log("Starting location: " + current_location);
 		- var subjects = [];
@@ -172,7 +173,7 @@ body(style='overflow: hidden')
 		- var currlat;
 		- for row in dataRows
 			//- - console.log("In consideration: " + row.location + " versus: " + current_location);
-			if row.location === current_location
+			if row.longit === current_longit && row.lat === current_lat
 				- subjects.push(row.subject);
 				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
 				- times.push(row.time);
@@ -344,7 +345,6 @@ body(style='overflow: hidden')
 		function openmarker(i, j) {
 			return function() {
 				markers[i].openPopup();
-				$('marker').carousel(j);
 				//markers[i].setIcon(bigIcon);
 				//markers[i].layer.feature.properties['marker-color'] = '#000000';
 			};
