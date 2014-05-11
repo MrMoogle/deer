@@ -7,7 +7,7 @@ var https = require('https');
 https.globalAgent.options.secureProtocol = 'SSLv3_method';
 var cas = new CAS({
   base_url: 'https://fed.princeton.edu/cas/', 
-  service: 'http://deer.herokuapp.com/map', // change later
+  service: 'http://deer.herokuapp.com/index', // change later
   version: 2.0
 });
 
@@ -91,25 +91,25 @@ exports.index = function(req, res) {
   }
 };
 
-exports.map = function(req, res){
-  var ticket = req.param('ticket');
-  if (ticket) {
-    res.cookie('ticket', ticket, {path: '/'});
-    console.log("added cookie");
-    console.log(req.path);
+// exports.map = function(req, res){
+//   var ticket = req.param('ticket');
+//   if (ticket) {
+//     res.cookie('ticket', ticket, {path: '/'});
+//     console.log("added cookie");
+//     console.log(req.path);
 
-     var list = {},
-        rc = req.headers.cookie;
+//      var list = {},
+//         rc = req.headers.cookie;
 
-    rc && rc.split(';').forEach(function( cookie ) {
-        var parts = cookie.split('=');
-        list[parts.shift().trim()] = unescape(parts.join('='));
-    });
+//     rc && rc.split(';').forEach(function( cookie ) {
+//         var parts = cookie.split('=');
+//         list[parts.shift().trim()] = unescape(parts.join('='));
+//     });
 
-    console.log(list);
-    res.redirect('http://deer.herokuapp.com/index');
-  }
-};
+//     console.log(list);
+//     res.redirect('http://deer.herokuapp.com/index');
+//   }
+// };
 
 exports.cover = function(req, res){
   res.render('cover', {
