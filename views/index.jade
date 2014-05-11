@@ -18,8 +18,8 @@ head
 
 body(style='overflow: hidden')
 	#map
-		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
+		//- script.
+		//- 	var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
 
 	#rowcolor.row
 		.rowhead 
@@ -50,8 +50,12 @@ body(style='overflow: hidden')
 									td(style= 'width: 90%; padding-left:4%') #{row.time}
 					div.panel-body.mine #{row.mess}
 
+<<<<<<< HEAD
 
 		//- Tab panes
+=======
+	//- Tab panes
+>>>>>>> patrickbranch
 	.tab-content
 		#Map.tab-pane.fade.in.active
 		#About.tab-pane.fade
@@ -130,7 +134,7 @@ body(style='overflow: hidden')
 						|handle the details. 
 
 		#LOGOUT.tab-pane ...		
-		//- put each sidebar element in a class corresponding to marker
+
 	script.
 		var sidestuff = document.querySelectorAll('.sideentry');
 		var markers = [];
@@ -162,7 +166,8 @@ body(style='overflow: hidden')
 
 	//- Plot the makers, build carousel popups
 	if dataRows.length != 0
-		- var current_location = dataRows[0].location;
+		- var current_longit = dataRows[0].longit;
+		- var current_lat = dataRows[0].lat;
 		- console.log("--------------------------------------");
 		- console.log("Starting location: " + current_location);
 		- var subjects = [];
@@ -172,7 +177,7 @@ body(style='overflow: hidden')
 		- var currlat;
 		- for row in dataRows
 			//- - console.log("In consideration: " + row.location + " versus: " + current_location);
-			if row.location === current_location
+			if row.longit === current_longit && row.lat === current_lat
 				- subjects.push(row.subject);
 				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
 				- times.push(row.time);
@@ -344,7 +349,6 @@ body(style='overflow: hidden')
 		function openmarker(i, j) {
 			return function() {
 				markers[i].openPopup();
-				$('marker').carousel(j);
 				//markers[i].setIcon(bigIcon);
 				//markers[i].layer.feature.properties['marker-color'] = '#000000';
 			};
