@@ -494,6 +494,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.cover);
 app.get('/users', user.list);
+app.get('/map', routes.map);
 app.get('/index', routes.index);
 
 http.createServer(app).listen(app.get('port'), function(){
