@@ -7,7 +7,7 @@ var https = require('https');
 https.globalAgent.options.secureProtocol = 'SSLv3_method';
 var cas = new CAS({
   base_url: 'https://fed.princeton.edu/cas/', 
-  service:   'http://deer.herokuapp.com/map', //'http://localhost:3000/map',
+  service:   'http://localhost:3000/map', //'http://deer.herokuapp.com/map', 
   version: 2.0
 });
 
@@ -107,8 +107,8 @@ exports.map = function(req, res){
     });
 
     console.log(list);
-    res.redirect('http://deer.herokuapp.com/index');
-    //res.redirect('http://localhost:3000/index')
+    //res.redirect('http://deer.herokuapp.com/index');
+    res.redirect('http://localhost:3000/index')
   }
 };
 
