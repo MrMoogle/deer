@@ -387,7 +387,6 @@ function parseEmail(text, subject, foodlist, placelist) {
 
 /*-----------------------------------------------------------------------------------------*/
 
-
 // Food word dictionary
 var foodlist = fs.readFileSync('./public/text/food2.txt').toString().toLowerCase().split("\n");
 
