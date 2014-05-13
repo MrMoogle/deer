@@ -99,7 +99,7 @@ body {
 	width: auto;
 	overflow: auto;
 	max-height: 280px;
-	margin: 10px;
+	margin: 25px;
 }
 
 a.carousel-control {
@@ -112,7 +112,11 @@ a.carousel-control.left, a.carousel-control.right {
 
 a.carousel-control.right {
 	margin-right: -13px;
-	margin-top: -5px;
+	margin-top: 28px;
+}
+
+a.carousel-control.left {
+	margin-top: 30px;
 }
 
 #marker {
@@ -136,6 +140,7 @@ a.carousel-control.right {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
+
 
 /*----------- Tab Bar -------------*/
 .nav {
