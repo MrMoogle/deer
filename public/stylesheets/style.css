@@ -290,27 +290,19 @@ table,th,td {
 .coverbody {
 	height:100%;
 	min-height:100%;
-	background-color: black;
+	background-color: #000;
 }
 
-/*.col-md-4 {
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	margin-bottom:0;
-	padding:0;
-	height: 100%;
-	background-color: black;
-}
-*/
 .jumbotron.covertext {
 	height:100%;
-	background-color: black;
+	background-color: transparent;
 	margin:0;
 }
 
 #covertextcont {
 	margin-bottom:auto;
+	background-image: url('http://i.imgur.com/IEFSMkY.jpg');
+	background-size:100%
 }
 
 #mapimg {
