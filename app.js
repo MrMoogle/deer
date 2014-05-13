@@ -402,7 +402,7 @@ var mailListener = new MailListener({
   tls: true,
   tlsOptions: { rejectUnauthorized: false },
   mailbox: "INBOX", // mailbox to monitor
-  searchFilter: "UNSEEN", // the serach filter being used after an IDLE notification has been retrieved
+  searchFilter: "UNSEEN", // the search filter being used after an IDLE notification has been retrieved
   markSeen: true, // all fetched email willbe marked as seen and not fetched next time
   fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
   mailParserOptions: {streamAttachments: true} // options to be passed to mailParser lib.
@@ -420,8 +420,6 @@ natural.BayesClassifier.load('classifier.json', null, function(err, classifier) 
     var freefoodpatt = new RegExp("\\[FreeFood\\]", "g");
     if (freefoodpatt.test(mail.subject)) {  
       console.log("FreeFood listserv email recieved");
-      // var start = (mail.text).indexOf("freefood@princeton.edu") + 22;
-      // var temptext = (mail.text).slice(start, mail.text.length);
       text = mail.text.slice(0, mail.text.indexOf("-----"));
       parseEmail(text, mail.subject, foodlist, placelist);
     }

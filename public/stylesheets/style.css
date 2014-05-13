@@ -81,17 +81,6 @@ body {
 	padding-left: 4%;
 }
 
-.picture {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  background: url('http://www.wallpapersfolder.com/user-content/uploads/wall/o/2013/06/lovely-tiger-cub-look-back-sadly.jpg') no-repeat center center;
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;
-}
-
-
 /*----------- Carousel and Popup --------------*/
 
 .carousel {
@@ -233,21 +222,13 @@ a.carousel-control.left {
 }
 
 #sidebar .nav li>a:hover {
-	background-color:#393939;
+	background-color:#595959;
+	color:#FFF;
 }
 
 #sidebar .nav li>a:active{
 	background-color:#393939;
-}
-
-#sidebar-footer {
-  background-color:#444;
-  position:absolute;
-  bottom:5px;
-  padding:5px;
-}
-#footer {
-  margin-bottom:20px;
+	color:#FFF;
 }
 
 .panel-body.mine {
@@ -263,7 +244,7 @@ a.carousel-control.left {
 
 .panel-heading {
 	background-color: transparent; 
-	color: #FFFFFF;
+	color: #777;
 	cursor: pointer;
 	text-align: center;
 	padding-bottom: 10px;
@@ -272,6 +253,12 @@ a.carousel-control.left {
 
 .panel-heading:hover{
 	background-color:#393939;
+	color:#FFF
+}
+
+.panel-heading:active{
+	background-color:#393939;
+	color:#FFF
 }
 
 table,th,td {
