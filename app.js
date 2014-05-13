@@ -378,6 +378,8 @@ function parseEmail(text, subject, foodlist, placelist) {
 
   // Inserts into database 
   if (location !== "") {
+    var imagepatt = /\[image: Inline image \d?\d\]/ig;
+    text = text.replace(imagepatt, "");
     pool.getConnection(function(err, connection) {
       if (err) console.log('database connection error');
       var query = 'INSERT INTO data(subject, mess, location, time, lat, longit, food) VALUES(\'' + 
