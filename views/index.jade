@@ -140,7 +140,7 @@ body(style='overflow: hidden')
 					locationid["#{current_longit}"] = [locid, 0];
 					locid++;
 				- console.log(current_location);
-				- current_location = row.location;
+				- current_longit = row.longit;
 			script.
 				locationid["#{current_longit}"] = [locid, 0];
 		- for row in timeRows
@@ -163,7 +163,7 @@ body(style='overflow: hidden')
 		- var currlong;
 		- var currlat;
 		- for row in dataRows
-			//- - console.log("In consideration: " + row.location + " versus: " + current_location);
+			- console.log("In consideration: " + row.location + " versus: " + current_location);
 			if row.longit === current_longit && row.lat === current_lat
 				- subjects.push(row.subject);
 				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
@@ -246,7 +246,7 @@ body(style='overflow: hidden')
 														caritemsfirst + caritems +
 													"</div>" +  
 												"</div>" + arrows;
-					myLayer.bindPopup(content, {minWidth: 300});
+					myLayer.bindPopup(content, {minWidth: 310});
 		
 				- subjects = [];
 				- subjects.push(row.subject);
@@ -254,9 +254,11 @@ body(style='overflow: hidden')
 				- messages.push(row.mess.replace(/\r?\n|\r/g, " "));
 				- times = [];
 				- times.push(row.time);
-				- current_location = row.location;
+				- current_longit = row.longit;
+				- current_lat = row.lat;
 				- currlong = row.longit;
 				- currlat = row.lat;
+
 		script.
 			var geoJson = [{
 				// this feature is in the GeoJSON format: see geojson.org
