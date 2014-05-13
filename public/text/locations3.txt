@@ -106,6 +106,8 @@ East Asian Library	40.346781, -74.655466
 Cogeneration Plant	40.341463, -74.657223
 Carl Fields Center	40.349218, -74.651799
 Butler Dining Hall	40.344693, -74.656543
+Butler Ampitheater	40.344380, -74.655369
+Butler Ampitheatre	40.344380, -74.655369
 91 Prospect Avenue	40.348878, -74.651132
 87 Prospect Avenue	40.348576, -74.648860
 755 Alexander Road	40.321845, -74.634492

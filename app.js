@@ -34,6 +34,11 @@ function findFood(foodlist, text) {
  * first place string found in text. Return empty string if none found.
  */
 function findPlace(placelist, text) {
+  
+  // remove potential sources of confusion
+  text = text.replace(/bent spoon/ig, "");
+  text = text.replace(/ivy league/ig, "");
+
   for (var p = 0; p < placelist.length; p++) {
     var place = placelist[p].split("\t")[0];
     var patt = new RegExp("(^| )" + place + "(?![a-zA-Z])", "i");
