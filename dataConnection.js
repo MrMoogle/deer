@@ -1,8 +1,8 @@
 var mysql      = require('mysql');
 var pool  = mysql.createPool({
-  host     : 'deerdb.cqjm6e2t1gja.us-west-2.rds.amazonaws.com',
+  host     : 'deerdb.cincrxdxlun1.us-east-1.rds.amazonaws.com',
   database : 'deerdb',
   user     : 'deerdb',
-  password : 'deerdb333',
+  password : 'ptonfreefood',
 });
 exports.pool = pool;
