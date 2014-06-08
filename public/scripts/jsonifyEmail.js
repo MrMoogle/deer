@@ -1,14 +1,16 @@
 /*--------------------------------------------------*/
 /* Author: Oscar Li
 /* Date: 6/7/2014
-/* Purpose: Insert all unread emails into database. 
+/* Purpose: Print out all unread emails in JSON format
 /*--------------------------------------------------*/
 
 var pool = require('../../dataConnection.js').pool
 var MailListener= require("mail-listener2");
+var fs = require('fs');
+var outputFilename = 'email.json';
 
 var mailListener = new MailListener({
-  	username: "pfreefoodmap",
+    username: "pfreefoodmap",
   	password: "pfreefoodmap333",
   	host: "imap.gmail.com",
   	port: 993, 
@@ -22,19 +24,15 @@ var mailListener = new MailListener({
 });
 		      	
 mailListener.on("mail", function(mail) {
-	console.log(mail.text);
-	console.log(mail.subject);
+    var obj = {};
+    obj.subject = mail.subject;
+    obj.message = mail.text;
+    obj.label = null; 
+
+    var jsonString = JSON.stringify(obj);
+
+    console.log(JSON.parse(jsonString));
 })
-
-// event listener for server connection
-mailListener.on("server:connected", function(){
-  	console.log("imapConnected");
-});
-
-// event listener for server disconnection
-mailListener.on("server:disconnected", function(){
-  	console.log("imapDisconnected");
-});
 
 // event listener for errors
 mailListener.on("error", function(err){
