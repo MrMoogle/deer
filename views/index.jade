@@ -7,7 +7,7 @@ head
 	link(rel='stylesheet', href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css')
 	link(rel='stylesheet', href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
 	link(rel='stylesheet', href='/stylesheets/style.css')
-	link(href='/lib/jquery.bxslider.css', rel='stylesheet')
+	//- link(href='/lib/jquery.bxslider.css', rel='stylesheet')
 
 	// Javascript
 	script(src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js')
@@ -18,7 +18,7 @@ head
 body(style='overflow: hidden')
 	#map
 		script.
-			var map =  L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
+			var map = L.mapbox.map('map', 'eychen2014.hme0hhgm', {zoomControl: false, minZoom: 15, maxZoom: 20, maxBounds: [[40.335589, -74.676224], [40.360603, -74.644267]]}).setView([40.348510, -74.654479], 16);
 
 	#rowcolor.row
 		.rowhead 
@@ -29,6 +29,8 @@ body(style='overflow: hidden')
 				ul#myTab.nav.nav-tabs
 					li.active
 						a(id = 'mcolor', href='#Map', data-toggle='tab') Map
+					li
+						a(id = 'mcolor', href='#Add-Food', data-toggle='tab') Add Food
 					li
 						a(id = 'mcolor', href='#About', data-toggle='tab') About
 					li
@@ -51,6 +53,18 @@ body(style='overflow: hidden')
 
 	.tab-content
 		#Map.tab-pane.fade.in.active
+		#Add-Food.tab-pane.fade
+			.col-sm-12.col-md-12
+				#jumbotronlogo.jumbotron
+					h3 Have food? Spread the good news, add it to the map!
+					form(role='form', action='/index', method='post')
+						.form-group
+							label(for='food-subject') Subject
+							input#food-subject.form-control(type='text', placeholder='Subject', name='subject')
+						.form-group
+							label(for='food-text') Message
+							textarea#food-text.form-control(rows=3, placeholder='Message', name='mess')
+						button.btn.btn-default(type='submit', value='Submit') Submit
 		#About.tab-pane.fade
 			.col-sm-12.col-md-12
 				#jumbotronlogo.jumbotron

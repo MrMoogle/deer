@@ -4,6 +4,7 @@
 var pool = require('../dataConnection.js').pool; 
 var CAS = require('cas');
 var https = require('https');
+var parse = require('../parse');
 https.globalAgent.options.secureProtocol = 'SSLv3_method';
 var cas = new CAS({
   base_url: 'https://fed.princeton.edu/cas/', 
@@ -108,11 +109,23 @@ exports.map = function(req, res){
 
     console.log(list);
     //res.redirect('http://deer.herokuapp.com/index');
-    res.redirect('http://localhost:3000/index')
+    res.redirect('/index')
   }
 };
 
+/**
+ * Render the landing page
+ */
 exports.cover = function(req, res){
   res.render('cover', {
   title: 'Princeton Free Food Map'});
+}
+
+/**
+ * Direct food entry handler
+ */
+exports.addfood = function(req, res) {
+  console.log(req.body);
+  parse.parseEmail(req.body.mess, req.body.subject);
+  res.redirect('/index');
 }
